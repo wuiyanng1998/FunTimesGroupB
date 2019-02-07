@@ -2,8 +2,3 @@
 Repository for FindMyExecCar files. Christian, Ellen, Freya, Wui Yan, Zhaslan
 
 FUUUUUUUN
-
-
-
-
-vsdcbasdjcbsj
