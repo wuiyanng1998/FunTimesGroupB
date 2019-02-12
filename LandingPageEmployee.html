@@ -22,7 +22,7 @@
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/creative.min.css" rel="stylesheet">
+    <link href="css/creative.css" rel="stylesheet">
 
 </head>
 
@@ -35,7 +35,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="LandingPageEmployee.html"> My homepage</a>
+                <a class="nav-link js-scroll-trigger" href="LandingPageEmployee.html"> My home</a>
             </li>
         </ul>
 
@@ -49,10 +49,10 @@
                     <a class="nav-link js-scroll-trigger" href="#MakeABooking">Make A Booking</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#ViewBookings">View Bookings</a>
+                    <a class="nav-link js-scroll-trigger" href="#ViewBookings">My Bookings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#YourProfile">Profile</a>
+                    <a class="nav-link js-scroll-trigger" href="#YourProfile">My Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#ContactUs">Contact Us</a>
@@ -70,7 +70,7 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center text-center">
             <div class="col-lg-10 align-self-end">
-                <h1 class="text-uppercase text-white font-weight-bold">Welcome, Mary Smith!</h1>
+                <h1 class="text-uppercase text-white font-weight-bold">Welcome, John Doe!</h1>
                 <hr class="divider my-4">
             </div>
             <div class="col-lg-8 align-self-baseline">
@@ -81,26 +81,128 @@
     </div>
 </header>
 
-<!-- Contact us -->
-<section id="contact">
+<!-- View Bookings Section -->
+<section class="page-section bg-primary" id="viewBooking">
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="text-light mt-0">My Bookings</h2>
+                <hr class="divider light my-4">
+                <p class="text-white-50 mb-4">View all your bookings in four categories: Progress, Pending, History, Favourite.</p>
+                <table class="table-light table-bordered" bgcolor="#ffd700">
+                    <th class="bg-secondary text-light">Order ID</th>
+                    <th class="bg-secondary text-light">Date</th>
+                    <th class="bg-secondary text-light">Time</th>
+                    <th class="bg-secondary text-light">Pick up</th>
+                    <th class="bg-secondary text-light">Drop off</th>
+                    <tr>
+                        <td>709856</td>
+                        <td>10/02/2019</td>
+                        <td>12:00pm</td>
+                        <td>Heathrow Terminal 5</td>
+                        <td>Flat 3, 23 Goodge Street, London. NW1 3GH</td>
+                    </tr>
+                    <tr>
+                        <td>709856</td>
+                        <td>10/02/2019</td>
+                        <td>12:00pm</td>
+                        <td>Heathrow Terminal 5</td>
+                        <td>Flat 3, 23 Goodge Street, London. NW1 3GH</td>
+                    </tr>
+                    <tr>
+                        <td>709856</td>
+                        <td>10/02/2019</td>
+                        <td>12:00pm</td>
+                        <td>Heathrow Terminal 5</td>
+                        <td>Flat 3, 23 Goodge Street, London. NW1 3GH</td>
+                    </tr>
+                    <tr>
+                        <td>709856</td>
+                        <td>10/02/2019</td>
+                        <td>12:00pm</td>
+                        <td>Heathrow Terminal 5</td>
+                        <td>Flat 3, 23 Goodge Street, London NW1 3GH</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- My Profile Section -->
+<section class="page-section" id="profile">
+    <div class="container">
+        <h2 class="text-center mt-0">My Profile</h2>
+        <hr class="divider my-4">
+        <div class="row">
+            <div class="card col-lg-3 col-md-6 text-center" style="margin-outside:3vw">
+                <div class="card-body bg-primary-light">
+                    <div class="mt-2">
+                        <i class="fas fa-4x fa-address-card text-primary mb-4"></i>
+                        <h3 class="h4 mb-2 text-light">Personal info</h3>
+                        <p class="text-dark mb-0">Name: John Doe</p>
+                        <p class="text-dark mb-0">Company: UCL</p>
+                        <p class="text-dark mb-0">Email: j.doe@corporate.firm</p>
+                        <p class="text-dark mb-0">Mobile phone: +46 245 657 7492</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-lg-3 col-md-6 text-center">
+                <div class="card-body bg-primary-light">
+                    <div class="mt-2">
+                        <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
+                        <h3 class="h4 mb-2 text-light">Payment details</h3>
+                        <p class="text-dark mb-0">
+                            Card 1: **** **** **** 2135 John Doe<br>
+                            Card 2: **** **** **** 6298 Jane Doe</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-lg-3 col-md-6 text-center">
+                <div class="card-body bg-primary-light">
+                    <div class="mt-2">
+                        <i class="fas fa-4x fa-map-marked-alt text-primary mb-4"></i>
+                        <h3 class="h4 mb-2 text-light">Address</h3>
+                        <p class="text-dark mb-0">
+                            Home address: Flat 3, 23 Goodge Street, London NW1 3GH<br>
+                            Work address: London Riverside, London SE1 2AF<br></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-lg-3 col-md-6 text-center">
+                <div class="card-body bg-primary-light">
+                    <div class="mt-2">
+                        <i class="fas fa-4x fa-heart text-primary mb-4"></i>
+                        <h3 class="h4 mb-2 text-light">Saved trips</h3>
+                        <p class="text-dark mb-0">
+                            Trip ID 1: 098094<br>
+                            Trip ID 2: 563578<br>
+                            Trip ID 3: 245685<br></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Us -->
+<section id="contact" class="bg-primary">
+    <div class="container text-light">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <h2 class="section-heading">Luxury. Comfort. Serenity. </h2>
-                <h2 class="section-heading">The three pillars of BDF.</h2>
+                <h2 class="section-heading bg">Contact Us</h2>
                 <hr class="my-4">
-                <p class="mb-5">Get to your destination with no compromises. Contact us via phone or e-mail for quotations.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 ml-auto text-center">
                 <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
-                <p>02-012123213534535888</p>
+                <p>+44 77 6666 8888</p>
             </div>
             <div class="col-lg-4 mr-auto text-center">
                 <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
                 <p>
-                    <a href="mailto:your-email@your-domain.com">executive@ballerdrivefancy.cars</a>
+                    <a href="mailto:your-email@your-domain.com" class="text-light">executive@ballerdrivefancy.cars</a>
                 </p>
             </div>
         </div>
