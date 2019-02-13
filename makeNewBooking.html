@@ -4,9 +4,9 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
 
     <title>Make a booking</title>
 
@@ -33,7 +33,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <img class="img-fluid" src="img/logo.png" alt="" style="width:5%">
+        <img alt="" class="img-fluid" src="img/logo.png" style="width:5%">
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -41,9 +41,9 @@
             </li>
         </ul>
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse"
+                type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -88,7 +88,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-1 col-md-1">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary my-3"></i>
+                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-11 col-md-11">
                                         <h5>Pick-up address</h5>
@@ -103,7 +103,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-1">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary my-3"></i>
+                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-11">
                                         <h5>Drop-off address</h5>
@@ -119,7 +119,7 @@
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-1">
-                                        <i class="fas fa-2x fa-calendar-alt text-primary my-3"></i>
+                                        <i class="fas fa-2x fa-calendar-alt text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-11">
                                         <h5>Date of Journey</h5>
@@ -134,7 +134,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-1">
-                                        <i class="fas fa-2x fa-clock text-primary my-3"></i>
+                                        <i class="fas fa-2x fa-clock text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-11">
                                         <h5>Time of Journey</h5>
@@ -156,79 +156,154 @@
 
         <div class="card bg-card">
             <div class="card-body">
-
                 <div class="pl-0">
                     <h3 class="font-weight-bold"> Choose a car </h3>
                 </div>
-                <!--<div class="card pl-0 my-3 bg-light">-->
-                <!--<div class="card-body">-->
-                <!--<div class="row">-->
-                <!--<div class="col-1 col-md-1">-->
-                <!--<i class="fas fa-2x fa-map-marker-alt text-primary my-3"></i>-->
-                <!--</div>-->
-                <!--<div class="col-11 col-md-11">-->
-                <!--<h5>Pick-up address</h5>-->
-                <!--<input class="form-control validate" id="pickup_address"-->
-                <!--placeholder="Enter location"-->
-                <!--type="text">-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="card pl-0 my-3 bg-light">-->
-                <!--<div class="card-body">-->
-                <!--<div class="row">-->
-                <!--<div class="col-1">-->
-                <!--<i class="fas fa-2x fa-map-marker-alt text-primary my-3"></i>-->
-                <!--</div>-->
-                <!--<div class="col-11">-->
-                <!--<h5>Drop-off address</h5>-->
-                <!--<input class="form-control validate" id="dropoff_address"-->
-                <!--placeholder="Enter location"-->
-                <!--type="text">-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="card ml-0 pl-0 my-3 bg-light">-->
-                <!--<div class="card-body ">-->
-                <!--<div class="row">-->
-                <!--<div class="col-1">-->
-                <!--<i class="fas fa-2x fa-calendar-alt text-primary my-3"></i>-->
-                <!--</div>-->
-                <!--<div class="col-11">-->
-                <!--<h5>Date of Journey</h5>-->
-                <!--<input class="form-control validate" id="pickup_date" placeholder="Pick date"-->
-                <!--type="date">-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="card ml-0 pl-0 my-3 bg-light">-->
-                <!--<div class="card-body">-->
-                <!--<div class="row">-->
-                <!--<div class="col-1">-->
-                <!--<i class="fas fa-2x fa-clock text-primary my-3"></i>-->
-                <!--</div>-->
-                <!--<div class="col-11">-->
-                <!--<h5>Time of Journey</h5>-->
-                <!--<input class="form-control validate" id="pickup_time" placeholder="Pick time"-->
-                <!--type="time">-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
+                <div class="container">
+                    <div class="row">
+                        <div class="card col-12 col-md-5 my-3 bg-light">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img src="img/cars/car-list-eclass.png" class="container-fluid px-0"/>
+                                    <h5 class="my-3 font-weight-bold">Mercedes E-Class</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
-            </div>
-            <div class="row">
-                <div class="mx-auto">
-                    <a class="btn btn-primary btn-xl" href="bookingConfirmation.html">Book now</a>
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img src="img/cars/car-list-sclass1.png" class="container-fluid px-0"/>
+                                    <h5 class="my-3 font-weight-bold">Mercedes S-Class</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card col-12 col-md-5 my-3 bg-light">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img src="img/cars/V-class-side.png" class="container-fluid px-0"/>
+                                    <h5 class="my-3 font-weight-bold">Mercedes V-Class</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img src="img/cars/rra1.png" class="container-fluid px-0"/>
+                                    <h5 class="my-3 font-weight-bold">Range Rover</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card col-12 col-md-5 my-3 bg-light">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img src="img/cars/car-list-phantom1.png" class="container-fluid px-0"/>
+                                    <h5 class="my-3 font-weight-bold">Rolls-Royce Phantom</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img src="img/cars/bentley-mulsanne.png" class="container-fluid px-0"/>
+                                    <h5 class="my-3 font-weight-bold">Bentley Mulsanne</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="mx-auto my-3">
+                <a class="btn btn-primary btn-xl" href="bookingConfirmation.html">Book now</a>
+            </div>
+        </div>
+    </div>
     </div>
 </section>
 

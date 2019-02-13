@@ -326,3 +326,7 @@ header.masthead p {
   background-color: #F9DFB7;
   border-style: none;
 }
+
+.text-primary-light {
+    color: #f3a571 !important;
+}
