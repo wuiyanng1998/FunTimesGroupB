@@ -330,3 +330,14 @@ header.masthead p {
 .text-primary-light {
     color: #f3a571 !important;
 }
+
+/*.card{*/
+/*overflow: hidden;*/
+/*box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);*/
+/*transition: height 0.3s, box-shadow 0.3s;*/
+/*}*/
+
+/*.card:hover {*/
+  /*height: 410px;*/
+  /*box-shadow: 20px 20px 40px 0 rgba(0,0,0,0.5);*/
+/*}*/
