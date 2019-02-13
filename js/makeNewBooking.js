@@ -35,8 +35,23 @@
     $(window).scroll(navbarCollapse);
 
 
+    $(".car-card").mouseenter(function () {
+        $(this).animate({
+            "top": "-=2vw"
+        }, "fast")
+    });
 
+    $(".car-card").mouseleave(function () {
+        $(this).animate({
+            "top": "+=2vw"
+        }, "fast")
+    });
 
+    $(".car-card").click(function () {
+        $(".car-card").removeClass("bg-card-active");
+        $(this).addClass("bg-card-active");
+    });
 
+    //css("border-color", "#F05F40")
 
 })(jQuery); // End of use strict
