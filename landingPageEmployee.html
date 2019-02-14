@@ -89,47 +89,47 @@
         <div class="col-lg-12 text-center container-fluid">
             <h2 class="text-light mt-0">My Bookings</h2>
             <hr class="divider light my-4">
-                <div class="container">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">In Progress</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Pending</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">History</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <table bgcolor="#ffd700" class="table-light table-bordered table-hover">
-                            <th class="bg-light text-primary">Trip ID</th>
-                            <th class="bg-light text-primary">Time</th>
-                            <th class="bg-light text-primary">Pick up</th>
-                            <th class="bg-light text-primary">Drop off</th>
-                            <tr>
-                                <td>709856</td>
-                                <td>10/02/2019 12:00pm</td>
-                                <td>Heathrow Terminal 5</td>
-                                <td>Flat 3, 23 Goodge Street, London. NW1 3GH</td>
-                            </tr>
-                            <tr>
-                                <td>709872</td>
-                                <td>11/02/2019 12:00pm</td>
-                                <td>Heathrow Terminal 3</td>
-                                <td>Flat 1, 23 Goodge Street, London. NW1 3GH</td>
-                            </tr>
-                            <tr>
-                                <td>709872</td>
-                                <td>11/02/2019 12:00pm</td>
-                                <td>Heathrow Terminal 2</td>
-                                <td>Flat 2, 23 Goodge Street, London. NW1 3GH</td>
-                            </tr>
-                        </table>
+            <div class="container">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">In Progress</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pending</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">History</a>
+                            </li>
+                        </ul>
                     </div>
+                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover">
+                        <th class="bg-light text-primary">Trip ID</th>
+                        <th class="bg-light text-primary">Time</th>
+                        <th class="bg-light text-primary">Pick up</th>
+                        <th class="bg-light text-primary">Drop off</th>
+                        <tr>
+                            <td>709856</td>
+                            <td>10/02/2019 12:00pm</td>
+                            <td>Heathrow Terminal 5</td>
+                            <td>Flat 3, 23 Goodge Street, London. NW1 3GH</td>
+                        </tr>
+                        <tr>
+                            <td>709872</td>
+                            <td>11/02/2019 12:00pm</td>
+                            <td>Heathrow Terminal 3</td>
+                            <td>Flat 1, 23 Goodge Street, London. NW1 3GH</td>
+                        </tr>
+                        <tr>
+                            <td>709872</td>
+                            <td>11/02/2019 12:00pm</td>
+                            <td>Heathrow Terminal 2</td>
+                            <td>Flat 2, 23 Goodge Street, London. NW1 3GH</td>
+                        </tr>
+                    </table>
                 </div>
+            </div>
         </div>
     </div>
 </section>
@@ -139,55 +139,187 @@
     <div class="container">
         <h2 class="text-center mt-0">My Profile</h2>
         <hr class="divider my-4">
-        <div class="row">
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
+
+            <!--Basic info card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body px-0 mt-2">
                     <i class="fas fa-4x fa-address-card text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Personal info</h3>
-                    <p class="card-text text-dark mb-0 mx-0">John Doe (ID: 1086)</p>
+                    <h3 class="card-title mb-2 text-dark">Basic info</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Name</h5>
+                        <input class="form-control validate border-0 bg-light" id="nameId"
+                               value="John Doe"
+                               type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">UCL</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Organisation</h5>
+                        <input class="form-control validate border-0 bg-light" id="organisationId" value="UCL"
+                               type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">j.doe@corporate.firm</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Email</h5>
+                        <input class="form-control validate border-0 bg-light" id="email"
+                               value="j.doe@corporate.firm"
+                               type="email">
+                    </div>
+
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">+462456577492</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Telephone</h5>
+                        <input class="form-control validate border-0 bg-light" id="telephone" value="+462456577492"
+                               type="tel">
+                    </div>
+
                 </div>
             </div>
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+
+            <!--Account info card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Payment</h3>
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 1: **** **** **** **** John
-                        Doe</p>
+                    <i class="fas fa-4x fa-address-book text-primary mb-4"></i>
+                    <h3 class="card-title mb-2 text-dark">Account info</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Employee ID</h5>
+                        <input class="form-control validate border-0 bg-light" id="employeeId"
+                               value="098094" type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 2: **** **** **** **** Jane
-                        Doe</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Organisation code</h5>
+                        <input class="form-control validate border-0 bg-light" id="organisationCode"
+                               value="563578" type="text">
+                    </div>
+
+                    <hr class="divider my-2">
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Account password</h5>
+                        <input class="form-control validate border-0 bg-light" id="accountPassword"
+                               value="123245685" type="password">
+                    </div>
                 </div>
             </div>
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+
+        </div>
+
+        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
+
+            <!--Trip history card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-map-marked-alt text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Address</h3>
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Home: Flat 3, 23 Goodge Street,
-                        London NW1 3GH</p>
+                    <i class="fas fa-4x fa-history text-primary mb-4"></i>
+                    <h3 class="card-title mb-2 text-dark">Trip history</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Trip ID 1</h5>
+                        <input class="form-control validate border-0 bg-light" id="tripHistory1"
+                               value="098094" type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Work: London Riverside, London SE1
-                        2AF</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Trip ID 2</h5>
+                        <input class="form-control validate border-0 bg-light" id="tripHistory2"
+                               value="563578" type="text">
+                    </div>
+
+                    <hr class="divider my-2">
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Trip ID 3</h5>
+                        <input class="form-control validate border-0 bg-light" id="tripHistory3"
+                               value="245685" type="text">
+                    </div>
                 </div>
             </div>
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+
+            <!--Saved trips card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body mt-2">
                     <i class="fas fa-4x fa-heart text-primary mb-4"></i>
                     <h3 class="card-title mb-2 text-dark">Saved trips</h3>
-                    <p class="card-text text-dark mb-0 mx-0">Trip ID 1: 098094</p>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Trip ID 1</h5>
+                        <input class="form-control validate border-0 bg-light" id="savedTrip1"
+                               value="098094" type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">Trip ID 2: 563578</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Trip ID 2</h5>
+                        <input class="form-control validate border-0 bg-light" id="savedTrip2"
+                               value="563578" type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">Trip ID 3: 245685</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Trip ID 3</h5>
+                        <input class="form-control validate border-0 bg-light" id="savedTrip3"
+                               value="245685" type="text">
+                    </div>
                 </div>
             </div>
+
+        </div>
+
+        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
+
+            <!--Payment options card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
+                <div class="card-body mt-2">
+                    <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
+                    <h3 class="card-title mb-2 text-dark">Payment options</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Card 1</h5>
+                        <input class="form-control validate border-0 bg-light" id="card1"
+                               value="**** **** **** **** John Doe" type="text">
+                    </div>
+                    <hr class="divider my-2">
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Card 2</h5>
+                        <input class="form-control validate border-0 bg-light" id="card2"
+                               value="**** **** **** **** Jane Doe" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!--Address card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
+                <div class="card-body mt-2">
+                    <i class="fas fa-4x fa-map-marked-alt text-primary mb-4"></i>
+                    <h3 class="card-title mb-2 text-dark">Address</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Home address</h5>
+                        <input class="form-control validate border-0 bg-light" id="homeAddress"
+                               value="Flat 3, 23 Goodge Street, London NW1 3GH" type="text">
+                    </div>
+
+                    <hr class="divider my-2">
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Work address</h5>
+                        <input class="form-control validate border-0 bg-light" id="workAddress"
+                               value="London Riverside, London SE1 2AF" type="text">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
 </section>
 
 <!-- Contact Us -->
