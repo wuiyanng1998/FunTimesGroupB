@@ -92,10 +92,13 @@
             <h2 class="text-center mt-0">My Calendar</h2>
             <hr class="divider my-4">
             <div class="row">
-                <div class="col-4">
+
+                <!--2 Upcoming trips-->
+                <div class="col-md-4 col-12">
                     <div class="card my-3">
                         <div class="card-header bg-primary">
-                            <h5 class="text-white">Upcoming trip ID: 103958 <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                            <h5 class="text-white">Upcoming trip ID: 103958 <i
+                                    class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 10.00pm</p>
@@ -105,7 +108,8 @@
                     </div>
                     <div class="card my-3">
                         <div class="card-header bg-primary">
-                            <h5 class="text-white">Upcoming trip ID: 230987 <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                            <h5 class="text-white">Upcoming trip ID: 230987 <i
+                                    class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
                         </div>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 11.00pm</p>
@@ -113,19 +117,12 @@
                             <p class="card-text">To: Flat 2, 23 Goodge Street, London. NW1 3GH</p>
                         </div>
                     </div>
-                    <div class="card my-3">
-                        <div class="card-header bg-primary">
-                            <h5 class="text-white">Upcoming trip ID: 098647 <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Time: 11/02/2019 12.00pm</p>
-                            <p class="card-text">From: Heathrow Terminal 5</p>
-                            <p class="card-text">To: Flat 2, 23 Goodge Street, London. NW1 3GH</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="card col-8">
-                    <h3>Calendar is here.</h3>
+
+                <!--Calendar view-->
+                <div class="card m-0 col-md-8 d-none d-sm-block bg-light border-light container-fluid">
+                    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23ffffff&amp;src=3a2085vs1bpe5f0sm85pivgvko%40group.calendar.google.com&amp;color=%23BE6D00&amp;ctz=Europe%2FLondon"
+                            style="border-width:0" width="750" height="550" frameborder="0" scrolling="no" class="container-fluid"></iframe>
                 </div>
             </div>
         </div>
@@ -327,7 +324,7 @@
 <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="js/creative.min.js"></script>
+<script src="js/creative.js"></script>
 
 <!-- Footer -->
 <footer class="bg-light py-5">
