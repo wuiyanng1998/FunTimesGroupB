@@ -49,6 +49,7 @@ h6 {
 
 .bg-primary-light {
     background-color: #f3a571;
+    border-style: none;
 }
 
 .bg-dark {

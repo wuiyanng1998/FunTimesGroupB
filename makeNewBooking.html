@@ -87,10 +87,10 @@
                         <div class="card pl-0 my-3 bg-light">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-1 col-md-1">
+                                    <div class="col-2">
                                         <i class="fas fa-2x fa-map-marker-alt text-primary-light my-3"></i>
                                     </div>
-                                    <div class="col-11 col-md-11">
+                                    <div class="col-10">
                                         <h5>Pick-up address</h5>
                                         <input class="form-control validate" id="pickup_address"
                                                placeholder="Enter location"
@@ -102,10 +102,10 @@
                         <div class="card pl-0 my-3 bg-light">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <i class="fas fa-2x fa-map-marker-alt text-primary-light my-3"></i>
                                     </div>
-                                    <div class="col-11">
+                                    <div class="col-10">
                                         <h5>Drop-off address</h5>
                                         <input class="form-control validate" id="dropoff_address"
                                                placeholder="Enter location"
@@ -118,10 +118,10 @@
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <i class="fas fa-2x fa-calendar-alt text-primary-light my-3"></i>
                                     </div>
-                                    <div class="col-11">
+                                    <div class="col-10">
                                         <h5>Date of Journey</h5>
                                         <input class="form-control validate" id="pickup_date" placeholder="Pick date"
                                                type="date">
@@ -133,10 +133,10 @@
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-2">
                                         <i class="fas fa-2x fa-clock text-primary-light my-3"></i>
                                     </div>
-                                    <div class="col-11">
+                                    <div class="col-10">
                                         <h5>Time of Journey</h5>
                                         <input class="form-control validate" id="pickup_time" placeholder="Pick time"
                                                type="time">
@@ -144,9 +144,30 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-2x fa-user-friends text-primary-light my-3"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        <h5>Number of Passengers</h5>
+                                        <input class="form-control validate" id="number_passengers"
+                                               placeholder="Enter number of passengers"
+                                               type="number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
                         <h4><i class="fas fa-1x fa-compass text-dark my-1"></i> Map </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mx-auto my-3 text-light">
+                        <a class="btn btn-primary btn-xl"  id="sumbit_passengers" onclick="addFields()">Submit</a>
                     </div>
                 </div>
             </div>
@@ -321,76 +342,22 @@
             </div>
         </div>
 
-
         <br>
 
-        <div class="card bg-card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 col-lg-6">
-                        <div class="pl-0">
-                            <h3 class="font-weight-bold">Passengers details </h3>
-                        </div>
-                        <div class="card pl-0 my-3 bg-light">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-1 col-md-1">
-                                        <i class="fas fa-2x fa-address-book text-primary-light my-3"></i>
-                                    </div>
-                                    <div class="col-11 col-md-11">
-                                        <h5>Name</h5>
-                                        <input class="form-control validate" id="passenger_name"
-                                               placeholder="Enter name"
-                                               type="text">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card pl-0 my-3 bg-light">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-1">
-                                        <i class="fas fa-2x fa-mail-bulk text-primary-light my-3"></i>
-                                    </div>
-                                    <div class="col-11">
-                                        <h5>Email</h5>
-                                        <input class="form-control validate" id="passenger_email"
-                                               placeholder="Enter email"
-                                               type="email">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="card ml-0 pl-0 my-3 bg-light">
-                            <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-1">
-                                        <i class="fas fa-2x fa-phone text-primary-light my-3"></i>
-                                    </div>
-                                    <div class="col-11">
-                                        <h5>Mobile number</h5>
-                                        <input class="form-control validate" id="passenger_phone" value="+44"
-                                               type="tel">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
-                        <h4><i class="fas fa-1x fa-compass text-dark my-1"></i> Map </h4>
-                    </div>
-                </div>
-            </div>
+        <!--Passengers details-->
+        <div class="row" id="passenger_container">
         </div>
 
+        <!--Submit button-->
         <div class="row">
             <div class="mx-auto my-3">
                 <a class="btn btn-primary btn-xl" href="bookingConfirmation.html">Book now</a>
             </div>
         </div>
     </div>
-    </div>
+
+
 </section>
 
 
@@ -414,6 +381,63 @@
 <script src="js/makeNewBooking.js"></script>
 
 </body>
+
+
+<!--<div class="col-sm-12 col-lg-6 mt-md-1 mt-sm-1 mt-1 mt-lg-0 mt-xl-0 mb-4">-->
+<!--<div class="card bg-card">-->
+<!--<div class="card-body">-->
+<!--<h4>Passengers 4</h4>-->
+<!--&lt;!&ndash;<divs class="container">&ndash;&gt;-->
+<!--<div class="card pl-0 my-3 bg-light">-->
+<!--<div class="card-body">-->
+<!--<div class="row">-->
+<!--<div class="col-2">-->
+<!--<i class="fas fa-2x fa-address-book text-primary-light my-3"></i>-->
+<!--</div>-->
+<!--<div class="col-10">-->
+<!--<h5>Name</h5>-->
+<!--<input class="form-control validate" id="passenger_name"-->
+<!--placeholder="Enter name"-->
+<!--type="text">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="card pl-0 my-3 bg-light">-->
+<!--<div class="card-body">-->
+<!--<div class="row">-->
+<!--<div class="col-2">-->
+<!--<i class="fas fa-2x fa-mail-bulk text-primary-light my-3"></i>-->
+<!--</div>-->
+<!--<div class="col-10">-->
+<!--<h5>Email</h5>-->
+<!--<input class="form-control validate" id="passenger_email"-->
+<!--placeholder="Enter email"-->
+<!--type="email">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="card ml-0 pl-0 my-3 bg-light">-->
+<!--<div class="card-body ">-->
+<!--<div class="row">-->
+<!--<div class="col-2">-->
+<!--<i class="fas fa-2x fa-phone text-primary-light my-3"></i>-->
+<!--</div>-->
+<!--<div class="col-10">-->
+<!--<h5>Mobile number</h5>-->
+<!--<input class="form-control validate" id="passenger_phone"-->
+<!--value="+44"-->
+<!--type="tel">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;</divs>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
 
 </html>
