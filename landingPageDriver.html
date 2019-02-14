@@ -8,7 +8,7 @@
     <meta content="" name="description">
     <meta content="" name="author">
 
-    <title>Employee homepage</title>
+    <title>Driver homepage</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,10 +37,9 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="landingPageEmployee.html">My home</a>
+                <a class="nav-link js-scroll-trigger" href="LandingPageFM.html"> My home</a>
             </li>
         </ul>
-
         <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse"
                 type="button">
@@ -50,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#myBookings">My Bookings</a>
+                    <a class="nav-link js-scroll-trigger" href="#myPerformance">My Performance</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#myProfile">My Profile</a>
@@ -66,75 +65,80 @@
     </div>
 </nav>
 
-<header class="masthead text-center text-white d-flex">
-    <div class="container my-auto">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-10 align-self-end">
-                    <h1 class="text-uppercase text-white font-weight-bold">Welcome, John Doe!</h1>
-                    <hr class="divider my-4">
+<!--Header dark theme-->
+<section class="bg-dark pb-5 pt-5">
+</section>
+
+<!-- My Calendar Section -->
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card my-3">
+                <h5 class="card-header text-primary">Trip ID: 303958</h5>
+                <div class="card-body ">
+                    <h5 class="card-title">Trip details</h5>
+                    <p class="card-text">From...To...</p>
                 </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="makeNewBooking.html">Make a booking</a>
+            </div>
+            <div class="card my-3">
+                <h5 class="card-header text-primary">Trip ID: 234098</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Trip details</h5>
+                    <p class="card-text">From...To...</p>
+                </div>
+            </div>
+            <div class="card my-3">
+                <h5 class="card-header text-primary">Trip ID: 203987</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Trip details.</h5>
+                    <p class="card-text">From...To...</p>
                 </div>
             </div>
         </div>
-    </div>
-</header>
 
-<!-- My Bookings Section -->
-<section class="page-section bg-primary" id="myBookings">
+        <div class="card col-8">
+            <h3>Calendar is here.</h3>
+        </div>
+    </div>
+</div>
+
+<!-- My Performance Section -->
+<section class="page-section bg-primary" id="myPerformance">
     <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
-            <h2 class="text-light mt-0">My Bookings</h2>
+            <h2 class="text-light mt-0">My Performance</h2>
             <hr class="divider light my-4">
-            <div class="container">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">In Progress</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pending</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">History</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover container-fluid bg-light">
                         <th class="bg-light text-primary">Trip ID</th>
                         <th class="bg-light text-primary">Date</th>
-                        <th class="bg-light text-primary">Time</th>
-                        <th class="bg-light text-primary">Pick up</th>
-                        <th class="bg-light text-primary">Drop off</th>
+                        <th class="bg-light text-primary">Rating</th>
+                        <th class="bg-light text-primary">Feedback</th>
                         <tr>
-                            <td>709856</td>
-                            <td>10/02/2019</td>
-                            <td>12:00pm</td>
-                            <td>Heathrow Terminal 5</td>
-                            <td>Flat 3, 23 Goodge Street, London. NW1 3GH</td>
+                            <td>709872</td>
+                            <td>11/02/2019</td>
+                            <td>4.7</td>
+                            <td>Very friendly service, would definitely choose this service again!</td>
                         </tr>
                         <tr>
                             <td>709872</td>
                             <td>11/02/2019</td>
-                            <td>12:00pm</td>
-                            <td>Heathrow Terminal 3</td>
-                            <td>Flat 1, 23 Goodge Street, London. NW1 3GH</td>
+                            <td>4.7</td>
+                            <td>Very friendly service, would definitely choose this service again!</td>
                         </tr>
                         <tr>
                             <td>709872</td>
                             <td>11/02/2019</td>
-                            <td>12:00pm</td>
-                            <td>Heathrow Terminal 2</td>
-                            <td>Flat 2, 23 Goodge Street, London. NW1 3GH</td>
+                            <td>4.7</td>
+                            <td>Very friendly service, would definitely choose this service again!</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 
 <!-- My Profile Section -->
@@ -147,24 +151,22 @@
                 <div class="card-body px-0 mt-2">
                     <i class="fas fa-4x fa-address-card text-primary mb-4"></i>
                     <h3 class="card-title mb-2 text-dark">Personal info</h3>
-                    <p class="card-text text-dark mb-0 mx-0">John Doe (ID: 1086)</p>
+                    <p class="card-text text-dark mb-0 mx-0">Mary Smith (ID: 9836)</p>
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">UCL</p>
+                    <p class="card-text text-dark mb-0 mx-0">mary.smith@sakilacustomer.uk</p>
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">j.doe@corporate.firm</p>
-                    <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">+462456577492</p>
+                    <p class="card-text text-dark mb-0 mx-0">+441094837462</p>
                 </div>
             </div>
             <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
                 <div class="card-body mt-2">
                     <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
                     <h3 class="card-title mb-2 text-dark">Payment</h3>
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 1: **** **** **** **** John
-                        Doe</p>
+                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 1: **** **** **** **** Mary
+                        Smith</p>
                     <hr class="divider my-2">
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 2: **** **** **** **** Jane
-                        Doe</p>
+                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 2: **** **** **** **** Martin
+                        Smith</p>
                 </div>
             </div>
             <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
@@ -192,7 +194,6 @@
         </div>
     </div>
 </section>
-
 <!-- Contact Us -->
 <section class="bg-primary" id="contactUs">
     <div class="container text-light">
