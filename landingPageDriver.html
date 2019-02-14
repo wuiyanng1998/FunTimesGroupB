@@ -94,7 +94,9 @@
             <div class="row">
                 <div class="col-4">
                     <div class="card my-3">
-                        <h5 class="card-header text-white bg-primary">Trip ID: 103958</h5>
+                        <div class="card-header bg-primary">
+                            <h5 class="text-white">Upcoming trip ID: 103958 <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                        </div>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 10.00pm</p>
                             <p class="card-text">From: Heathrow Terminal 1</p>
@@ -102,7 +104,9 @@
                         </div>
                     </div>
                     <div class="card my-3">
-                        <h5 class="card-header text-white bg-primary">Trip ID: 234098</h5>
+                        <div class="card-header bg-primary">
+                            <h5 class="text-white">Upcoming trip ID: 230987 <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                        </div>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 11.00pm</p>
                             <p class="card-text">From: Heathrow Terminal 2</p>
@@ -110,7 +114,9 @@
                         </div>
                     </div>
                     <div class="card my-3">
-                        <h5 class="card-header text-white bg-primary">Trip ID: 303987</h5>
+                        <div class="card-header bg-primary">
+                            <h5 class="text-white">Upcoming trip ID: 098647 <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                        </div>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 12.00pm</p>
                             <p class="card-text">From: Heathrow Terminal 5</p>
@@ -147,7 +153,7 @@
                             </li>
                         </ul>
                     </div>
-                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover">
+                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover text-left">
                         <th class="bg-light text-primary">Trip ID</th>
                         <th class="bg-light text-primary">Time</th>
                         <th class="bg-light text-primary">Rating</th>
@@ -155,20 +161,20 @@
                         <tr>
                             <td>709872</td>
                             <td>10/02/2019 12:00pm</td>
-                            <td>4.9</td>
+                            <td>4.8</td>
                             <td>Very friendly service, would definitely choose this service again!</td>
                         </tr>
                         <tr>
                             <td>709872</td>
                             <td>10/02/2019 12:00pm</td>
-                            <td>4.9</td>
-                            <td>Very friendly service, would definitely choose this service again!</td>
+                            <td>4.7</td>
+                            <td>Very enjoyable experience, and the driver arrived on time!</td>
                         </tr>
                         <tr>
                             <td>709872</td>
                             <td>10/02/2019 12:00pm</td>
                             <td>4.9</td>
-                            <td>Very friendly service, would definitely choose this service again!</td>
+                            <td>Very satisfied with the service of BDF!</td>
                         </tr>
                     </table>
                 </div>
@@ -182,54 +188,111 @@
     <div class="container">
         <h2 class="text-center mt-0">My Profile</h2>
         <hr class="divider my-4">
-        <div class="row">
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
+
+            <!--Basic info card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body px-0 mt-2">
                     <i class="fas fa-4x fa-address-card text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Personal info</h3>
-                    <p class="card-text text-dark mb-0 mx-0">Mary Smith (ID: 9836)</p>
+                    <h3 class="card-title mb-2 text-dark">Basic info</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Name</h5>
+                        <input class="form-control validate border-0 bg-light" id="nameId"
+                               value="Mary Smith"
+                               type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">mary.smith@sakilacustomer.uk</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Email</h5>
+                        <input class="form-control validate border-0 bg-light" id="email"
+                               value="m.smith@corporate.firm"
+                               type="email">
+                    </div>
+
+
                     <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">+441094837462</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Telephone</h5>
+                        <input class="form-control validate border-0 bg-light" id="telephone" value="+462456577492"
+                               type="tel">
+                    </div>
+
                 </div>
             </div>
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+
+            <!--Account info card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
+                <div class="card-body mt-2">
+                    <i class="fas fa-4x fa-address-book text-primary mb-4"></i>
+                    <h3 class="card-title mb-2 text-dark">Account info</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Employee ID</h5>
+                        <input class="form-control validate border-0 bg-light" id="employeeId"
+                               value="098094" type="text">
+                    </div>
+
+                    <hr class="divider my-2">
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Account password</h5>
+                        <input class="form-control validate border-0 bg-light" id="accountPassword"
+                               value="123245685" type="password">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
+
+            <!--Payment options card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body mt-2">
                     <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Payment</h3>
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 1: **** **** **** **** Mary
-                        Smith</p>
+                    <h3 class="card-title mb-2 text-dark">Payment options</h3>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Card 1</h5>
+                        <input class="form-control validate border-0 bg-light" id="card1"
+                               value="**** **** **** **** John Doe" type="text">
+                    </div>
                     <hr class="divider my-2">
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Card 2: **** **** **** **** Martin
-                        Smith</p>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Card 2</h5>
+                        <input class="form-control validate border-0 bg-light" id="card2"
+                               value="**** **** **** **** Jane Doe" type="text">
+                    </div>
                 </div>
             </div>
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
+
+            <!--Address card-->
+            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body mt-2">
                     <i class="fas fa-4x fa-map-marked-alt text-primary mb-4"></i>
                     <h3 class="card-title mb-2 text-dark">Address</h3>
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Home: Flat 3, 23 Goodge Street,
-                        London NW1 3GH</p>
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Home address</h5>
+                        <input class="form-control validate border-0 bg-light" id="homeAddress"
+                               value="Flat 3, 23 Goodge Street, London NW1 3GH" type="text">
+                    </div>
+
                     <hr class="divider my-2">
-                    <p align="left" class="card-text text-dark mb-0 mx-0 text-left">Work: London Riverside, London SE1
-                        2AF</p>
+
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary">Work address</h5>
+                        <input class="form-control validate border-0 bg-light" id="workAddress"
+                               value="London Riverside, London SE1 2AF" type="text">
+                    </div>
                 </div>
             </div>
-            <div class="card col-lg mx-2 mb-2 col-md-6 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Saved trips</h3>
-                    <p class="card-text text-dark mb-0 mx-0">Trip ID 1: 098094</p>
-                    <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">Trip ID 2: 563578</p>
-                    <hr class="divider my-2">
-                    <p class="card-text text-dark mb-0 mx-0">Trip ID 3: 245685</p>
-                </div>
-            </div>
+
         </div>
     </div>
+
 </section>
+
 <!-- Contact Us -->
 <section class="bg-primary" id="contactUs">
     <div class="container text-light">
