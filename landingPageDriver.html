@@ -37,7 +37,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="LandingPageFM.html"> My home</a>
+                <a class="nav-link js-scroll-trigger" href="LandingPageDriver.html"> My home</a>
             </li>
         </ul>
         <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
@@ -78,7 +78,7 @@
                     <hr class="divider my-4">
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="makeNewBooking.html">Check my calendar</a>
+                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="#myCalendar">Check my calendar</a>
                 </div>
             </div>
         </div>
@@ -86,15 +86,15 @@
 </header>
 
 <!-- My Calendar Section -->
-<section class="bg-light">
-    <div class="card bg-light container-fluid border-light">
-        <div class="container mt-5" id="myCalendar">
+<section class="page-section bg-light" id="myCalendar">
+    <div class=" card bg-light border-light container-fluid">
+        <div class="container">
             <h2 class="text-center mt-0">My Calendar</h2>
             <hr class="divider my-4">
             <div class="row">
                 <div class="col-4">
                     <div class="card my-3">
-                        <h5 class="card-header text-white bg-primary">Trip ID: 303958</h5>
+                        <h5 class="card-header text-white bg-primary">Trip ID: 103958</h5>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 10.00pm</p>
                             <p class="card-text">From: Heathrow Terminal 1</p>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="card my-3">
-                        <h5 class="card-header text-white bg-primary">Trip ID: 203987</h5>
+                        <h5 class="card-header text-white bg-primary">Trip ID: 303987</h5>
                         <div class="card-body">
                             <p class="card-text">Time: 11/02/2019 12.00pm</p>
                             <p class="card-text">From: Heathrow Terminal 5</p>
@@ -132,29 +132,45 @@
         <div class="col-lg-8 text-center">
             <h2 class="text-light mt-0">My Performance</h2>
             <hr class="divider light my-4">
-            <div class="card bg-light">
-                <div class="card-body">
-                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover container-fluid bg-light">
+            <div class="container">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Today</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">This week</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">All</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover">
                         <th class="bg-light text-primary">Trip ID</th>
                         <th class="bg-light text-primary">Date</th>
                         <th class="bg-light text-primary">Rating</th>
                         <th class="bg-light text-primary">Feedback</th>
                         <tr>
                             <td>709872</td>
-                            <td>11/02/2019</td>
+                            <td>10/02/2019</td>
+                            <td>12:00pm</td>
+                            <td>4.9</td>
+                            <td>Very friendly service, would definitely choose this service again!</td>
+                        </tr>
+                        <tr>
+                            <td>709872</td>
+                            <td>10/02/2019</td>
+                            <td>12:00pm</td>
                             <td>4.7</td>
                             <td>Very friendly service, would definitely choose this service again!</td>
                         </tr>
                         <tr>
                             <td>709872</td>
-                            <td>11/02/2019</td>
-                            <td>4.7</td>
-                            <td>Very friendly service, would definitely choose this service again!</td>
-                        </tr>
-                        <tr>
-                            <td>709872</td>
-                            <td>11/02/2019</td>
-                            <td>4.7</td>
+                            <td>10/02/2019</td>
+                            <td>12:00pm</td>
+                            <td>4.8</td>
                             <td>Very friendly service, would definitely choose this service again!</td>
                         </tr>
                     </table>
@@ -162,7 +178,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <!-- My Profile Section -->
