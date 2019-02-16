@@ -325,6 +325,15 @@ header.masthead p {
     border-color: #F05F40;
 }
 
+.btn-primary-right {
+    background-color: #F05F40;
+    border-color: #F05F40;
+    position: absolute;
+    top: 85%;
+    right: 5%;
+
+}
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     color: #fff;
     background-color: #ee4b28 !important;
