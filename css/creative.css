@@ -349,3 +349,9 @@ header.masthead p {
     background-color: #F9DFB7;
     border-color: #F05F40;
 }
+
+#mapContainer {
+    width: 100%;
+    height: 400px;
+
+}

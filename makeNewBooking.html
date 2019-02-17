@@ -23,8 +23,21 @@
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
+    <!--OpenStreetMaps-->
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+
+    <!--Here Maps-->
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
+            type="text/javascript" charset="utf-8"></script>
+
+
     <!-- Custom styles for this template -->
     <link href="css/creative.css" rel="stylesheet">
+
 
 </head>
 
@@ -85,30 +98,53 @@
                         </div>
                         <div class="card pl-0 my-3 bg-light">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light my-3"></i>
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
+                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"></i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Pick-up address</h5>
-                                        <input class="form-control validate" id="pickup_address"
-                                               placeholder="Enter location"
-                                               type="text">
+                                        <div class="form">
+                                            <div class="row align-items-center">
+                                                <div class="col-10 ">
+                                                    <input class="form-control validate" id="pickup_address"
+                                                           placeholder="Enter location"
+                                                           type="text" onsubmit="pickup_search()">
+                                                </div>
+                                                <div class="col-2">
+                                                    <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
+                                                       id="pickup_button"
+                                                       onclick="pickup_search()">
+                                                        <i class="fas fa-1x fa-search-location text-light my-3"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card pl-0 my-3 bg-light">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light my-3"></i>
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
+                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"></i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Drop-off address</h5>
-                                        <input class="form-control validate" id="dropoff_address"
-                                               placeholder="Enter location"
-                                               type="text">
+                                        <div class="row align-items-center">
+                                            <div class="col-10 ">
+                                                <input class="form-control validate" id="dropoff_address"
+                                                       placeholder="Enter location"
+                                                       type="text" onsubmit="dropoff_search()">
+                                            </div>
+                                            <div class="col-2">
+                                                <a class="btn btn-primary btn-xl mx-auto py-0 px-3" id="dropoff_button"
+                                                   onclick="dropoff_search()">
+                                                    <i class="fas fa-1x fa-search-location text-light my-3"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +152,8 @@
 
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-2">
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
                                         <i class="fas fa-2x fa-calendar-alt text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-10">
@@ -131,8 +167,8 @@
 
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-2">
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
                                         <i class="fas fa-2x fa-clock text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-10">
@@ -146,8 +182,8 @@
 
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-2">
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
                                         <i class="fas fa-2x fa-user-friends text-primary-light my-3"></i>
                                     </div>
                                     <div class="col-10">
@@ -160,13 +196,20 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
-                        <h4><i class="fas fa-1x fa-compass text-dark my-1"></i> Map </h4>
+                        <h4 class="font-weight-bold"><i class="fas fa-1x fa-compass text-dark my-1"></i> Map
+                        </h4>
+                        <div class="card bg-light m-0 p-0">
+                            <div class="container-fluid m-0 p-0" id="mapContainer"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="mx-auto my-3 text-light">
-                        <a class="btn btn-primary btn-xl" id="sumbit_passengers" onclick="addFields()">Submit</a>
+                        <a class="btn btn-primary btn-xl" id="sumbit_passengers"
+                           onclick="addPassengerFields()">Submit</a>
                     </div>
                 </div>
             </div>
@@ -380,6 +423,11 @@
 <script src="js/makeNewBooking.js"></script>
 
 </body>
+
+
+<!--<script async defer-->
+<!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_w7CuywukHq7qD_V45N4lV4G0natZ0ZU&callback=initMap">-->
+<!--</script>-->
 
 
 <!--Passenger form clean-->
