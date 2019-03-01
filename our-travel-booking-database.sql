@@ -3,21 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 24, 2019 at 11:38 PM
+-- Generation Time: Mar 01, 2019 at 02:55 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `BDF`
+-- Database: `booking`
 --
 CREATE DATABASE IF NOT EXISTS `booking` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `booking`;
@@ -28,7 +22,6 @@ USE `booking`;
 -- Table structure for table `booker`
 --
 
-DROP TABLE IF EXISTS `booker`;
 CREATE TABLE `booker` (
   `booker_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
@@ -46,7 +39,6 @@ CREATE TABLE `booker` (
 -- Table structure for table `booking`
 --
 
-DROP TABLE IF EXISTS `booking`;
 CREATE TABLE `booking` (
   `booking_id` int(11) NOT NULL,
   `self_booking` tinyint(1) NOT NULL,
@@ -67,13 +59,10 @@ CREATE TABLE `booking` (
 -- Table structure for table `company`
 --
 
-DROP TABLE IF EXISTS `company`;
 CREATE TABLE `company` (
   `company_id` int(11) NOT NULL,
   `company_name` varchar(50) NOT NULL,
-  `budget` double NOT NULL,
-  `finance_manager_id` int(11) NOT NULL,
-  `booker_id` int(11) NOT NULL
+  `budget` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -82,7 +71,6 @@ CREATE TABLE `company` (
 -- Table structure for table `driver`
 --
 
-DROP TABLE IF EXISTS `driver`;
 CREATE TABLE `driver` (
   `driver_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -101,7 +89,6 @@ CREATE TABLE `driver` (
 -- Table structure for table `financeManager`
 --
 
-DROP TABLE IF EXISTS `financeManager`;
 CREATE TABLE `financeManager` (
   `finance_manager_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
@@ -118,7 +105,6 @@ CREATE TABLE `financeManager` (
 -- Table structure for table `loginUser`
 --
 
-DROP TABLE IF EXISTS `loginUser`;
 CREATE TABLE `loginUser` (
   `user_id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -131,7 +117,6 @@ CREATE TABLE `loginUser` (
 -- Table structure for table `route`
 --
 
-DROP TABLE IF EXISTS `route`;
 CREATE TABLE `route` (
   `route_id` int(11) NOT NULL,
   `start_address` varchar(100) NOT NULL,
@@ -146,7 +131,6 @@ CREATE TABLE `route` (
 -- Table structure for table `traveler`
 --
 
-DROP TABLE IF EXISTS `traveler`;
 CREATE TABLE `traveler` (
   `traveler_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
@@ -163,7 +147,6 @@ CREATE TABLE `traveler` (
 -- Table structure for table `vehicle`
 --
 
-DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE `vehicle` (
   `vehicle_id` int(11) NOT NULL,
   `vehicle_type` int(11) NOT NULL,
@@ -198,9 +181,7 @@ ALTER TABLE `booking`
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
-  ADD PRIMARY KEY (`company_id`),
-  ADD KEY `company_ibfk_1` (`booker_id`),
-  ADD KEY `company_ibfk_2` (`finance_manager_id`);
+  ADD PRIMARY KEY (`company_id`);
 
 --
 -- Indexes for table `driver`
@@ -323,13 +304,6 @@ ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_6` FOREIGN KEY (`traveler_id`) REFERENCES `traveler` (`traveler_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `company`
---
-ALTER TABLE `company`
-  ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`booker_id`) REFERENCES `booker` (`booker_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `company_ibfk_2` FOREIGN KEY (`finance_manager_id`) REFERENCES `financeManager` (`finance_manager_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `driver`
 --
 ALTER TABLE `driver`
@@ -348,7 +322,3 @@ ALTER TABLE `financeManager`
 ALTER TABLE `traveler`
   ADD CONSTRAINT `traveler_ibfk_1` FOREIGN KEY (`booker_id`) REFERENCES `booker` (`booker_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `traveler_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `loginUser` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
