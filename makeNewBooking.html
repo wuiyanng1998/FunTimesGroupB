@@ -66,7 +66,7 @@
                     <a class="nav-link js-scroll-trigger active" href="#MakeABooking">Make A Booking</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="driverUpcomingJourneys.html">View Bookings</a>
+                    <a class="nav-link js-scroll-trigger" href="driverTripDetails.html">View Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#YourProfile">Profile</a>
@@ -174,12 +174,26 @@
                                     <div class="col-10">
                                         <h5>Time of Journey</h5>
                                         <input class="form-control validate" id="pickup_time" placeholder="Pick time"
-                                               type="time" name="pickup_time">
+                                               type="time">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body ">
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
+                                        <i class="fas fa-2x fa-suitcase-rolling text-primary-light my-3"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        <h5>Number of Luggages</h5>
+                                        <input min="1" max="4" class="form-control validate"  id="number_luggages"
+                                               placeholder="Enter number of luggages"
+                                               type="number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
                                 <div class="row align-items-center">
@@ -189,7 +203,7 @@
                                     <div class="col-10">
                                         <h5>Number of Passengers</h5>
                                         <input class="form-control validate" id="number_passengers"
-                                               name="number_passengers" placeholder="Enter number of passengers"
+                                               placeholder="Enter number of passengers"
                                                type="number">
                                     </div>
                                 </div>
