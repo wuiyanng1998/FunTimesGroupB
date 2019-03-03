@@ -4,7 +4,7 @@ require_once('phpDatabaseConnection.php');
 $pickupDate = $_POST['$pickup_date'] ?? '1'; //PHP 7.0
 $pickupTime = $_POST['$pickup_time'] ?? '1';
 $numberOfPassengers = $_POST['number_passengers'] ?? '1';
-$numberOfLuggage = $_POST['number_luggage'] ?? '1';
+$numberOfLuggage = $_POST['luggage'] ?? '1';
 $carType = $_POST['car_type'] ?? '1';
 
 
@@ -51,6 +51,7 @@ $qryAddBooking .= "driver_id, service_fee, route_id) VALUES ('" . $pickupDateTim
 
 
 $qryFindTraveler = 0;
+//Add traveler query
 
 $qryFind = "SELECT * from film join film_actor on film.film_id = film_actor.film_id";
 $qryFind .= " JOIN actor on actor.actor_id= film_actor.actor_id";
