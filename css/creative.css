@@ -326,8 +326,8 @@ header.masthead p {
 }
 
 .btn-primary-right {
-    background-color: #F05F40;
-    border-color: #F05F40;
+    color: #fff;
+    background-color: #ee4b28 !important;
     position: absolute;
     top: 85%;
     right: 5%;
