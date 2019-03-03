@@ -42,12 +42,24 @@ switch ($carType) {
 }
 
 
-//GET booker_id from COOKIES
+//GET booker_id from COOKIES. We will get user_id here. We need then query booker_id
 $booker_id = 0;
 
-$qryAdd = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, ";
-$qryAdd .= "driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
+$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, ";
+$qryAddBooking .= "driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
     . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . ")";
+
+
+$qryFindTraveler = 0;
+
+$qryFind = "SELECT * from film join film_actor on film.film_id = film_actor.film_id";
+$qryFind .= " JOIN actor on actor.actor_id= film_actor.actor_id";
+$qryFind .= " WHERE CONCAT( first_name, ' ', last_name) LIKE '%" . $search . "%'";
+$qryFind .=" OR  CONCAT(last_name, ' ', first_name)LIKE '%".$search . "%'
+        UNION
+        SELECT * from film join film_actor on film.film_id = film_actor.film_id ";
+$qryFind .="JOIN actor on actor.actor_id= film_actor.actor_id WHERE title LIKE '%".$search . "%'";
+
 
 
 $qryDisableFK = "SET FOREIGN_KEY_CHECKS=0";
@@ -67,7 +79,7 @@ if (mysqli_num_rows($result) > 0) {
     header('Location: loginResult.php');
 
 } else {
-    $result = mysqli_query($connection, $qryAdd);
+    $result = mysqli_query($connection, $qryAddBooking);
     // check the query worked
     if ($result) {
         session_start();
