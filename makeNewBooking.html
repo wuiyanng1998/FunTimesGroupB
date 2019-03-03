@@ -34,6 +34,7 @@
     <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js"
             type="text/javascript" charset="utf-8"></script>
 
+
     <!-- Custom styles for this template -->
     <link href="css/creative.css" rel="stylesheet">
 
@@ -107,7 +108,7 @@
                                             <div class="row align-items-center">
                                                 <div class="col-10 ">
                                                     <input class="form-control validate" id="pickup_address"
-                                                           placeholder="Enter location"
+                                                           name="pickup_address" placeholder="Enter location"
                                                            type="text" onsubmit="pickup_search()">
                                                 </div>
                                                 <div class="col-2">
@@ -135,7 +136,7 @@
                                             <div class="col-10 ">
                                                 <input class="form-control validate" id="dropoff_address"
                                                        placeholder="Enter location"
-                                                       type="text" onsubmit="dropoff_search()">
+                                                       type="text" onsubmit="dropoff_search()" name="dropoff_address">
                                             </div>
                                             <div class="col-2">
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3" id="dropoff_button"
@@ -157,8 +158,8 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Date of Journey</h5>
-                                        <input class="form-control validate" id="pickup_date" placeholder="Pick date"
-                                               type="date">
+                                        <input class="form-control validate" id="pickup_date" name="pickup_date" placeholder="Pick date"
+                                               type="date" >
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +179,21 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body ">
+                                <div class="row align-items-center">
+                                    <div class="col-2 text-center">
+                                        <i class="fas fa-2x fa-suitcase-rolling text-primary-light my-3"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        <h5>Number of Luggages</h5>
+                                        <input min="1" max="4" class="form-control validate"  id="number_luggages"
+                                               placeholder="Enter number of luggages"
+                                               type="number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
                                 <div class="row align-items-center">
@@ -187,7 +202,7 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Number of Passengers</h5>
-                                        <input min="1" max="6" class="form-control validate"  id="number_passengers"
+                                        <input class="form-control validate" id="number_passengers"
                                                placeholder="Enter number of passengers"
                                                type="number">
                                     </div>
@@ -223,7 +238,7 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0">
+                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0" id="e-class">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-eclass.png"/>
@@ -249,7 +264,7 @@
                         </div>
 
 
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0">
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0" id="s-class">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-sclass1.png"/>
@@ -276,7 +291,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0">
+                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0" id="v-class">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/V-class-side.png"/>
@@ -302,7 +317,7 @@
                         </div>
 
 
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0">
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0" id="rr">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/rra1.png"/>
@@ -329,7 +344,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0">
+                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0"  id="phantom">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-phantom1.png"/>
@@ -354,7 +369,7 @@
                             </div>
                         </div>
 
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0">
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0"  id="mulsanne">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/bentley-mulsanne.png"/>
@@ -381,6 +396,9 @@
                     </div>
                 </div>
             </div>
+            <!--Get user selection to transfer to php-->
+            <input type="hidden" name="car_type" id="car_type" value="">
+
         </div>
 
         <br>
