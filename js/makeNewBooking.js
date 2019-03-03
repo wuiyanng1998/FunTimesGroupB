@@ -75,15 +75,6 @@ function addPassengerFields() {
 
         passenger_form.className = "col-sm-12 col-lg-6 mt-md-1 mt-sm-1 mt-1 mt-lg-0 mt-xl-0 mb-4";
 
-
-
-        console.log(document.getElementById("pickup_date").value);
-        console.log(document.getElementById("pickup_time").value);
-
-
-
-
-
         passenger_form.innerHTML =
             '                <div class="card bg-card">\n' +
             '                    <div class="card-body">\n' +
