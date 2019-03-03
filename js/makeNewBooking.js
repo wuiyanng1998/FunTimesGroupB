@@ -50,10 +50,12 @@
     $(".car-card").click(function () {
         $(".car-card").removeClass("bg-card-active");
         $(this).addClass("bg-card-active");
+        $('#car_type').val($(this).attr('id'));
     });
 
 
 })(jQuery); // End of use strict
+
 
 
 //Passengers Forms
@@ -73,6 +75,15 @@ function addPassengerFields() {
 
         passenger_form.className = "col-sm-12 col-lg-6 mt-md-1 mt-sm-1 mt-1 mt-lg-0 mt-xl-0 mb-4";
 
+
+
+        console.log(document.getElementById("pickup_date").value);
+        console.log(document.getElementById("pickup_time").value);
+
+
+
+
+
         passenger_form.innerHTML =
             '                <div class="card bg-card">\n' +
             '                    <div class="card-body">\n' +
@@ -87,7 +98,7 @@ function addPassengerFields() {
             '                                    <div class="col-10">\n' +
             '                                        <h5>Name</h5>\n' +
             '                                        <input class="form-control validate" id="passenger_name' + i + '"\n' +
-            '                                               placeholder="Enter name"\n' +
+            '                                               placeholder="Enter name" name="passenger_name_' + i + '"\n' +
             '                                               type="text">\n' +
             '                                    </div>\n' +
             '                                </div>\n' +
@@ -102,7 +113,7 @@ function addPassengerFields() {
             '                                    <div class="col-10">\n' +
             '                                        <h5>Email</h5>\n' +
             '                                        <input class="form-control validate" id="passenger_email' + i + '"\n' +
-            '                                               placeholder="Enter email"\n' +
+            '                                               placeholder="Enter email" name="passenger_email_' + i + '"\n' +
             '                                               type="email">\n' +
             '                                    </div>\n' +
             '                                </div>\n' +
@@ -118,7 +129,7 @@ function addPassengerFields() {
             '                                    <div class="col-10">\n' +
             '                                        <h5>Mobile number</h5>\n' +
             '                                        <input class="form-control validate" id="passenger_phone' + i + '"\n' +
-            '                                               value="+44"\n' +
+            '                                               value="+44" name="passenger_phone_' + i + '"\n' +
             '                                               type="tel">\n' +
             '                                    </div>\n' +
             '                                </div>\n' +
@@ -135,6 +146,7 @@ function addPassengerFields() {
 }
 
 //HERE MAPS
+{
 /*
 Map initialization
 */
@@ -389,4 +401,5 @@ function drawRoute(pickupPosition, dropoffPosition) {
         function (error) {
             alert(error.message);
         });
+}
 }
