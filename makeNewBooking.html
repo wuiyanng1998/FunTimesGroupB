@@ -121,6 +121,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="error_pickup_address">
+
+                                </div>
+
                             </div>
                         </div>
                         <div class="card pl-0 my-3 bg-light">
@@ -173,7 +177,7 @@
                                     <div class="col-10">
                                         <h5>Time of Journey</h5>
                                         <input class="form-control validate" id="pickup_time" placeholder="Pick time"
-                                               type="time">
+                                               type="time" name="pickup_time">
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +204,7 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Number of Passengers</h5>
-                                        <input min="1" max="6" class="form-control validate"  id="number_passengers"
+                                        <input min="1" max="6" class="form-control validate" id="number_passengers"
                                                name="number_passengers" placeholder="Enter number of passengers"
                                                type="number">
                                     </div>
@@ -396,6 +400,8 @@
             </div>
             <!--Get user selection to transfer to php-->
             <input type="hidden" name="car_type" id="car_type" value="">
+            <input type="hidden" name="pickup_address_api" id="pickup_address_api" value="">
+            <input type="hidden" name="dropoff_address_api" id="dropoff_address_api" value="">
 
         </div>
 

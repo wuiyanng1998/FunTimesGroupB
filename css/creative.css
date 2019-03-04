@@ -357,6 +357,7 @@ header.masthead p {
 .bg-card-active {
     background-color: #F9DFB7;
     border-color: #F05F40;
+    border-width: thick;
 }
 
 #mapContainer {
