@@ -13,7 +13,8 @@ $end_address = $_POST['dropoff_address'];
 $end_post_code = $_POST['dropoff_address_api'];
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
-    ${"passengerName" . $i} = $_POST['passenger_name_' . $i];
+    ${"passengerFirstName" . $i} = $_POST['passenger_first_name_' . $i];
+    ${"passengerLastName" . $i} = $_POST['passenger_last_name_' . $i];
     ${"passengerEmail" . $i} = $_POST['passenger_email_' . $i];
     ${"passengerPhoneNo" . $i} = $_POST['passenger_phone_' . $i];
 }
@@ -49,39 +50,14 @@ switch ($carType) {
 //GET booker_id from COOKIES. We will get user_id here. We need then query booker_id
 $booker_id = 0;
 
-$qryAddRoute = "INSERT INTO route (start_address, start_post_code, end_address, end_post_code)";
-$qryAddRoute .= "VALUES ('" . $start_address . "', '" . $start_post_code . "', '" . $end_address . "', '"
+$qryAddRoute = "INSERT INTO route (start_address, start_post_code, end_address, end_post_code) VALUES ('"
+    . $start_address . "', '" . $start_post_code . "', '" . $end_address . "', '"
     . $end_post_code . ")";
 
 
 $qryGetLatestID = "SELECT LAST_INSERT_ID()";
 
-
-$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, ";
-$qryAddBooking .= "driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
-    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . ")";
-
-
-$qryFindTraveler = 0;
-//Add traveler query
-
-
-$qryFind = "SELECT * from film join film_actor on film.film_id = film_actor.film_id";
-$qryFind .= " JOIN actor on actor.actor_id= film_actor.actor_id";
-$qryFind .= " WHERE CONCAT( first_name, ' ', last_name) LIKE '%" . $search . "%'";
-$qryFind .= " OR  CONCAT(last_name, ' ', first_name)LIKE '%" . $search . "%'
-        UNION
-        SELECT * from film join film_actor on film.film_id = film_actor.film_id ";
-$qryFind .= "JOIN actor on actor.actor_id= film_actor.actor_id WHERE title LIKE '%" . $search . "%'";
-
-
-$qryDisableFK = "SET FOREIGN_KEY_CHECKS=0";
-$qryEnableFK = "SET FOREIGN_KEY_CHECKS=1";
-
-
 $connection = connectToDb();
-
-//mysqli_query($connection, $qryDisableFK);
 
 //Check if the name exists
 
@@ -95,5 +71,50 @@ if ($result) {
     closeDb($connection);
 //    header('Location: loginResult.php');
     exit;
+}
+
+
+$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, ";
+$qryAddBooking .= "driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
+    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . ")";
+$bookingID = mysqli_query($connection, $qryGetLatestID);
+
+
+$travelerIDList = [];
+
+for ($i = 1; $i <= $numberOfPassengers; $i++) {
+    $qryFindTraveler =
+        "SELECT traveler_id FROM traveler JOIN loginuser ON traveler.user_id = loginuser.user_id WHERE first_name ='"
+        . $passengerFirstName . "' AND last_name ='" . $passengerLastName . "' AND email ='"
+        . $passengerEmail . "' AND phone_number ='" . $passengerPhone . "'";
+
+    $qryAddTraveler = "INSERT INTO loginuser (email, password) VALUES ('"
+        . $passengerEmail . "', '" . $passengerPassword .
+        "'); INSERT INTO traveler (first_name, last_name, phone_number, user_id) VALUES ('"
+        . $passengerFirstName . "', '" . $passengerLastName . "', '" . $passengerPhone . "', LAST_INSERT_ID() );";
+
+    $result = mysqli_query($connection, $qryFindTraveler);
+    // check the query worked
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $travelerID = $row['traveler_id'];
+        $travelerIDList[] = $travelerID;
+        $qryAddTravelerList = "INSERT INTO travelerlist (booking_id, traveler_id) VALUES (" . $bookingID . ", "
+            . $travelerID . ")";
+        mysqli_query($connection, $qryAddTravelerList);
+    } else {
+        $result = mysqli_query($connection, $qryAddTraveler);
+        $travelerID = mysqli_query($connection, $qryGetLatestID);
+        $travelerIDList[] = $latestID;
+        $qryAddTravelerList = "INSERT INTO travelerlist (booking_id, traveler_id) VALUES (" . $bookingID . ", "
+            . $travelerID . ")";
+        mysqli_query($connection, $qryAddTravelerList);
+    }
+}
+
+for ($i = 1; $i <= $numberOfPassengers; $i++) {
+
+    $qryAddTravelerList = "INSERT INTO travelerlist (booking_id, traveler_id) VALUES (" . $bookingID . ", " . $travelerIDList[i] . ")";
+    mysqli_query($connection, $qryAddTravelerList);
 }
 

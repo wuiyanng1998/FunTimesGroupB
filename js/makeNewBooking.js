@@ -86,9 +86,24 @@ function addPassengerFields() {
             '                                        <i class="fas fa-2x fa-address-book text-primary-light my-3"></i>\n' +
             '                                    </div>\n' +
             '                                    <div class="col-10">\n' +
-            '                                        <h5>Name</h5>\n' +
-            '                                        <input class="form-control validate" id="passenger_name' + i + '"\n' +
-            '                                               placeholder="Enter name" name="passenger_name_' + i + '"\n' +
+            '                                        <h5>First name</h5>\n' +
+            '                                        <input class="form-control validate" id="passenger_first_name_' + i + '"\n' +
+            '                                               placeholder="Enter first name" name="passenger_first_name_' + i + '"\n' +
+            '                                               type="text">\n' +
+            '                                    </div>\n' +
+            '                                </div>\n' +
+            '                            </div>\n' +
+            '                        </div>\n' +
+            '                        <div class="card pl-0 my-3 bg-light">\n' +
+            '                            <div class="card-body">\n' +
+            '                                <div class="row">\n' +
+            '                                    <div class="col-2">\n' +
+            '                                        <i class="fas fa-2x fa-address-book text-primary-light my-3"></i>\n' +
+            '                                    </div>\n' +
+            '                                    <div class="col-10">\n' +
+            '                                        <h5>Last name</h5>\n' +
+            '                                        <input class="form-control validate" id="passenger_last_name_' + i + '"\n' +
+            '                                               placeholder="Enter last name" name="passenger_last_name_' + i + '"\n' +
             '                                               type="text">\n' +
             '                                    </div>\n' +
             '                                </div>\n' +
