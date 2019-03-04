@@ -88,10 +88,9 @@
 <!--Journey details plus the map-->
 <section class="bg-light pt-5">
     <div class="container">
-        <div class="card bg-card">
+        <form class="card bg-card">
             <div class="card-body">
                 <div class="row">
-
                     <!--Journey details section-->
                     <div class="col-md-12 col-lg-6">
                         <div class="pl-0">
@@ -105,20 +104,18 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Pick-up address</h5>
-                                        <div class="form">
-                                            <div class="row align-items-center">
-                                                <div class="col-10">
-                                                    <input class="form-control validate" id="pickup_address"
-                                                           name="pickup_address" placeholder="Enter location"
-                                                           type="text" onsubmit="pickup_search()" required/>
-                                                </div>
-                                                <div class="col-2">
-                                                    <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
-                                                       id="pickup_button"
-                                                       onclick="pickup_search()">
-                                                        <i class="fas fa-1x fa-search-location text-light my-3"></i>
-                                                    </a>
-                                                </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-10">
+                                                <input class="form-control validate" id="pickup_address"
+                                                       name="pickup_address" placeholder="Enter location"
+                                                       type="text" onsubmit="pickup_search()" required/>
+                                            </div>
+                                            <div class="col-2">
+                                                <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
+                                                   id="pickup_button"
+                                                   onclick="pickup_search()">
+                                                    <i class="fas fa-1x fa-search-location text-light my-3"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -141,11 +138,13 @@
                                             <div class="col-10 ">
                                                 <input class="form-control validate" id="dropoff_address"
                                                        placeholder="Enter location"
-                                                       type="text" onsubmit="dropoff_search()" name="dropoff_address"
+                                                       type="text" onsubmit="dropoff_search()"
+                                                       name="dropoff_address"
                                                        required/>
                                             </div>
                                             <div class="col-2">
-                                                <a class="btn btn-primary btn-xl mx-auto py-0 px-3" id="dropoff_button"
+                                                <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
+                                                   id="dropoff_button"
                                                    onclick="dropoff_search()">
                                                     <i class="fas fa-1x fa-search-location text-light my-3"></i>
                                                 </a>
@@ -180,7 +179,8 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Time of Journey</h5>
-                                        <input class="form-control validate" id="pickup_time" placeholder="Pick time"
+                                        <input class="form-control validate" id="pickup_time"
+                                               placeholder="Pick time"
                                                type="time" name="pickup_time" required/>
                                     </div>
                                 </div>
@@ -194,7 +194,8 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Number of Luggages</h5>
-                                        <input min="1" max="4" class="form-control validate" id="luggage" name="luggage"
+                                        <input min="1" max="4" class="form-control validate" id="luggage"
+                                               name="luggage"
                                                placeholder="Enter number of luggage" type="number" required/>
                                     </div>
                                 </div>
@@ -230,14 +231,15 @@
                 <!--Submit button-->
                 <div class="row">
                     <div class="mx-auto my-3 text-light">
-                        <a class="btn btn-primary btn-xl" id="sumbit_passengers"
-                           onclick="addPassengerFields()">Submit</a>
+                        <button class="btn btn-primary btn-xl" id="sumbit_passengers"
+                                onclick="addPassengerFields()">Submit
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </form>
         <br>
+
         <!--Choose car section-->
         <div class="card bg-card">
             <div class="card-body">
