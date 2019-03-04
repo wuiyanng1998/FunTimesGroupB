@@ -91,6 +91,8 @@
         <div class="card bg-card">
             <div class="card-body">
                 <div class="row">
+
+                    <!--Journey details section-->
                     <div class="col-md-12 col-lg-6">
                         <div class="pl-0">
                             <h3 class="font-weight-bold"> Journey details </h3>
@@ -105,10 +107,10 @@
                                         <h5>Pick-up address</h5>
                                         <div class="form">
                                             <div class="row align-items-center">
-                                                <div class="col-10 ">
+                                                <div class="col-10">
                                                     <input class="form-control validate" id="pickup_address"
                                                            name="pickup_address" placeholder="Enter location"
-                                                           type="text" onsubmit="pickup_search()">
+                                                           type="text" onsubmit="pickup_search()" required/>
                                                 </div>
                                                 <div class="col-2">
                                                     <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
@@ -139,7 +141,8 @@
                                             <div class="col-10 ">
                                                 <input class="form-control validate" id="dropoff_address"
                                                        placeholder="Enter location"
-                                                       type="text" onsubmit="dropoff_search()" name="dropoff_address">
+                                                       type="text" onsubmit="dropoff_search()" name="dropoff_address"
+                                                       required/>
                                             </div>
                                             <div class="col-2">
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3" id="dropoff_button"
@@ -161,8 +164,9 @@
                                     </div>
                                     <div class="col-10">
                                         <h5>Date of Journey</h5>
-                                        <input class="form-control validate" id="pickup_date" name="pickup_date" placeholder="Pick date"
-                                               type="date" >
+                                        <input class="form-control validate" id="pickup_date" name="pickup_date"
+                                               placeholder="Pick date"
+                                               type="date" required/>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +181,7 @@
                                     <div class="col-10">
                                         <h5>Time of Journey</h5>
                                         <input class="form-control validate" id="pickup_time" placeholder="Pick time"
-                                               type="time" name="pickup_time">
+                                               type="time" name="pickup_time" required/>
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +195,7 @@
                                     <div class="col-10">
                                         <h5>Number of Luggages</h5>
                                         <input min="1" max="4" class="form-control validate" id="luggage" name="luggage"
-                                               placeholder="Enter number of luggage" type="number">
+                                               placeholder="Enter number of luggage" type="number" required/>
                                     </div>
                                 </div>
                             </div>
@@ -206,13 +210,14 @@
                                         <h5>Number of Passengers</h5>
                                         <input min="1" max="6" class="form-control validate" id="number_passengers"
                                                name="number_passengers" placeholder="Enter number of passengers"
-                                               type="number">
+                                               type="number" required/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!--Map section -->
                     <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
                         <h4 class="font-weight-bold"><i class="fas fa-1x fa-compass text-dark my-1"></i> Map
                         </h4>
@@ -222,6 +227,7 @@
                     </div>
                 </div>
 
+                <!--Submit button-->
                 <div class="row">
                     <div class="mx-auto my-3 text-light">
                         <a class="btn btn-primary btn-xl" id="sumbit_passengers"
@@ -346,7 +352,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0"  id="phantom">
+                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0" id="phantom">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-phantom1.png"/>
@@ -371,7 +377,7 @@
                             </div>
                         </div>
 
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0"  id="mulsanne">
+                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0" id="mulsanne">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/bentley-mulsanne.png"/>
@@ -406,7 +412,6 @@
         </div>
 
         <br>
-
 
         <!--Passengers details-->
         <div class="row" id="passenger_container">

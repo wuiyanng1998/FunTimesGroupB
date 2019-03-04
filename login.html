@@ -55,13 +55,13 @@
                         <form style="margin-bottom: 2vh; font-family: 'Helvetica'" method='post' name='loginForm'>
                             <h2 class="h3 mb-3 font-weight-bold">Sign in</h2>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Email" type="email" name="email">
+                                <input class="form-control" placeholder="Email" type="email" name="email" required/>
                             </div>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Password" type="password" name="password">
+                                <input class="form-control" placeholder="Password" type="password" name="password" required/>
                             </div>
                             <div class="form-group text-left">
-                                <select class="form-control" placeholder="My identity" type="text" name="myIdentity">
+                                <select class="form-control" placeholder="My identity" type="text" name="myIdentity" required/>
                                     <option>Booker</option>
                                     <option selected="selected">Driver</option>
                                 </select><br>
@@ -78,7 +78,6 @@
             </div>
         </div>
     </div>
-
 
 </header>
 </body>
