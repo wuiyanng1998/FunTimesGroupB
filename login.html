@@ -54,7 +54,7 @@
                 <div class="card-body">
                     <div class="login-form">
                         <form style="margin-bottom: 2vh; font-family: 'Helvetica'" method='post'
-                              action='databasePhp/userLogin.php'
+                              action="php/cookie.php"
                               name='loginForm'>
                             <h2 class="h3 mb-3 font-weight-bold">Sign in</h2>
                             <div class="form-group text-left">
@@ -70,7 +70,8 @@
                                 </select><br>
                             </div>
                             <div class="float-right">
-                                <button class="btn btn-primary" type="submit">Login</button>
+                                <input type="hidden" name="type" value="1" />
+                                <input type="submit" id="setcookie" value = "Login" class="btn btn-primary" type="submit"/>
                             </div>
                         </form>
                         <div class="checkbox float-left" style="font-family:'Helvetica'">
