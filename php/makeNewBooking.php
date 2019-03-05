@@ -74,9 +74,9 @@ if ($result) {
 }
 
 
-$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, ";
-$qryAddBooking .= "driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
-    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . ")";
+$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, 
+                     driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
+    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . "')";
 $bookingID = mysqli_query($connection, $qryGetLatestID);
 
 
@@ -112,9 +112,4 @@ for ($i = 1; $i <= $numberOfPassengers; $i++) {
     }
 }
 
-for ($i = 1; $i <= $numberOfPassengers; $i++) {
-
-    $qryAddTravelerList = "INSERT INTO travelerlist (booking_id, traveler_id) VALUES (" . $bookingID . ", " . $travelerIDList[i] . ")";
-    mysqli_query($connection, $qryAddTravelerList);
-}
 
