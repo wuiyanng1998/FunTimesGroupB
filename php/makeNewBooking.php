@@ -47,12 +47,27 @@ switch ($carType) {
 }
 
 
+
+function readCookies(){
+    if (isset($_COOKIE["bookerId"])) {
+        print("bookerId: " . $_COOKIE["bookerId"] . "User ID: " . $_COOKIE["userId"]);
+        print(PHP_EOL);
+    } else {
+        print("Never heard of you.\n");
+    }
+    print("All cookies received:\n");
+    print_r($_COOKIE);
+}
+
+
 //GET booker_id from COOKIES. We will get user_id here. We need then query booker_id
 $booker_id = 0;
+$user_id=0;
+
 
 $qryAddRoute = "INSERT INTO route (start_address, start_post_code, end_address, end_post_code) VALUES ('"
     . $start_address . "', '" . $start_post_code . "', '" . $end_address . "', '"
-    . $end_post_code . ")";
+    . $end_post_code . "')";
 
 
 $qryGetLatestID = "SELECT LAST_INSERT_ID()";
@@ -64,19 +79,20 @@ $connection = connectToDb();
 $result = mysqli_query($connection, $qryAddRoute);
 // check the query worked
 if ($result) {
+    $routeID = mysqli_query($connection, $qryGetLatestID);
     closeDb($connection);
-//    header('Location: loginResult.php');
 } else {
-
+    echo "Couldnt create ROUTE";
     closeDb($connection);
-//    header('Location: loginResult.php');
     exit;
 }
 
 
 $qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, 
                      driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
-    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . "')";
+    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . "', '"
+//    . $driver_id NOT IMPLEMENTED
+    . "', '" . $service_fee . "', '" . $routeID . "')";
 $bookingID = mysqli_query($connection, $qryGetLatestID);
 
 
