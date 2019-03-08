@@ -47,22 +47,22 @@ switch ($carType) {
 }
 
 
-
-function readCookies(){
+function readCookiesBookerId()
+{
     if (isset($_COOKIE["bookerId"])) {
-        print("bookerId: " . $_COOKIE["bookerId"] . "User ID: " . $_COOKIE["userId"]);
+        $booker_id = $_COOKIE["bookerId"];
+        print("bookerId: " . $booker_id . "User ID: " . $_COOKIE["userId"]);
         print(PHP_EOL);
+        return $booker_id;
     } else {
         print("Never heard of you.\n");
     }
-    print("All cookies received:\n");
-    print_r($_COOKIE);
 }
 
 
 //GET booker_id from COOKIES. We will get user_id here. We need then query booker_id
-$booker_id = 0;
-$user_id=0;
+$booker_id = readCookiesBookerId();
+$user_id = 0;
 
 
 $qryAddRoute = "INSERT INTO route (start_address, start_post_code, end_address, end_post_code) VALUES ('"
