@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 08, 2019 at 01:33 AM
+-- Generation Time: Mar 08, 2019 at 04:11 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -32,17 +32,17 @@ USE `booking`;
 
 DROP TABLE IF EXISTS `booker`;
 CREATE TABLE IF NOT EXISTS `booker` (
-  `booker_id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `finance_allowance` double NOT NULL,
-  `title` varchar(11) NOT NULL,
-  `company_id` int(11) NOT NULL,
-  PRIMARY KEY (`booker_id`),
-  KEY `booker_ibfk_1` (`user_id`),
-  KEY `booker_ibfk_2` (`company_id`)
+                                      `booker_id` int(11) NOT NULL AUTO_INCREMENT,
+                                      `first_name` varchar(50) NOT NULL,
+                                      `last_name` varchar(50) NOT NULL,
+                                      `phone_number` varchar(50) NOT NULL,
+                                      `user_id` int(11) NOT NULL,
+                                      `finance_allowance` double NOT NULL,
+                                      `title` varchar(11) NOT NULL,
+                                      `company_id` int(11) NOT NULL,
+                                      PRIMARY KEY (`booker_id`),
+                                      KEY `booker_ibfk_1` (`user_id`),
+                                      KEY `booker_ibfk_2` (`company_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
@@ -67,23 +67,23 @@ INSERT INTO `booker` (`booker_id`, `first_name`, `last_name`, `phone_number`, `u
 
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
-  `booking_id` int(11) NOT NULL AUTO_INCREMENT,
-  `self_booking` tinyint(1) NOT NULL,
-  `booking_time` date NOT NULL,
-  `vehicle_id` int(11) NOT NULL,
-  `number_of_travelers` int(11) NOT NULL,
-  `number_of_luggages` int(11) NOT NULL,
-  `booker_id` int(11) NOT NULL,
-  `driver_id` int(11) NOT NULL,
-  `service_fee` double NOT NULL,
-  `route_id` int(11) NOT NULL,
-  `traveler_id` int(11) NOT NULL,
-  PRIMARY KEY (`booking_id`),
-  KEY `driverID` (`driver_id`),
-  KEY `booking_ibfk_3` (`route_id`),
-  KEY `booking_ibfk_4` (`booker_id`),
-  KEY `booking_ibfk_5` (`vehicle_id`),
-  KEY `traveler_id` (`traveler_id`)
+                                       `booking_id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `self_booking` tinyint(1) NOT NULL,
+                                       `booking_time` date NOT NULL,
+                                       `vehicle_id` int(11) NOT NULL,
+                                       `number_of_travelers` int(11) NOT NULL,
+                                       `number_of_luggages` int(11) NOT NULL,
+                                       `booker_id` int(11) NOT NULL,
+                                       `driver_id` int(11) NOT NULL,
+                                       `service_fee` double NOT NULL,
+                                       `route_id` int(11) NOT NULL,
+                                       `traveler_id` int(11) NOT NULL,
+                                       PRIMARY KEY (`booking_id`),
+                                       KEY `driverID` (`driver_id`),
+                                       KEY `booking_ibfk_3` (`route_id`),
+                                       KEY `booking_ibfk_4` (`booker_id`),
+                                       KEY `booking_ibfk_5` (`vehicle_id`),
+                                       KEY `traveler_id` (`traveler_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
@@ -108,10 +108,10 @@ INSERT INTO `booking` (`booking_id`, `self_booking`, `booking_time`, `vehicle_id
 
 DROP TABLE IF EXISTS `company`;
 CREATE TABLE IF NOT EXISTS `company` (
-  `company_id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(50) NOT NULL,
-  `budget` double NOT NULL,
-  PRIMARY KEY (`company_id`)
+                                       `company_id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `company_name` varchar(50) NOT NULL,
+                                       `budget` double NOT NULL,
+                                       PRIMARY KEY (`company_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
@@ -135,17 +135,17 @@ INSERT INTO `company` (`company_id`, `company_name`, `budget`) VALUES
 
 DROP TABLE IF EXISTS `driver`;
 CREATE TABLE IF NOT EXISTS `driver` (
-  `driver_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  `license_type` varchar(11) NOT NULL,
-  `working_time_slot` int(11) NOT NULL,
-  `driver_rating` float NOT NULL,
-  `title` varchar(11) NOT NULL,
-  PRIMARY KEY (`driver_id`),
-  KEY `userID` (`user_id`)
+                                      `driver_id` int(11) NOT NULL AUTO_INCREMENT,
+                                      `user_id` int(11) NOT NULL,
+                                      `first_name` varchar(50) NOT NULL,
+                                      `last_name` varchar(50) NOT NULL,
+                                      `phone_number` varchar(50) NOT NULL,
+                                      `license_type` varchar(11) NOT NULL,
+                                      `working_time_slot` int(11) NOT NULL,
+                                      `driver_rating` float NOT NULL,
+                                      `title` varchar(11) NOT NULL,
+                                      PRIMARY KEY (`driver_id`),
+                                      KEY `userID` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
@@ -164,16 +164,16 @@ INSERT INTO `driver` (`driver_id`, `user_id`, `first_name`, `last_name`, `phone_
 
 DROP TABLE IF EXISTS `financemanager`;
 CREATE TABLE IF NOT EXISTS `financemanager` (
-  `finance_manager_id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `title` varchar(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  PRIMARY KEY (`finance_manager_id`),
-  KEY `financemanager_ibfk_1` (`company_id`),
-  KEY `user_id` (`user_id`)
+                                              `finance_manager_id` int(11) NOT NULL AUTO_INCREMENT,
+                                              `company_id` int(11) NOT NULL,
+                                              `user_id` int(11) NOT NULL,
+                                              `title` varchar(11) NOT NULL,
+                                              `first_name` varchar(50) NOT NULL,
+                                              `last_name` varchar(50) NOT NULL,
+                                              `phone_number` varchar(50) NOT NULL,
+                                              PRIMARY KEY (`finance_manager_id`),
+                                              KEY `financemanager_ibfk_1` (`company_id`),
+                                              KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -184,11 +184,11 @@ CREATE TABLE IF NOT EXISTS `financemanager` (
 
 DROP TABLE IF EXISTS `loginuser`;
 CREATE TABLE IF NOT EXISTS `loginuser` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+                                         `user_id` int(11) NOT NULL AUTO_INCREMENT,
+                                         `email` varchar(50) NOT NULL,
+                                         `password` varchar(50) NOT NULL,
+                                         PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `loginuser`
@@ -217,12 +217,12 @@ INSERT INTO `loginuser` (`user_id`, `email`, `password`) VALUES
 
 DROP TABLE IF EXISTS `route`;
 CREATE TABLE IF NOT EXISTS `route` (
-  `route_id` int(11) NOT NULL AUTO_INCREMENT,
-  `start_address` varchar(100) NOT NULL,
-  `start_post_code` varchar(11) NOT NULL,
-  `end_address` varchar(100) NOT NULL,
-  `end_post_code` varchar(11) NOT NULL,
-  PRIMARY KEY (`route_id`)
+                                     `route_id` int(11) NOT NULL AUTO_INCREMENT,
+                                     `start_address` varchar(100) NOT NULL,
+                                     `start_post_code` varchar(11) NOT NULL,
+                                     `end_address` varchar(100) NOT NULL,
+                                     `end_post_code` varchar(11) NOT NULL,
+                                     PRIMARY KEY (`route_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
@@ -247,14 +247,14 @@ INSERT INTO `route` (`route_id`, `start_address`, `start_post_code`, `end_addres
 
 DROP TABLE IF EXISTS `traveler`;
 CREATE TABLE IF NOT EXISTS `traveler` (
-  `traveler_id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `phone_number` varchar(50) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`traveler_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+                                        `traveler_id` int(11) NOT NULL AUTO_INCREMENT,
+                                        `first_name` varchar(50) NOT NULL,
+                                        `last_name` varchar(50) NOT NULL,
+                                        `phone_number` varchar(50) NOT NULL,
+                                        `user_id` int(11) NOT NULL,
+                                        PRIMARY KEY (`traveler_id`),
+                                        KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `traveler`
@@ -278,11 +278,11 @@ INSERT INTO `traveler` (`traveler_id`, `first_name`, `last_name`, `phone_number`
 
 DROP TABLE IF EXISTS `travelerlist`;
 CREATE TABLE IF NOT EXISTS `travelerlist` (
-  `booking_id` int(11) NOT NULL,
-  `traveler_id` int(11) NOT NULL,
-  PRIMARY KEY (`booking_id`,`traveler_id`),
-  KEY `booking_id` (`booking_id`,`traveler_id`),
-  KEY `traveler_id` (`traveler_id`)
+                                            `booking_id` int(11) NOT NULL,
+                                            `traveler_id` int(11) NOT NULL,
+                                            PRIMARY KEY (`booking_id`,`traveler_id`),
+                                            KEY `booking_id` (`booking_id`,`traveler_id`),
+                                            KEY `traveler_id` (`traveler_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -307,20 +307,26 @@ INSERT INTO `travelerlist` (`booking_id`, `traveler_id`) VALUES
 
 DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE IF NOT EXISTS `vehicle` (
-  `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,
-  `vehicle_type` int(11) NOT NULL,
-  `number_of_travelers` int(11) NOT NULL,
-  `number_of_luggages` int(11) NOT NULL,
-  PRIMARY KEY (`vehicle_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+                                       `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,
+                                       `vehicle_type` int(11) NOT NULL,
+                                       `vehicle_name` varchar(11) NOT NULL,
+                                       `number_of_travelers` int(11) NOT NULL,
+                                       `number_of_luggages` int(11) NOT NULL,
+                                       `vehicle_cost` float NOT NULL,
+                                       PRIMARY KEY (`vehicle_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `vehicle`
 --
 
-INSERT INTO `vehicle` (`vehicle_id`, `vehicle_type`, `number_of_travelers`, `number_of_luggages`) VALUES
-(1, 0, 4, 4),
-(2, 1, 6, 8);
+INSERT INTO `vehicle` (`vehicle_id`, `vehicle_type`, `vehicle_name`, `number_of_travelers`, `number_of_luggages`, `vehicle_cost`) VALUES
+(1, 0, 'MEClass', 4, 2, 0.0306),
+(2, 0, 'MSClass', 4, 2, 0.0444),
+(3, 2, 'MVClass', 6, 2, 0.0472),
+(4, 1, 'RRover', 4, 4, 0.0417),
+(5, 0, 'RRPhantom', 4, 2, 0.0667),
+(6, 0, 'BMulsanne', 4, 2, 0.0583);
 
 --
 -- Constraints for dumped tables
