@@ -86,9 +86,24 @@ function addPassengerFields() {
             '                                        <i class="fas fa-2x fa-address-book text-primary-light my-3"></i>\n' +
             '                                    </div>\n' +
             '                                    <div class="col-10">\n' +
-            '                                        <h5>Name</h5>\n' +
-            '                                        <input class="form-control validate" id="passenger_name' + i + '"\n' +
-            '                                               placeholder="Enter name" name="passenger_name_' + i + '"\n' +
+            '                                        <h5>First name</h5>\n' +
+            '                                        <input class="form-control validate" id="passenger_first_name_' + i + '"\n' +
+            '                                               placeholder="Enter first name" name="passenger_first_name_' + i + '"\n' +
+            '                                               type="text">\n' +
+            '                                    </div>\n' +
+            '                                </div>\n' +
+            '                            </div>\n' +
+            '                        </div>\n' +
+            '                        <div class="card pl-0 my-3 bg-light">\n' +
+            '                            <div class="card-body">\n' +
+            '                                <div class="row">\n' +
+            '                                    <div class="col-2">\n' +
+            '                                        <i class="fas fa-2x fa-address-book text-primary-light my-3"></i>\n' +
+            '                                    </div>\n' +
+            '                                    <div class="col-10">\n' +
+            '                                        <h5>Last name</h5>\n' +
+            '                                        <input class="form-control validate" id="passenger_last_name_' + i + '"\n' +
+            '                                               placeholder="Enter last name" name="passenger_last_name_' + i + '"\n' +
             '                                               type="text">\n' +
             '                                    </div>\n' +
             '                                </div>\n' +
@@ -188,69 +203,64 @@ function addPassengerFields() {
 
 
     function pickup_search() {
-        try {
-            // Create the parameters for the geocoding request:
-            var geocodingParams = {
-                searchText: document.getElementById("pickup_address").value + "London, UK"
-            };
+        // Create the parameters for the geocoding request:
+        var geocodingParams = {
+            searchText: document.getElementById("pickup_address").value
+            // + "London, UK"
+        };
 
-            // Define a callback function to process the geocoding response:
-            var onSuccessAddress = function (result) {
-                var locations = result.Response.View[0].Result,
-                    position,
-                    marker;
-                // Add a marker for each location found
-                for (i = 0; i < locations.length; i++) {
-                    position = {
-                        lat: locations[i].Location.DisplayPosition.Latitude,
-                        lng: locations[i].Location.DisplayPosition.Longitude
-                    };
-                    //Saving latitude for routing
-                    pickupPosition[0] = locations[i].Location.DisplayPosition.Latitude;
-                    pickupPosition[1] = locations[i].Location.DisplayPosition.Longitude;
-                    if (pickupFirstSearch) {
-                        marker = new H.map.Marker(position);
-                        marker.id = "pickupId";
-                        map.addObject(marker);
-                        map.setCenter(position, true);
-                        pickupFirstSearch = false;
-                    } else {
-                        console.log(map.getObjects());
-                        removeObjectById("pickupId");
-                        marker = new H.map.Marker(position);
-                        marker.id = "pickupId";
-                        map.addObject(marker);
-                        map.setCenter(position, true);
-                    }
-                }
 
-                if (dropoffPosition[0] === undefined) {
+        // Define a callback function to process the geocoding response:
+        var onSuccessAddress = function (result) {
+            checkForErrorInAddress(result);
+            var locations = result.Response.View[0].Result,
+                position,
+                marker;
+            // Add a marker for each location found
+            for (i = 0; i < locations.length; i++) {
+                position = {
+                    lat: locations[i].Location.DisplayPosition.Latitude,
+                    lng: locations[i].Location.DisplayPosition.Longitude
+                };
+                //Saving latitude for routing
+                pickupPosition[0] = locations[i].Location.DisplayPosition.Latitude;
+                pickupPosition[1] = locations[i].Location.DisplayPosition.Longitude;
+                if (pickupFirstSearch) {
+                    marker = new H.map.Marker(position);
+                    marker.id = "pickupId";
+                    map.addObject(marker);
+                    map.setCenter(position, true);
+                    pickupFirstSearch = false;
                 } else {
-                    drawRoute(pickupPosition, dropoffPosition);
+                    console.log(map.getObjects());
+                    removeObjectById("pickupId");
+                    marker = new H.map.Marker(position);
+                    marker.id = "pickupId";
+                    map.addObject(marker);
+                    map.setCenter(position, true);
                 }
-
-                //Saving users search
-                document.getElementById("pickup_address_api").value =
-                    result.Response.View[0].Result[0].Location.Address.Label;
-            };
-
-            // Get an instance of the geocoding service:
-            var geocoder = platform.getGeocodingService();
-
-            // Call the geocode method with the geocoding parameters,
-            // the callback and an error callback function (called if a
-            // communication error occurs):
-            geocoder.geocode(geocodingParams, onSuccessAddress, function (e) {
-                alert(e);
-            });
-
-
-        } catch (e) {
-            if (e instanceof TypeError) {
-                document.getElementById(error_pickup_address).innerHTML =
-                    "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
             }
-        }
+
+            if (dropoffPosition[0] === undefined) {
+            } else {
+                drawRoute(pickupPosition, dropoffPosition);
+            }
+
+            //Saving users search
+            document.getElementById("pickup_address_api").value =
+                result.Response.View[0].Result[0].Location.Address.Label;
+        };
+
+        // Get an instance of the geocoding service:
+        var geocoder = platform.getGeocodingService();
+
+        // Call the geocode method with the geocoding parameters,
+        // the callback and an error callback function (called if a
+        // communication error occurs):
+        geocoder.geocode(geocodingParams, onSuccessAddress, function (e) {
+            alert(e);
+        });
+
     }
 
 
@@ -266,11 +276,13 @@ function addPassengerFields() {
     function dropoff_search() {
         // Create the parameters for the geocoding request:
         var geocodingParams = {
-            searchText: document.getElementById("dropoff_address").value + "London, UK"
+            searchText: document.getElementById("dropoff_address").value
+            // + "London, UK"
         };
 
         // Define a callback function to process the geocoding response:
         var onSuccessAddress = function (result) {
+            checkForErrorInAddressDropOff(result);
             var locations = result.Response.View[0].Result,
                 position,
                 marker;
@@ -407,5 +419,23 @@ function addPassengerFields() {
             function (error) {
                 alert(error.message);
             });
+    }
+}
+
+function checkForErrorInAddress(result) {
+    if (result.Response.View[0] == null) {
+        document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
+    }
+    else{
+        document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'></h4>";
+    }
+}
+
+function checkForErrorInAddressDropOff(result) {
+    if (result.Response.View[0] == null) {
+        document.getElementById("error_dropoff_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
+    }
+    else{
+        document.getElementById("error_dropoff_address").innerHTML = "<h4 class='text-warning'></h4>";
     }
 }
