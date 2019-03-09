@@ -74,10 +74,10 @@
 <section class="bg-dark pb-5 pt-5">
 </section>
 
-<!--Summary Background-->
+<!--Summary Card-->
 <section class="bg-light pt-5">
     <div class="container">
-        <form class="card bg-card">
+        <form class="card bg-card" method="post" action="bookingSummary.php">
             <div class="card-body">
                 <div class="row">
 
@@ -91,15 +91,11 @@
                         <div class="card pl-0 my-3 bg-light">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"></i>
-                                    </div>
                                     <div class="col-10">
                                         <h5>Pick-up address</h5>
                                         <div class="row align-items-center">
-                                            <div class="col-10">
-                                                <input class="form-control validate"
-                                                       placeholder="return pick up address" type="text">
+                                            <div class="col-10 ">
+                                                <input class="form-control validate" placeholder="return pick up address" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -111,15 +107,11 @@
                         <div class="card pl-0 my-3 bg-light">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"></i>
-                                    </div>
                                     <div class="col-10">
                                         <h5>Drop-off address</h5>
                                         <div class="row align-items-center">
                                             <div class="col-10 ">
-                                                <input class="form-control validate"
-                                                       placeholder="return drop off address" type="text">
+                                                <input class="form-control validate" placeholder="return drop off address" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -129,11 +121,8 @@
 
                         <!--Date of journey-->
                         <div class="card ml-0 pl-0 my-3 bg-light">
-                            <div class="card-body ">
+                            <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-calendar-alt text-primary-light my-3"></i>
-                                    </div>
                                     <div class="col-10">
                                         <h5>Date of Journey</h5>
                                         <input class="form-control validate" placeholder="Pick date" type="date">
@@ -146,9 +135,6 @@
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-clock text-primary-light my-3"></i>
-                                    </div>
                                     <div class="col-10">
                                         <h5>Time of Journey</h5>
                                         <input class="form-control validate" placeholder="Return time of journey"
@@ -162,9 +148,6 @@
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
                                 <div class="row align-items-center">
-                                    <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-suitcase-rolling text-primary-light my-3"></i>
-                                    </div>
                                     <div class="col-10">
                                         <h5>Number of Luggages</h5>
                                         <input class="form-control validate" placeholder="Enter number of luggages"
@@ -178,9 +161,6 @@
                         <div class="card ml-0 pl-0 my-3 bg-light">
                             <div class="card-body ">
                                 <div class="row align-items-center">
-                                    <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-user-friends text-primary-light my-3"></i>
-                                    </div>
                                     <div class="col-10">
                                         <h5>Number of Passengers</h5>
                                         <input class="form-control validate" placeholder="Enter number of passengers"
@@ -192,12 +172,29 @@
                     </div>
 
                     <!--Car details -->
-                    <div class="col-4">
-                        <img src="img/portfolio/fleet/RRCullinan.jpg" width="100%" height="fit"/>
-                        <p></p>
-                        <div class="text-lg-center text-primary">Rolls-Royce Cullinan</div>
-                        <div class="text-black-50 text-lg-center">4 passengers</div>
-                        <div class="text-black-50 text-lg-center">Regular luggage room</div>
+                    <div class="card col-12 col-md-5 my-3 bg-light car-card p-0 m-auto" id="e-class">
+                        <div class="card-body text-center">
+                            <div class="container-fluid">
+                                <img class="container-fluid px-0" src="img/cars/car-list-eclass.png"/>
+                                <h5 class="my-3 ">Mercedes E-Class</h5>
+                            </div>
+                            <div class="row">
+                                <div class="card col-4 offset-1 bg-dark">
+                                    <div class="card-body text-light p-0">
+                                        <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                    </div>
+                                </div>
+                                <div class="card col-4 offset-2 bg-dark">
+                                    <div class="card-body text-light p-0">
+                                        <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--price-->
+                        <div class="card-footer text-center">
+                            <a> £110 </a>
+                        </div>
                     </div>
 
                 </div>
@@ -215,7 +212,6 @@
 
 </section>
 
-
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -231,88 +227,3 @@
 </body>
 
 </html>
-
-<!--<div class="row">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg mx-auto">-->
-                <!--<h1 class="section-heading"></h1>-->
-                <!--<br>-->
-                <!--<div class="row">-->
-
-                    <!--&lt;!&ndash; image and car details&ndash;&gt;-->
-                    <!--<div class="col-4">-->
-                        <!--<img src="img/portfolio/fleet/RRCullinan.jpg" width="100%" height="fit"/>-->
-                        <!--<p></p>-->
-                        <!--<div class="text-lg-center text-primary">Rolls-Royce Cullinan</div>-->
-                        <!--<div class="text-black-50 text-lg-center">4 passengers</div>-->
-                        <!--<div class="text-black-50 text-lg-center">Regular luggage room</div>-->
-                    <!--</div>-->
-                    <!--<div class="col-8">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-3 text-right text-primary">-->
-                                <!--Pick up:-->
-                            <!--</div>-->
-                            <!--<div class="col-9 text-left text-black-50"> &lt;!&ndash; pick up address&ndash;&gt;-->
-                                <!--Terminal 5, Heathrow-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-3 text-right text-primary">-->
-                                <!--Drop off:-->
-                            <!--</div>-->
-                            <!--<div class="col-9 text-left text-black-50"> &lt;!&ndash; drop off address&ndash;&gt;-->
-                                <!--Flat 3, 23 Goodge Street, London. NW1 3GH-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-3 text-right text-primary">-->
-                                <!--Details:-->
-                            <!--</div>-->
-                            <!--<div class="col-9 text-left text-black-50">-->
-                                <!--&lt;!&ndash; traveller details (displays all registered travellers)&ndash;&gt;-->
-                                <!--Mr John Doe <br>-->
-                                <!--j.doe@corporate.firm <br>-->
-                                <!--+46 245 657 7492-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-3 text-right text-primary">-->
-                                <!--Date:-->
-                            <!--</div>-->
-                            <!--<div class="col-9 text-left text-black-50"> &lt;!&ndash; date &ndash;&gt;-->
-                                <!--10/02/2019-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-3 text-right text-primary">-->
-                                <!--Time:-->
-                            <!--</div>-->
-                            <!--<div class="col-9 text-left text-black-50"> &lt;!&ndash; time &ndash;&gt;-->
-                                <!--12:00pm-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<p>-->
-                            <!--<br>-->
-                            <!--<br>-->
-                            <!--<br>-->
-                        <!--</p>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-3 text-right text-primary">-->
-                                <!--Price:-->
-                            <!--</div>-->
-                            <!--<div class="col-9 text-left text-black-50"> &lt;!&ndash; trip price &ndash;&gt;-->
-                                <!--‎£200.00-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
