@@ -316,7 +316,9 @@ function addPassengerFields() {
 
             if (pickupPosition[1] === undefined) {
             } else {
-                drawRoute(pickupPosition, dropoffPosition);
+                travel_time_api = drawRoute(pickupPosition, dropoffPosition);
+                //Draw route and return travel time
+                document.getElementById("travel_time_api").value = travel_time_api;
             }
             //Saving users search
             document.getElementById("dropoff_address_api").value =
@@ -385,6 +387,8 @@ function addPassengerFields() {
                 route = result.response.route[0];
                 // Pick the route's shape:
                 routeShape = route.shape;
+                routetime = route["maneuverAttributes"]["trafficTime"];
+                console.log(routetime);
 
                 // Create a linestring to use as a point source for the route line
                 linestring = new H.geo.LineString();
@@ -419,14 +423,16 @@ function addPassengerFields() {
             function (error) {
                 alert(error.message);
             });
+
+
+        // return result.response.route[0] RETURN Time of travel to calcualte service feee
     }
 }
 
 function checkForErrorInAddress(result) {
     if (result.Response.View[0] == null) {
         document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
-    }
-    else{
+    } else {
         document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'></h4>";
     }
 }
@@ -434,8 +440,7 @@ function checkForErrorInAddress(result) {
 function checkForErrorInAddressDropOff(result) {
     if (result.Response.View[0] == null) {
         document.getElementById("error_dropoff_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
-    }
-    else{
+    } else {
         document.getElementById("error_dropoff_address").innerHTML = "<h4 class='text-warning'></h4>";
     }
 }

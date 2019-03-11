@@ -2,66 +2,63 @@
 
 require_once('phpDatabaseConnection.php');
 
-if ($_POST["type"] == 1){
-    setCookies();
+$identity = $_POST['myIdentity'] ?? 1;
+
+if ($identity == 'Booker'){
+    bookerCookies();
 } else {
-    readCookies();
+    driverCookies();
 }
 
-function setCookies()
+function bookerCookies()
 {
     $connection = connectToDb();
-    $cookie_email = $_POST['email'] ?? '1';
-    echo nl2br ("Get email successful: " . $cookie_email . "\n");
+    $cookie_email = $_POST['email'] ?? 1;
 
-// Build the query statement, shown in two steps as you might need this for your coursework
-    $email_search = "SELECT * FROM loginuser WHERE email = '$cookie_email'";
+    // Build the query statement, shown in two steps as you might need this for your coursework
+    $query = "SELECT booker.driver_id, booker.first_name, loginuser.user_id FROM loginuser JOIN booker ON loginuser.user_id = booker.user_id WHERE loginuser.email = '$cookie_email'";
 
 // Execute the query and retrieve the results
 
-    $userIdExists = mysqli_query($connection, $email_search);
-    echo nl2br (mysqli_num_rows($userIdExists));
+    $results = mysqli_query($connection, $query);
+    $array = mysqli_fetch_assoc($results);
+    $booker_id = $array['booker_id'];
+    $first_name = $array['first_name'];
+    $user_id = $array['user_id'];
 
-
-//If there is no existing email in the database, create a new unique user_ID
-    if (mysqli_num_rows($userIdExists) == 0) {
-        $min = 0;
-        $max = 2000;
-
-        //Check that the new user_ID assigned is unique in the database
-        do {
-            $cookie_user_id = rand($min, $max);
-            $user_id_search = "SELECT * FROM loginuser WHERE user_id = '$cookie_user_id'";
-            $result_user_id = mysqli_query($connection, $user_id_search);
-            setcookie("email", $cookie_email, time()+(86400*30), "/" ); //expires after 30 days
-            setcookie("user_id", $cookie_user_id, time()+(86400*30), "/" );
-            print("Email: " . $_COOKIE["email"] . "User ID: " . $_COOKIE["user_id"]);
-            print (PHP_EOL);
-        }
-        while (mysqli_num_rows($result_user_id) != 0);
-
-    }
-
-    else {
-        $get_user_id = "SELECT user_id FROM loginuser WHERE email = '$cookie_email'";
-        $result = mysqli_query($connection, $get_user_id);
-        $cookie_user_id = mysqli_fetch_assoc($result);
-        setcookie("email", $cookie_email, time()+(86400*30), "/"); //expires after 30 days
-        setcookie("user_id", $cookie_user_id,time()+(86400*30), "/");
-        print_r($_COOKIE);
-    }
+    setcookie("bookerId", $booker_id, time()+(86400*30), "/" );
+    setcookie("firstName", $first_name, time()+(86400*30), "/" );
+    setcookie("userId", $user_id, time()+(86400*30), "/" );
 
     exit;
 
 }
 
-function readCookies(){
-    if (isset($_COOKIE["cookie_email"])) {
-        print("Email: " . $_COOKIE["email"] . "User ID: " . $_COOKIE["user_id"]);
-        print(PHP_EOL);
-    } else {
-        print("Never heard of you.\n");
-    }
-    print("All cookies received:\n");
+function driverCookies()
+{
+    $connection = connectToDb();
+    $cookie_email = $_POST['email'] ?? 1;
+
+    // Build the query statement, shown in two steps as you might need this for your coursework
+
+    $query = "SELECT driver.driver_id, driver.first_name, loginuser.user_id FROM loginuser JOIN driver ON loginuser.user_id = driver.user_id WHERE loginuser.email = '$cookie_email'";
+
+// Execute the query and retrieve the results
+
+    $results = mysqli_query($connection, $query);
+    $array = mysqli_fetch_assoc($results);
+
+    $driver_id = $array['driver_id'];
+    $first_name = $array['first_name'];
+    $user_id = $array['user_id'];
+
+    setcookie("driverId", $driver_id, time()+(86400*30), "/" );
+    setcookie("firstName", $first_name, time()+(86400*30), "/" );
+    setcookie("userId", $user_id, time()+(86400*30), "/" );
+
+    echo $_COOKIE["driverId"] . "<br>" .  $_COOKIE["firstName"] . "<br>" . $_COOKIE["userId"] . "<br>";
     print_r($_COOKIE);
+    print(PHP_EOL);
+    exit;
 }
+

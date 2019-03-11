@@ -15,14 +15,17 @@
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/creative.min.css" rel="stylesheet">
+    <link href="css/creative.css" rel="stylesheet">
+
 
 </head>
 
@@ -31,111 +34,182 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <img class="img-fluid" src="img/logo.png" alt="" style="width:5%">
+        <img alt="" class="img-fluid" src="img/logo.png" style="width:5%">
 
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#page-top"> Home </a>
+                <a class="nav-link js-scroll-trigger" href="landingPageEmployee.html"> My homepage</a>
             </li>
         </ul>
 
-        <div class="mr-auto" style="padding: 5%">Booking summary</div>
+        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse"
+                type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link js-scroll-trigger active" href="#MakeABooking">Make A Booking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="driverTripDetails.html">View Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#YourProfile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#ContactUs">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#LogOut">Log Out</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
+<!--Header dark theme-->
+<section class="bg-dark pb-5 pt-5">
+</section>
 
-
-<section class="">
+<!--Summary Card-->
+<section class="bg-light pt-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg mx-auto">
-                <h1 class="section-heading"></h1>
-                <br>
+        <form class="card bg-card" method="post" action="bookingSummary.php">
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-4"> <!-- image and car details-->
-                        <img src="img/portfolio/fleet/RRCullinan.jpg" width="100%" height="fit"/>
-                        <p></p>
-                        <div class="text-lg-center text-primary">Rolls-Royce Cullinan</div>
-                        <div class="text-black-50 text-lg-center">4 passengers</div>
-                        <div class="text-black-50 text-lg-center">Regular luggage room</div>
+
+                    <!--Summary content-->
+                    <div class="col-md-12 col-lg-6">
+                        <div class="pl-0">
+                            <h3 class="font-weight-bold"> Booking Summary </h3>
+                        </div>
+
+                        <!--Pick up address-->
+                        <div class="card pl-0 my-3 bg-light">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h5>Pick-up address</h5>
+                                        <div class="row align-items-center">
+                                            <div class="col-10 ">
+                                                <input class="form-control validate" placeholder="return pick up address" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Drop off address-->
+                        <div class="card pl-0 my-3 bg-light">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h5>Drop-off address</h5>
+                                        <div class="row align-items-center">
+                                            <div class="col-10 ">
+                                                <input class="form-control validate" placeholder="return drop off address" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Date of journey-->
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h5>Date of Journey</h5>
+                                        <input class="form-control validate" placeholder="Pick date" type="date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Time of journey-->
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h5>Time of Journey</h5>
+                                        <input class="form-control validate" placeholder="Return time of journey"
+                                               type="time">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Number of luggages-->
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body ">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h5>Number of Luggages</h5>
+                                        <input class="form-control validate" placeholder="Enter number of luggages"
+                                               type="number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Number of passengers-->
+                        <div class="card ml-0 pl-0 my-3 bg-light">
+                            <div class="card-body ">
+                                <div class="row align-items-center">
+                                    <div class="col-10">
+                                        <h5>Number of Passengers</h5>
+                                        <input class="form-control validate" placeholder="Enter number of passengers"
+                                               type="number">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-8">
-                        <div class="row">
-                            <div class="col-3 text-right text-primary">
-                                Pick up:
+
+                    <!--Car details -->
+                    <div class="card col-12 col-md-5 my-3 bg-light car-card p-0 m-auto" id="e-class">
+                        <div class="card-body text-center">
+                            <div class="container-fluid">
+                                <img class="container-fluid px-0" src="img/cars/car-list-eclass.png"/>
+                                <h5 class="my-3 ">Mercedes E-Class</h5>
                             </div>
-                            <div class="col-9 text-left text-black-50"> <!-- pick up address-->
-                                Terminal 5, Heathrow
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3 text-right text-primary">
-                                Drop off:
-                            </div>
-                            <div class="col-9 text-left text-black-50"> <!-- drop off address-->
-                                Flat 3, 23 Goodge Street, London. NW1 3GH
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3 text-right text-primary">
-                                Details:
-                            </div>
-                            <div class="col-9 text-left text-black-50"> <!-- traveller details (displays all registered travellers)-->
-                                Mr John Doe <br>
-                                j.doe@corporate.firm <br>
-                                +46 245 657 7492
+                            <div class="row">
+                                <div class="card col-4 offset-1 bg-dark">
+                                    <div class="card-body text-light p-0">
+                                        <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                    </div>
+                                </div>
+                                <div class="card col-4 offset-2 bg-dark">
+                                    <div class="card-body text-light p-0">
+                                        <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3 text-right text-primary">
-                                Date:
-                            </div>
-                            <div class="col-9 text-left text-black-50"> <!-- date -->
-                                10/02/2019
-                            </div>
+                        <!--price-->
+                        <div class="card-footer text-center">
+                            <a> £110 </a>
                         </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3 text-right text-primary">
-                                Time:
-                            </div>
-                            <div class="col-9 text-left text-black-50"> <!-- time -->
-                                12:00pm
-                            </div>
-                        </div>
-                        <p>
-                            <br>
-                            <br>
-                            <br>
-                        </p>
-                        <div class="row">
-                            <div class="col-3 text-right text-primary">
-                                Price:
-                            </div>
-                            <div class="col-9 text-left text-black-50"> <!-- trip price -->
-                                ‎£200.00
-                            </div>
-                        </div>
-                        <br>
                     </div>
+
                 </div>
+
+                <!--Confirm button-->
                 <div class="row">
                     <div class="mx-auto my-3">
                         <a class="btn btn-primary btn-xl" href="bookingConfirmation.html">Confirm booking</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+        <br>
     </div>
+
 </section>
 
 <!-- Bootstrap core JavaScript -->
