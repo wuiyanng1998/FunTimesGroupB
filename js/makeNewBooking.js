@@ -35,20 +35,23 @@
     $(window).scroll(navbarCollapse);
 
 
-    $(".car-card").mouseenter(function () {
+    let carCard = $(".car-card")
+
+    carCard.mouseenter(function () {
         $(this).animate({
             "top": "-=1vw"
         }, "fast")
     });
 
-    $(".car-card").mouseleave(function () {
+    carCard.mouseleave(function () {
         $(this).animate({
             "top": "+=1vw"
         }, "fast")
     });
 
-    $(".car-card").click(function () {
-        $(".car-card").removeClass("bg-card-active");
+    carCard.click(function () {
+        carCard.removeClass("bg-card-active");
+        $('#car_type_summary').attr("class", "text-light");
         $(this).addClass("bg-card-active");
         $('#car_name').val($(this).attr('name'));
         $('#car_type').val($(this).attr('id'));
@@ -56,13 +59,10 @@
             function () {
                 $('#car_type_summary').text($('#car_name').val());
             }, 10);
-
     });
 
 
 })(jQuery); // End of use strict
-
-
 
 
 //

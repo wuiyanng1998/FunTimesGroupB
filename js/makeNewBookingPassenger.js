@@ -116,7 +116,7 @@ function addPassengerFields() {
         </h6>
         <div class="row align-items-center">
             <div class="col-10 mb-3">
-                <p class="summary-not-filled" id="passenger_summary_` + a + `"> csacsa </p>
+                <p class="summary-not-filled" id="passenger_summary_` + a + `">Information required </p>
             </div>
         </div>`);
             // Append a passenger from
@@ -402,6 +402,7 @@ function loadAnimations() {
 
     $(".car-card").click(function () {
         $(".car-card").removeClass("bg-card-active");
+        $('#car_type_summary').attr("class", "text-light");
         $(this).addClass("bg-card-active");
         $('#car_name').val($(this).attr('name'));
         $('#car_type').val($(this).attr('id'));
@@ -409,10 +410,13 @@ function loadAnimations() {
             function () {
                 $('#car_type_summary').text($('#car_name').val());
             }, 10);
-
+        $('#travel_fee').text($('.bg-card-active .card-footer a').text());
+        $('#travel_fee').attr("class", "text-light");
+        $('#service_rate_car').text($('.bg-card-active .card-footer a').text());
     });
 
 }
+
 
 //Filling in the summary
 {
@@ -475,18 +479,8 @@ function calculateFee(carList) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            console.log('Result: ' + result);
             var carCost = JSON.parse(result);
             addFeeToHTML(carCost, carList);
-            // console.log(carCost[3]);
-            // console.log('Result: ' + json);
-            // console.log(carCost[0]["name"]);
-            // console.log(carCost[1]);
-            // console.log(carCost[2]);
-            // for (i = 1; i <= json.length; i++) {
-            //     json[i]
-            //
-            // }
         }
     };
     xhr.send();
@@ -495,13 +489,9 @@ function calculateFee(carList) {
 
 function addFeeToHTML(carCost, carList) {
     let allFilteredCarCost = [];
-    console.log(carList);
-    console.log(carCost[0]);
     //leave relevant cars in the order of the html elements
     for (i = 0; i < carList.length; i++) {
-        console.log(carList[i]);
         for (a = 0; a < carCost.length; a++) {
-            console.log(carCost[a]["name"]);
             if (carList[i] == carCost[a]["name"]) {
                 allFilteredCarCost.push(carCost[a]);
                 break
@@ -509,21 +499,12 @@ function addFeeToHTML(carCost, carList) {
         }
     }
 
-    if (allFilteredCarCost.length > 1) {
-        console.log(allFilteredCarCost[0]);
-        console.log(allFilteredCarCost[1]);
-        console.log(allFilteredCarCost[2]);
-    } else {
-        console.log("important")
-        console.log(allFilteredCarCost[0]);
-    }
 
     //adding cost of trip on html elements
     for (i = 0; i < allFilteredCarCost.length; i++) {
         let carName = allFilteredCarCost[i]["name"];
         let carCost = allFilteredCarCost[i]["carCost"].toFixed(2);
-        console.log("#price" + carName);
-        $("#price" + carName).text("£"+carCost);
+        $("#price" + carName).text("£" + carCost);
     }
 
 }
