@@ -75,7 +75,21 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end">
-                    <h1 class="text-uppercase text-white font-weight-bold">Welcome, Mary Smith!</h1>
+                    <h1 class="text-uppercase text-white font-weight-bold">Welcome,
+
+                        <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
+                        <?php
+                        require_once('php/phpDatabaseConnection.php');
+                        $connection = connectToDb();
+                        if (isset($_COOKIE["firstName"])) {
+                            $first_name = $_COOKIE["firstName"];
+                            print($first_name);
+                        }
+                        ?>
+
+                        <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
+
+                    </h1>
                     <hr class="divider my-4">
                 </div>
                 <div class="col-lg-8 align-self-baseline">
@@ -98,13 +112,50 @@
                 <div class="col-md-4 col-12">
                     <div class="card my-3">
                         <div class="card-header bg-primary">
-                            <h5 class="text-white">Upcoming trip ID: 103958 <i
-                                    class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                            <h5 class="text-white">Upcoming trip ID: <br>
+
+                                <!-- need to incorporate javascript to show the closest 2 upcoming trips (ASK ZHASLAN)-->
+                                <?php
+
+                                require_once('php/phpDatabaseConnection.php');
+                                $connection = connectToDb();
+
+                                if (isset($_COOKIE["userId"])) {
+                                    $user_id = $_COOKIE["userId"];
+
+                                    $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                    $results = mysqli_query($connection, $query);
+                                    $array = mysqli_fetch_assoc($results);
+
+                                    $booking_id = $array['booking_id'];
+                                    $booking_time = $array['booking_time'];
+
+                                    $query2 = "SELECT route.start_address, route.end_address FROM route JOIN booking USING(route_id) WHERE booking.booking_id = '$booking_id'";
+                                    $results2 = mysqli_query($connection, $query2);
+                                    $array2 = mysqli_fetch_assoc($results2);
+
+                                    $start_address = $array2['start_address'];
+                                    $end_address = $array2['end_address'];
+
+                                    print($booking_id);
+
+                                }
+
+                                else {
+                                    print("Sorry, no cookie read.");
+                                }
+
+
+                                ?>
+                                <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Time: 11/02/2019 10.00pm</p>
-                            <p class="card-text">From: Heathrow Terminal 1</p>
-                            <p class="card-text">To: Flat 2, 23 Goodge Street, London. NW1 3GH</p>
+
+                            <!-- need to make sure that the time of day is here not just the date -->
+
+                            <p class="card-text">Time: <?php print($booking_time); ?></p>
+                            <p class="card-text">From: <?php print($start_address); ?></p>
+                            <p class="card-text">To: <?php print($end_address); ?></p>
                             <a class="btn btn-primary btn-block" style="border-radius: 5px; border-style: solid" href="driverTripDetails.html">See details</a>
                         </div>
                     </div>
@@ -288,19 +339,66 @@
                     <i class="fas fa-4x fa-address-card text-primary mb-4"></i>
                     <h3 class="card-title mb-2 text-dark">Basic info</h3>
                     <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Name</h5>
-                        <input class="form-control validate border-0 bg-light" id="nameId"
-                               value="Mary Smith"
-                               type="text">
+                        <h5 class="card-subtitle text-primary">
+
+                            Name </h5>
+                        <div class="form-control validate border-0 bg-light" id="nameId" type="text">
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT first_name, last_name FROM driver  WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $first_name = $array['first_name'];
+                                $last_name = $array['last_name'];
+
+                                echo $first_name . ' ' . $last_name;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+
+                        </div>
+
+
                     </div>
 
                     <hr class="divider my-2">
 
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Email</h5>
-                        <input class="form-control validate border-0 bg-light" id="email"
-                               value="m.smith@corporate.firm"
-                               type="email">
+                        <div class="form-control validate border-0 bg-light" id="email" type="email">
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT email FROM loginuser  WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $email = $array['email'];
+
+                                echo $email;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+
+                        </div>
                     </div>
 
 
@@ -308,8 +406,31 @@
 
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Telephone</h5>
-                        <input class="form-control validate border-0 bg-light" id="telephone" value="+462456577492"
-                               type="tel">
+                        <div class="form-control validate border-0 bg-light" id="telephone" type="tel">
+
+                            <!--WHAT TO DO WITH THE OTHER BLOCKS - DOESNT REALLY MAKE SENSE -->
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT phone_number FROM driver WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $phone_number = $array['phone_number'];
+
+                                echo $phone_number;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+                        </div>
                     </div>
 
                 </div>

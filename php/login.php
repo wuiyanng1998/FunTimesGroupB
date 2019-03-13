@@ -16,7 +16,7 @@ function bookerCookies()
     $cookie_email = $_POST['email'] ?? 1;
 
     // Build the query statement, shown in two steps as you might need this for your coursework
-    $query = "SELECT booker.driver_id, booker.first_name, loginuser.user_id FROM loginuser JOIN booker ON loginuser.user_id = booker.user_id WHERE loginuser.email = '$cookie_email'";
+    $query = "SELECT booker.booker_id, booker.first_name, loginuser.user_id FROM loginuser JOIN booker ON loginuser.user_id = booker.user_id WHERE loginuser.email = '$cookie_email'";
 
 // Execute the query and retrieve the results
 
@@ -29,6 +29,10 @@ function bookerCookies()
     setcookie("bookerId", $booker_id, time()+(86400*30), "/" );
     setcookie("firstName", $first_name, time()+(86400*30), "/" );
     setcookie("userId", $user_id, time()+(86400*30), "/" );
+
+    echo $_COOKIE["bookerId"] . "<br>" .  $_COOKIE["firstName"] . "<br>" . $_COOKIE["userId"] . "<br>";
+    print_r($_COOKIE);
+    print(PHP_EOL);
 
     exit;
 

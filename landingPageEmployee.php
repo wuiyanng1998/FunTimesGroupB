@@ -37,7 +37,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="landingPageEmployee.html">My home</a>
+                <a class="nav-link js-scroll-trigger" href="landingPageEmployee.php">My home</a>
             </li>
         </ul>
 
@@ -72,7 +72,26 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end">
-                    <h1 class="text-uppercase text-white font-weight-bold">Welcome, John Doe!</h1>
+                    <h1 class="text-uppercase text-white font-weight-bold">Welcome,
+
+                        <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
+                        <?php
+                        require_once('php/phpDatabaseConnection.php');
+                        $connection = connectToDb();
+
+                        if (isset($_COOKIE["firstName"])) {
+                            $first_name = $_COOKIE["firstName"];
+                            print($first_name);
+                        }
+
+                        else{
+                            print('No cookie set');
+                        }
+                        ?>
+
+                        <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
+                        </h1>
+
                     <hr class="divider my-4">
                 </div>
                 <div class="col-lg-8 align-self-baseline">
@@ -148,26 +167,92 @@
                     <h3 class="card-title mb-2 text-dark">Basic info</h3>
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Name</h5>
-                        <input class="form-control validate border-0 bg-light" id="nameId"
-                               value="John Doe"
-                               type="text">
+
+                        <div class="form-control validate border-0 bg-light" id="nameId" type="text">
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT first_name, last_name FROM booker  WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $first_name = $array['first_name'];
+                                $last_name = $array['last_name'];
+
+                                echo $first_name . ' ' . $last_name;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+
+                        </div>
                     </div>
 
                     <hr class="divider my-2">
 
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Organisation</h5>
-                        <input class="form-control validate border-0 bg-light" id="organisationId" value="UCL"
-                               type="text">
+                        <div class="form-control validate border-0 bg-light" id="organisationId" type="text">
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT company_name FROM company JOIN booker USING(company_id) WHERE booker.user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $company_name = $array['company_name'];
+
+                                echo $company_name;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+
+                        </div>
                     </div>
 
                     <hr class="divider my-2">
 
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Email</h5>
-                        <input class="form-control validate border-0 bg-light" id="email"
-                               value="j.doe@corporate.firm"
-                               type="email">
+                        <div class="form-control validate border-0 bg-light" id="email" type="email">
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT email FROM loginuser  WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $email = $array['email'];
+
+                                echo $email;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+                        </div>
+
                     </div>
 
 
@@ -175,8 +260,30 @@
 
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Telephone</h5>
-                        <input class="form-control validate border-0 bg-light" id="telephone" value="+462456577492"
-                               type="tel">
+                        <div class="form-control validate border-0 bg-light" id="telephone" type="tel">
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT phone_number FROM booker WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $phone_number = $array['phone_number'];
+
+                                echo $phone_number;
+                                echo '&nbsp';
+
+                            }
+
+                            else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+
+                        </div>
                     </div>
 
                 </div>
@@ -215,7 +322,7 @@
 
         <div class="row container-fluid px-1 py-1 bg-light mx-auto">
 
-            <!--Trip history card-->
+            <!--Trip history card DO WE NEED THIS?-->
             <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
                 <div class="card-body mt-2">
                     <i class="fas fa-4x fa-history text-primary mb-4"></i>
