@@ -5,12 +5,37 @@ $pickupDate = $_POST['pickup_date'];
 $pickupTime = $_POST['pickup_time'];
 $numberOfPassengers = $_POST['number_passengers'];
 $numberOfLuggage = $_POST['luggage'];
-$carType = $_POST['car_type'];
+$carName = $_POST['car_name'];
 
 $start_address = $_POST['pickup_address'];
 $start_post_code = $_POST['pickup_address_api'];
 $end_address = $_POST['dropoff_address'];
 $end_post_code = $_POST['dropoff_address_api'];
+$travel_time = $_POST['travel_time_api'];
+
+
+//calculating Service Fee. NEED AJAX TO SHOW CHANGE IN PRICE
+
+function calculateServiceFee($connection, $travel_time)
+{
+    $costsArray = array();
+    $qryCarsCost = "SELECT DISTINCT vehicle_name, vehicle_cost FROM vehicle";
+    if ($carsCost = mysqli_query($connection, $qryCarsCost)) {
+        $c = 0;
+        while ($car = mysqli_fetch_assoc($carsCost)) {
+            $costsArray[] = $car;
+            $thisCarCost = $costsArray[$c]["vehicle_cost"];
+            $costForTheTrip = $thisCarCost * $travel_time;
+            $costsArray[$c]["costForTheTrip"] = "$costForTheTrip";
+            $c += 1;
+        }
+        echo json_encode($costsArray);
+    } else {
+        print "Error with car cost json encoding";
+    }
+}
+
+
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
     ${"passengerFirstName" . $i} = $_POST['passenger_first_name_' . $i];
@@ -20,31 +45,6 @@ for ($i = 1; $i <= $numberOfPassengers; $i++) {
 }
 
 $pickupDateTime = $pickupDate . " " . $pickupTime . ":00";
-switch ($carType) {
-    case "e-class":
-        $carType = 1;
-        break;
-
-    case "s-class":
-        $carType = 2;
-        break;
-
-    case "v-class":
-        $carType = 3;
-        break;
-
-    case "rr":
-        $carType = 4;
-        break;
-
-    case "phantom":
-        $carType = 5;
-        break;
-
-    case "mulsanne":
-        $carType = 6;
-        break;
-}
 
 
 function readCookiesBookerId()
@@ -89,7 +89,7 @@ if ($result) {
 
 
 $qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, 
-                     driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carType . "', '"
+                     driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carName . "', '"
     . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . "', '"
 //    . $driver_id NOT IMPLEMENTED
     . "', '" . $service_fee . "', '" . $routeID . "')";

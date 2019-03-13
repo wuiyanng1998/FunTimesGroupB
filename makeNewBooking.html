@@ -85,9 +85,10 @@
 <section class="bg-dark pb-5 pt-5">
 </section>
 
-<!--Journey details plus the map-->
+<!--Main Body-->
 <section class="bg-light pt-5">
     <div class="container">
+        <!--Journey details plus the map-->
         <form class="card bg-card">
             <div class="card-body">
                 <div class="row">
@@ -100,7 +101,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"></i>
+                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"> </i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Pick-up address</h5>
@@ -114,7 +115,7 @@
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
                                                    id="pickup_button"
                                                    onclick="pickup_search()">
-                                                    <i class="fas fa-1x fa-search-location text-light my-3"></i>
+                                                    <i class="fas fa-1x fa-search-location text-light my-3"> </i>
                                                 </a>
                                             </div>
                                         </div>
@@ -129,7 +130,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"></i>
+                                        <i class="fas fa-2x fa-map-marker-alt text-primary-light"> </i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Drop-off address</h5>
@@ -145,7 +146,7 @@
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
                                                    id="dropoff_button"
                                                    onclick="dropoff_search()">
-                                                    <i class="fas fa-1x fa-search-location text-light my-3"></i>
+                                                    <i class="fas fa-1x fa-search-location text-light my-3"> </i>
                                                 </a>
                                             </div>
                                         </div>
@@ -161,7 +162,7 @@
                             <div class="card-body ">
                                 <div class="row align-items-center">
                                     <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-calendar-alt text-primary-light my-3"></i>
+                                        <i class="fas fa-2x fa-calendar-alt text-primary-light my-3"> </i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Date of Journey</h5>
@@ -177,7 +178,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-clock text-primary-light my-3"></i>
+                                        <i class="fas fa-2x fa-clock text-primary-light my-3"> </i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Time of Journey</h5>
@@ -192,7 +193,7 @@
                             <div class="card-body ">
                                 <div class="row align-items-center">
                                     <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-suitcase-rolling text-primary-light my-3"></i>
+                                        <i class="fas fa-2x fa-suitcase-rolling text-primary-light my-3"> </i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Number of Luggages</h5>
@@ -207,7 +208,7 @@
                             <div class="card-body ">
                                 <div class="row align-items-center">
                                     <div class="col-2 text-center">
-                                        <i class="fas fa-2x fa-user-friends text-primary-light my-3"></i>
+                                        <i class="fas fa-2x fa-user-friends text-primary-light my-3"> </i>
                                     </div>
                                     <div class="col-10">
                                         <h5>Number of Passengers</h5>
@@ -222,7 +223,7 @@
 
                     <!--Map section -->
                     <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
-                        <h4 class="font-weight-bold"><i class="fas fa-1x fa-compass text-dark my-1"></i> Map
+                        <h4 class="font-weight-bold"><i class="fas fa-1x fa-compass text-dark my-1"> </i> Map
                         </h4>
                         <div class="card bg-light m-0 p-0">
                             <div class="container-fluid m-0 p-0" id="mapContainer"></div>
@@ -233,8 +234,8 @@
                 <!--Submit button-->
                 <div class="row">
                     <div class="mx-auto my-3 text-light">
-                        <button class="btn btn-primary btn-xl" id="sumbit_passengers"
-                                onclick="addPassengerFields()">Submit
+                        <button type="button" class="btn btn-primary btn-xl" id="sumbit_passengers"
+                                onclick="tripInfoForm()">Submit
                         </button>
                     </div>
                 </div>
@@ -242,19 +243,19 @@
         </form>
         <br>
 
-        <!--Choose car section-->
+        <!--Car section-->
         <div class="card bg-card">
             <div class="card-body">
                 <div class="pl-0">
                     <h3 class="font-weight-bold"> Choose a car </h3>
                 </div>
-                <div class="container">
+                <div class="container" id="car_selection">
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0" id="e-class">
+                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" id="MEClass" name="Mercedes E-Class">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-eclass.png"/>
-                                    <h5 class="my-3 ">Mercedes E-Class</h5>
+                                    <h5 class="my-3">Mercedes E-Class</h5>
                                 </div>
                                 <div class="row">
                                     <div class="card col-4 offset-1 bg-dark">
@@ -271,12 +272,12 @@
                             </div>
                             <!--price-->
                             <div class="card-footer text-center">
-                                <a> £110 </a>
+                                <a id="priceMEClass"> </a>
                             </div>
                         </div>
 
 
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0" id="s-class">
+                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0" name="Mercedes S-Class" id="MSClass">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-sclass1.png"/>
@@ -297,66 +298,13 @@
                             </div>
                             <!--price-->
                             <div class="card-footer text-center">
-                                <a> £160 </a>
+                                <a id="priceMSClass"> </a>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0" id="v-class">
-                            <div class="card-body text-center">
-                                <div class="container-fluid">
-                                    <img class="container-fluid px-0" src="img/cars/V-class-side.png"/>
-                                    <h5 class="my-3 ">Mercedes V-Class</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="card col-4 offset-1 bg-dark">
-                                        <div class="card-body text-light p-0">
-                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 6 </a>
-                                        </div>
-                                    </div>
-                                    <div class="card col-4 offset-2 bg-dark">
-                                        <div class="card-body text-light p-0">
-                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--price-->
-                            <div class="card-footer text-center">
-                                <a> £170 </a>
-                            </div>
-                        </div>
-
-
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0" id="rr">
-                            <div class="card-body text-center">
-                                <div class="container-fluid">
-                                    <img class="container-fluid px-0" src="img/cars/rra1.png"/>
-                                    <h5 class="my-3 ">Range Rover</h5>
-                                </div>
-                                <div class="row">
-                                    <div class="card col-4 offset-1 bg-dark">
-                                        <div class="card-body text-light p-0">
-                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
-                                        </div>
-                                    </div>
-                                    <div class="card col-4 offset-2 bg-dark">
-                                        <div class="card-body text-light p-0">
-                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 4 </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--price-->
-                            <div class="card-footer text-center">
-                                <a> £150 </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="card col-12 col-md-5 my-3 bg-light car-card px-0" id="phantom">
+                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" name="Rolls-Royce Phantom" id="RRPhantom">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/car-list-phantom1.png"/>
@@ -377,11 +325,11 @@
                             </div>
                             <!--price-->
                             <div class="card-footer text-center">
-                                <a> £240 </a>
+                                <a id="priceRRPhantom"> </a>
                             </div>
                         </div>
 
-                        <div class="card col-12 col-md-5 offset-md-2 my-3 bg-light car-card px-0" id="mulsanne">
+                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0" name="Bentley Mulsanne" id="BMulsanne">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img class="container-fluid px-0" src="img/cars/bentley-mulsanne.png"/>
@@ -402,19 +350,64 @@
                             </div>
                             <!--price-->
                             <div class="card-footer text-center">
-                                <a> £210 </a>
+                                <a id="priceBMulsanne"> </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" name="Range Rover" id="RRover">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img class="container-fluid px-0" src="img/cars/rra1.png"/>
+                                    <h5 class="my-3 ">Range Rover</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 4 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--price-->
+                            <div class="card-footer text-center">
+                                <a id="priceRRover"> </a>
+                            </div>
+                        </div>
+
+                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0" name="Mercedes V-Class" id="MVClass">
+                            <div class="card-body text-center">
+                                <div class="container-fluid">
+                                    <img class="container-fluid px-0" src="img/cars/V-class-side.png"/>
+                                    <h5 class="my-3 ">Mercedes V-Class</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="card col-4 offset-1 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-user-friends text-light"> </i> 6 </a>
+                                        </div>
+                                    </div>
+                                    <div class="card col-4 offset-2 bg-dark">
+                                        <div class="card-body text-light p-0">
+                                            <a> <i class="fas fa-1x fa-suitcase-rolling text-light"> </i> 2 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--price-->
+                            <div class="card-footer text-center">
+                                <a id="priceMVClass"> </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--Get user selection to transfer to php-->
-            <input type="hidden" name="car_type" id="car_type" value="">
-            <input type="hidden" name="pickup_address_api" id="pickup_address_api" value="">
-            <input type="hidden" name="dropoff_address_api" id="dropoff_address_api" value="">
-            <input type="hidden" name="travel_time_api" id="travel_time_api" value="">
-            <input type="hidden" name="service_rate_car" id="service_rate_car" value="">
-
         </div>
 
         <br>
@@ -423,12 +416,92 @@
         <div class="row" id="passenger_container">
         </div>
 
-        <!--Submit button-->
-        <div class="row">
-            <div class="mx-auto my-3">
-                <a class="btn btn-primary btn-xl" href="bookingSummary.html">Book now</a>
+
+        <!--Summary section-->
+        <div class="card bg-primary">
+            <div class="card-body">
+                <div class="pl-0">
+                    <h3 class="font-weight-bold text-dark mb-3"> Booking summary </h3>
+                </div>
+                <div class="container d-none d-lg-block">
+
+                    <div class="row">
+                        <!--Journey summary-->
+                        <div class="mx-auto col-5 card bg-dark ">
+                            <div class="card-body">
+                                <h3 class="font-weight-bold text-primary mb-3"> Journey summary </h3>
+                                <h6 class="text-primary"><i class="fas fa-1x fa-map-marker-alt text-primary"> </i>
+                                    Pick-up address </h6>
+                                <div class="row align-items-center">
+                                    <div class="col-10 mb-3">
+                                        <p class="summary-not-filled" id="pickup_address_summary"> ascsac </p>
+                                    </div>
+                                </div>
+                                <h6 class="text-primary"><i class="fas fa-1x fa-map-marker-alt text-primary"> </i>
+                                    Drop-off address </h6>
+                                <div class="row align-items-center">
+                                    <div class="col-10 mb-3">
+                                        <p class="summary-not-filled" id="dropoff_address_summary"> ascsc </p>
+                                    </div>
+                                </div>
+                                <h6 class="text-primary"><i class="fas fa-1x fa-calendar-alt text-primary"> </i>
+                                    Journey time </h6>
+                                <div class="row align-items-center">
+                                    <div class="col-10 mb-3">
+                                        <p class="summary-not-filled" id="time_summary"> casc </p>
+                                    </div>
+                                </div>
+                                <h6 class="text-primary"><i class="fas fa-1x fa-car-alt text-primary"> </i> Car type
+                                </h6>
+                                <div class="row align-items-center">
+                                    <div class="col-10 mb-3">
+                                        <p class="summary-not-filled" id="car_type_summary"> csacsa </p>
+                                    </div>
+                                </div>
+
+                                <h6 class="text-primary"><i class="fas fa-1x fa-car-alt text-primary"> </i>
+                                    Expected travel time
+                                </h6>
+                                <div class="row align-items-center">
+                                    <div class="col-10 mb-3">
+                                        <p class="summary-not-filled" id="travel_time_summary"> csacsa </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Passenger summary-->
+                        <div class="col-5 offset-1 mx-auto card bg-dark ">
+                            <div class="card-body">
+                                <h3 class="font-weight-bold text-primary mb-3">
+                                    <i class="fas fa-1x fa-user-friends text-primary"> </i> Passenger summary </h3>
+                                <div id="passenger_summary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Submit button-->
+                    <div class="row">
+                        <div class="mx-auto my-3">
+                            <a class="btn btn-dark btn-xl" href="bookingConfirmation.html">Book Now
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+            <!--Get user selection to transfer to php-->
+            <input type="hidden" name="car_type" id="car_type" value="">
+            <input type="hidden" name="car_name" id="car_name" value="">
+            <input type="hidden" name="pickup_address_api" id="pickup_address_api" value="">
+            <input type="hidden" name="dropoff_address_api" id="dropoff_address_api" value="">
+            <input type="hidden" name="travel_time_api" id="travel_time_api" value="">
+            <input type="hidden" name="service_rate_car" id="service_rate_car" value="">
+
         </div>
+
     </div>
 
 </section>
@@ -452,7 +525,10 @@
 
 <!-- Custom scripts for this template -->
 <script src="js/makeNewBooking.js"></script>
+<script src="js/makeNewBookingMaps.js"></script>
+<script src="js/makeNewBookingPassenger.js"></script>
 
 </body>
 
 </html>
+
