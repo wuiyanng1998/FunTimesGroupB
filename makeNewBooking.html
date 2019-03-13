@@ -252,7 +252,8 @@
                 </div>
                 <div class="container" id="car_selection">
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" id="MEClass" name="Mercedes E-Class">
+                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" id="MEClass"
+                             name="Mercedes E-Class">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img alt="Picture of Mercedes E-class"
@@ -279,7 +280,8 @@
                         </div>
 
 
-                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0" name="Mercedes S-Class" id="MSClass">
+                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0"
+                             name="Mercedes S-Class" id="MSClass">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img alt="Picture of Mercedes S-class"
@@ -307,7 +309,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" name="Rolls-Royce Phantom" id="RRPhantom">
+                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" name="Rolls-Royce Phantom"
+                             id="RRPhantom">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img alt="Picture of Rolls-Royce Phantom"
@@ -333,7 +336,8 @@
                             </div>
                         </div>
 
-                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0" name="Bentley Mulsanne" id="BMulsanne">
+                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0"
+                             name="Bentley Mulsanne" id="BMulsanne">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img alt="Picture of Bentley Mulsanne"
@@ -361,7 +365,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" name="Range Rover" id="RRover">
+                        <div class="card col-12 col-md-5 my-3 mx-auto bg-light car-card px-0" name="Range Rover"
+                             id="RRover">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img alt="Picture of Range Rover"
@@ -387,7 +392,8 @@
                             </div>
                         </div>
 
-                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0" name="Mercedes V-Class" id="MVClass">
+                        <div class="card col-12 col-md-5 offset-md-1 my-3 mx-auto bg-light car-card px-0"
+                             name="Mercedes V-Class" id="MVClass">
                             <div class="card-body text-center">
                                 <div class="container-fluid">
                                     <img alt="Picture of Mercedes V-Class"
@@ -440,28 +446,30 @@
                                     Pick-up address </h6>
                                 <div class="row align-items-center">
                                     <div class="col-10 mb-3">
-                                        <p class="summary-not-filled" id="pickup_address_summary">Information required </p>
+                                        <p class="summary-not-filled" id="pickup_address_summary">Information
+                                            required </p>
                                     </div>
                                 </div>
                                 <h6 class="text-primary"><i class="fas fa-1x fa-map-marker-alt text-primary"> </i>
                                     Drop-off address </h6>
                                 <div class="row align-items-center">
                                     <div class="col-10 mb-3">
-                                        <p class="summary-not-filled" id="dropoff_address_summary">Information required </p>
+                                        <p class="summary-not-filled" id="dropoff_address_summary">Information
+                                            required </p>
                                     </div>
                                 </div>
                                 <h6 class="text-primary"><i class="fas fa-1x fa-calendar-alt text-primary"> </i>
                                     Journey time </h6>
                                 <div class="row align-items-center">
                                     <div class="col-10 mb-3">
-                                        <p class="summary-not-filled" id="time_summary">Information required  </p>
+                                        <p class="summary-not-filled" id="time_summary">Information required </p>
                                     </div>
                                 </div>
                                 <h6 class="text-primary"><i class="fas fa-1x fa-car-alt text-primary"> </i> Car type
                                 </h6>
                                 <div class="row align-items-center">
                                     <div class="col-10 mb-3">
-                                        <p class="summary-not-filled" id="car_type_summary">Select car  </p>
+                                        <p class="summary-not-filled" id="car_type_summary">Select car </p>
                                     </div>
                                 </div>
 
@@ -470,7 +478,7 @@
                                 </h6>
                                 <div class="row align-items-center">
                                     <div class="col-10 mb-3">
-                                        <p class="summary-not-filled" id="travel_time_summary">Information required  </p>
+                                        <p class="summary-not-filled" id="travel_time_summary">Information required </p>
                                     </div>
                                 </div>
 
@@ -497,23 +505,26 @@
                     </div>
 
                     <!--Submit button-->
-                    <div class="row">
-                        <div class="mx-auto my-3">
-                            <a class="btn btn-dark btn-xl" href="bookingConfirmation.html">Book Now
-                            </a>
-                        </div>
-                    </div>
 
+                    <!--Get user selection to transfer to php-->
+                    <form class="row" action="makeNewBooking.php" method="post">
+                        <input type="hidden" name="pickup_date" id="pickup_date_post" value="">
+                        <input type="hidden" name="pickup_time" id="pickup_time_post" value="">
+                        <input type="hidden" name="car_type" id="car_type" value="">
+                        <input type="hidden" name="car_name" id="car_name" value="">
+                        <input type="hidden" name="pickup_address_api" id="pickup_address_api" value="">
+                        <input type="hidden" name="dropoff_address_api" id="dropoff_address_api" value="">
+                        <input type="hidden" name="travel_time_api" id="travel_time_api" value="">
+                        <input type="hidden" name="service_rate_car" id="service_rate_car" value="">
+                        <div class="mx-auto my-3">
+                            <a class="btn btn-dark btn-xl">Book Now
+                            </a>
+                            <!--href="bookingConfirmation.html"-->
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <!--Get user selection to transfer to php-->
-            <input type="hidden" name="car_type" id="car_type" value="">
-            <input type="hidden" name="car_name" id="car_name" value="">
-            <input type="hidden" name="pickup_address_api" id="pickup_address_api" value="">
-            <input type="hidden" name="dropoff_address_api" id="dropoff_address_api" value="">
-            <input type="hidden" name="travel_time_api" id="travel_time_api" value="">
-            <input type="hidden" name="service_rate_car" id="service_rate_car" value="">
 
         </div>
     </div>

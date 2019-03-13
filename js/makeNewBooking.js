@@ -65,43 +65,6 @@
 })(jQuery); // End of use strict
 
 
-//
-// //Calculate prices form different cars
-//
-// var xhr = new XMLHttpRequest();
-// xhr.open("Get", "php/makeNewBooking.php", true);
-//
-//
-// xhr.onreadystatechange = function () {
-//     if (xhr.readyState == 4 && xhr.status == 200) {
-//         var json = json.parse(xhr.responseText);
-//     }
-// };
-// xhr.send();
-//
-//
-// $.ajax({
-//     type: "GET",
-//     url: "php/makeNewBooking.php",
-//     async: true,
-//     data: {},
-//     dataType: "json",
-//     success: function (data) {
-//         $(#main).html(data);
-//     },
-//     error: function (jqXHR, textStatus, error) {
-//     }
-// });
-//
-//
-// $('sumbit_passengers').on("click", function (e) {
-//     e.preventDefault();
-//
-//
-//
-// });
-//
-
 
 
 
