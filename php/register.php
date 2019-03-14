@@ -27,7 +27,8 @@ function createNewAccount()
     echo "Successful posting: " . $first_name . "," . $last_name . "," . $email . "," . $password . "," . $identity . "<br>";
 
 // Build the query statement
-    $insertLoginUser = "INSERT INTO loginuser (`email`, `password`) VALUES ('$email', '$password')";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $insertLoginUser = "INSERT INTO loginuser (`email`, `password`) VALUES ('$email', '$hash')";
 
     // Execute the query and insert
     mysqli_query($connection, $insertLoginUser);

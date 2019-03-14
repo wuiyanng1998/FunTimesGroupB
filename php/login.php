@@ -3,11 +3,31 @@
 require_once('phpDatabaseConnection.php');
 
 $identity = $_POST['myIdentity'] ?? 1;
+$password = $_POST['password']?? 1;
 
-if ($identity == 'Booker'){
-    bookerCookies();
+$connection = connectToDb();
+$cookie_email = $_POST['email'] ?? 1;
+$get_password = "SELECT password FROM loginuser WHERE  email = '$cookie_email'";
+$results1 = mysqli_query($connection, $get_password);
+$array1 = mysqli_fetch_assoc($results1);
+$hash = $array1['password'];
+
+if (password_verify($password, $hash)) {
+    userType($identity);
+
 } else {
-    driverCookies();
+    echo 'INVALID CREDENTIALS';
+}
+
+function userType($identity){
+    if ($identity == 'Booker'){
+        header('location: http://localhost:63342/FunTimesGroupB/landingPageEmployee.php');
+        bookerCookies();
+
+    } else {
+        header('location: http://localhost:63342/FunTimesGroupB/landingPageDriver.php');
+        driverCookies();
+    }
 }
 
 function bookerCookies()
@@ -63,6 +83,7 @@ function driverCookies()
     echo $_COOKIE["driverId"] . "<br>" .  $_COOKIE["firstName"] . "<br>" . $_COOKIE["userId"] . "<br>";
     print_r($_COOKIE);
     print(PHP_EOL);
+
     exit;
 }
 

@@ -458,50 +458,6 @@
             </div>
 
         </div>
-
-        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
-
-            <!--Payment options card-->
-            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Payment options</h3>
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Card 1</h5>
-                        <input class="form-control validate border-0 bg-light" id="card1"
-                               value="**** **** **** **** John Doe" type="text">
-                    </div>
-                    <hr class="divider my-2">
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Card 2</h5>
-                        <input class="form-control validate border-0 bg-light" id="card2"
-                               value="**** **** **** **** Jane Doe" type="text">
-                    </div>
-                </div>
-            </div>
-
-            <!--Address card-->
-            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-map-marked-alt text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Address</h3>
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Home address</h5>
-                        <input class="form-control validate border-0 bg-light" id="homeAddress"
-                               value="Flat 3, 23 Goodge Street, London NW1 3GH" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Work address</h5>
-                        <input class="form-control validate border-0 bg-light" id="workAddress"
-                               value="London Riverside, London SE1 2AF" type="text">
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </div>
 
 </section>
