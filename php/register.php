@@ -49,9 +49,9 @@ function createNewAccount()
         mysqli_query($connection, $insertBooker);
 
         if ($connection->query($insertBooker) === TRUE) {
-            echo "Booker created successfully <br>";
+            //echo "Booker created successfully <br>";
         } else {
-            echo "Error: " . $insertBooker . "<br>" . $connection->error . "<br>";
+            //echo "Error: " . $insertBooker . "<br>" . $connection->error . "<br>";
         }
 
     } else {
@@ -59,12 +59,14 @@ function createNewAccount()
         $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `license_type`, `working_time_slot`, `driver_rating`, `title`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', 'Bus', '1', '4.5', 'Mr')";
         mysqli_query($connection, $insertDriver);
 
-        if ($connection->query($insertDriver) === TRUE) {
-            echo "Driver created successfully <br>";
-        } else {
-            echo "Error: " . $insertDriver . "<br>" . $connection->error . "<br>";
-        }
+        //if ($connection->query($insertDriver) === TRUE) {
+            //echo "Driver created successfully <br>";
+        //} else {
+            //echo "Error: " . $insertDriver . "<br>" . $connection->error . "<br>";
+        //}
     }
+
+    header('location: ../login.html');
 
     $connection->close();
 }

@@ -21,11 +21,11 @@ if (password_verify($password, $hash)) {
 
 function userType($identity){
     if ($identity == 'Booker'){
-        header('location: http://localhost:63342/FunTimesGroupB/landingPageEmployee.php');
+        header('location: ../landingPageEmployee.php');
         bookerCookies();
 
     } else {
-        header('location: http://localhost:63342/FunTimesGroupB/landingPageDriver.php');
+        header('location: ../landingPageDriver.php');
         driverCookies();
     }
 }
