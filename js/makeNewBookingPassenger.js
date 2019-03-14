@@ -376,10 +376,10 @@ function carFilter() {
         return carList;
     } else {
         container.innerHTML =
-            `(<div class="card col-12 col-md-5 my-3 bg-light p-5">
+            `<div class="card col-12 col-md-5 my-3 bg-light p-5">
             <h5> Unfortunately, we do not have a car which can 
             accommodate selected number of passengers and luggage. </h5>
-        </div>)`;
+        </div>`;
         return [];
     }
 

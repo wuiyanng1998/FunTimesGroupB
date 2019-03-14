@@ -1,17 +1,15 @@
 <?php
 require_once('phpDatabaseConnection.php');
 
-$pickupDate = $_POST['pickup_date'];
-$pickupTime = $_POST['pickup_time'];
-$numberOfPassengers = $_POST['number_passengers'];
-$numberOfLuggage = $_POST['luggage'];
-$carType = $_POST['carType'];
+$pickupDate = $_POST['pickup_date_post'];
+$pickupTime = $_POST['pickup_time_post'];
+$numberOfPassengers = $_POST['number_passengers_post'];
+$carType = $_POST['car_type_post'];
 
-$start_address = $_POST['pickup_address'];
+$start_address = $_POST['pickup_address_post'];
 $start_post_code = $_POST['pickup_address_api'];
-$end_address = $_POST['dropoff_address'];
+$end_address = $_POST['dropoff_address_post'];
 $end_post_code = $_POST['dropoff_address_api'];
-$travel_time = $_POST['travel_time_api'];
 $price = $_POST['service_rate_car'];
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
@@ -74,13 +72,12 @@ if ($result) {
 }
 
 
-$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, 
+$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, booker_id, 
                      driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carName . "', '"
-    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . "', '"
+    . $numberOfPassengers  . "', '" . $booker_id . "', '"
 //    . $driver_id NOT IMPLEMENTED
     . "', '" . $service_fee . "', '" . $routeID . "')";
 $bookingID = mysqli_query($connection, $qryGetLatestID);
-
 
 $travelerIDList = [];
 
