@@ -82,15 +82,13 @@
                         if (isset($_COOKIE["firstName"])) {
                             $first_name = $_COOKIE["firstName"];
                             print($first_name);
-                        }
-
-                        else{
+                        } else {
                             print('No cookie set');
                         }
                         ?>
 
                         <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
-                        </h1>
+                    </h1>
 
                     <hr class="divider my-4">
                 </div>
@@ -185,9 +183,7 @@
                                 echo $first_name . ' ' . $last_name;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -215,9 +211,7 @@
                                 echo $company_name;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -245,9 +239,7 @@
                                 echo $email;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -276,9 +268,7 @@
                                 echo $phone_number;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -320,111 +310,6 @@
 
         </div>
 
-        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
-
-            <!--Trip history card DO WE NEED THIS?-->
-            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-history text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Trip history</h3>
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Trip ID 1</h5>
-                        <input class="form-control validate border-0 bg-light" id="tripHistory1"
-                               value="098094" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Trip ID 2</h5>
-                        <input class="form-control validate border-0 bg-light" id="tripHistory2"
-                               value="563578" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Trip ID 3</h5>
-                        <input class="form-control validate border-0 bg-light" id="tripHistory3"
-                               value="245685" type="text">
-                    </div>
-                </div>
-            </div>
-
-            <!--Saved trips card-->
-            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Saved trips</h3>
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Trip ID 1</h5>
-                        <input class="form-control validate border-0 bg-light" id="savedTrip1"
-                               value="098094" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Trip ID 2</h5>
-                        <input class="form-control validate border-0 bg-light" id="savedTrip2"
-                               value="563578" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Trip ID 3</h5>
-                        <input class="form-control validate border-0 bg-light" id="savedTrip3"
-                               value="245685" type="text">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row container-fluid px-1 py-1 bg-light mx-auto">
-
-            <!--Payment options card-->
-            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-credit-card text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Payment options</h3>
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Card 1</h5>
-                        <input class="form-control validate border-0 bg-light" id="card1"
-                               value="**** **** **** **** John Doe" type="text">
-                    </div>
-                    <hr class="divider my-2">
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Card 2</h5>
-                        <input class="form-control validate border-0 bg-light" id="card2"
-                               value="**** **** **** **** Jane Doe" type="text">
-                    </div>
-                </div>
-            </div>
-
-            <!--Address card-->
-            <div class="card mx-auto mb-3 col-md-5 col-12 text-center bg-card">
-                <div class="card-body mt-2">
-                    <i class="fas fa-4x fa-map-marked-alt text-primary mb-4"></i>
-                    <h3 class="card-title mb-2 text-dark">Address</h3>
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Home address</h5>
-                        <input class="form-control validate border-0 bg-light" id="homeAddress"
-                               value="Flat 3, 23 Goodge Street, London NW1 3GH" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Work address</h5>
-                        <input class="form-control validate border-0 bg-light" id="workAddress"
-                               value="London Riverside, London SE1 2AF" type="text">
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </div>
 
 </section>
