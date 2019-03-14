@@ -92,7 +92,6 @@
         <form class="card bg-card">
             <div class="card-body">
                 <div class="row">
-
                     <!--Journey details section-->
                     <div class="col-12 col-md-7 col-lg-6">
                         <div class="pl-0">
@@ -111,6 +110,9 @@
                                                 <input class="form-control validate" id="pickup_address"
                                                        name="pickup_address" placeholder="Enter location"
                                                        type="text" onsubmit="pickup_search()" required/>
+                                                <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
+                                                <?php print $pickup_address ?>
+
                                             </div>
                                             <div class="col-2">
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
@@ -123,6 +125,7 @@
                                     </div>
                                 </div>
                                 <div id="error_pickup_address">
+
                                 </div>
                             </div>
                         </div>
@@ -506,7 +509,7 @@
                     <!--Submit button-->
 
                     <!--Get user selection to transfer to php-->
-                    <form class="row" action="makeNewBooking.php" method="post">
+                    <form class="row" action="php/makeNewBooking.php" method="post">
                         <input type="hidden" name="pickup_date_post" id="pickup_date_post" value="">
                         <input type="hidden" name="pickup_time_post" id="pickup_time_post" value="">
                         <input type="hidden" name="number_passengers_post" id="number_passengers_post" value="">
@@ -563,4 +566,18 @@
 </body>
 
 </html>
+
+
+
+<!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
+<?php
+require_once('php/phpDatabaseConnection.php');
+$connection = connectToDb();
+
+if (isset($_COOKIE["booker_id"])) {
+    $booker_id = $_COOKIE["booker_id"];
+} else {
+    print('No cookie set');
+}
+?>
 

@@ -152,10 +152,8 @@
                     marker.id = "dropoffMarker";
                     map.addObject(marker);
                     map.setCenter(position, true);
-                    console.log(map.getObjects());
                     dropoffFirstSearch = false;
                 } else {
-                    console.log(map.getObjects());
                     removeObjectById("dropoffMarker");
                     console.log(map.getObjects());
                     marker = new H.map.Marker(position);
@@ -202,7 +200,6 @@
     function drawRoute(pickupPosition, dropoffPosition) {
         pickup = pickupPosition[0] + ',' + pickupPosition[1];
         dropoff = dropoffPosition[0] + ',' + dropoffPosition[1];
-        console.log(pickup, dropoff);
 
 // Create the parameters for the routing request:
         var routingParameters = {
@@ -289,6 +286,7 @@
             document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
         } else {
             document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'></h4>";
+            $("pickup_address").text()
         }
     }
 

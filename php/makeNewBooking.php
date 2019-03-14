@@ -1,41 +1,16 @@
 <?php
 require_once('phpDatabaseConnection.php');
 
-$pickupDate = $_POST['pickup_date'];
-$pickupTime = $_POST['pickup_time'];
-$numberOfPassengers = $_POST['number_passengers'];
-$numberOfLuggage = $_POST['luggage'];
-$carName = $_POST['car_name'];
+$pickupDate = $_POST['pickup_date_post'];
+$pickupTime = $_POST['pickup_time_post'];
+$numberOfPassengers = $_POST['number_passengers_post'];
+$carType = $_POST['car_type_post'];
 
-$start_address = $_POST['pickup_address'];
+$start_address = $_POST['pickup_address_post'];
 $start_post_code = $_POST['pickup_address_api'];
-$end_address = $_POST['dropoff_address'];
+$end_address = $_POST['dropoff_address_post'];
 $end_post_code = $_POST['dropoff_address_api'];
-$travel_time = $_POST['travel_time_api'];
-
-
-//calculating Service Fee. NEED AJAX TO SHOW CHANGE IN PRICE
-
-function calculateServiceFee($connection, $travel_time)
-{
-    $costsArray = array();
-    $qryCarsCost = "SELECT DISTINCT vehicle_name, vehicle_cost FROM vehicle";
-    if ($carsCost = mysqli_query($connection, $qryCarsCost)) {
-        $c = 0;
-        while ($car = mysqli_fetch_assoc($carsCost)) {
-            $costsArray[] = $car;
-            $thisCarCost = $costsArray[$c]["vehicle_cost"];
-            $costForTheTrip = $thisCarCost * $travel_time;
-            $costsArray[$c]["costForTheTrip"] = "$costForTheTrip";
-            $c += 1;
-        }
-        echo json_encode($costsArray);
-    } else {
-        print "Error with car cost json encoding";
-    }
-}
-
-
+$price = $_POST['service_rate_car'];
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
     ${"passengerFirstName" . $i} = $_POST['passenger_first_name_' . $i];
@@ -59,16 +34,25 @@ function readCookiesBookerId()
     }
 }
 
+function readCookiesUserId()
+{
+    if (isset($_COOKIE["bookerId"])) {
+        $user_id = $_COOKIE["user_id"];
+        print(PHP_EOL);
+        return $user_id;
+    } else {
+        print("Never heard of you.\n");
+    }
+}
 
 //GET booker_id from COOKIES. We will get user_id here. We need then query booker_id
 $booker_id = readCookiesBookerId();
-$user_id = 0;
+$user_id = readCookiesUserId();
 
 
 $qryAddRoute = "INSERT INTO route (start_address, start_post_code, end_address, end_post_code) VALUES ('"
     . $start_address . "', '" . $start_post_code . "', '" . $end_address . "', '"
     . $end_post_code . "')";
-
 
 $qryGetLatestID = "SELECT LAST_INSERT_ID()";
 
@@ -82,19 +66,18 @@ if ($result) {
     $routeID = mysqli_query($connection, $qryGetLatestID);
     closeDb($connection);
 } else {
-    echo "Couldnt create ROUTE";
+    echo "Couldn't create ROUTE";
     closeDb($connection);
     exit;
 }
 
 
-$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, number_of_luggages, booker_id, 
+$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, booker_id, 
                      driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carName . "', '"
-    . $numberOfPassengers . "', '" . $numberOfLuggage . "', '" . $booker_id . "', '"
+    . $numberOfPassengers  . "', '" . $booker_id . "', '"
 //    . $driver_id NOT IMPLEMENTED
     . "', '" . $service_fee . "', '" . $routeID . "')";
 $bookingID = mysqli_query($connection, $qryGetLatestID);
-
 
 $travelerIDList = [];
 
