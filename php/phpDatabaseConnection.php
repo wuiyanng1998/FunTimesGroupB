@@ -1,6 +1,7 @@
 <?php
 //Include the credentials
-require_once('dbCredentials.php');
+//require_once('dbCredentials.php');
+require_once('dbCredentialsFei.php');
 
 //Connect to database (no error handling)
 //$connection = mysqli_connect('localhost','phpuser','basics','phpbasics');
