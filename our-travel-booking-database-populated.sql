@@ -162,7 +162,7 @@ DROP TABLE IF EXISTS `loginuser`;
 CREATE TABLE IF NOT EXISTS `loginuser` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 

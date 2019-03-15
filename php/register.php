@@ -24,11 +24,12 @@ function createNewAccount()
     $phone_number = $_POST['phoneNumber'];
 
     //Check all variables posted correctly
-    echo "Successful posting: " . $first_name . "," . $last_name . "," . $email . "," . $password . "," . $identity . "<br>";
 
 // Build the query statement
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $insertLoginUser = "INSERT INTO loginuser (`email`, `password`) VALUES ('$email', '$hash')";
+    echo "Successful posting: " . $first_name . "," . $last_name . "," . $email . "," . $hash . "," . $identity . "<br>";
+
 
     // Execute the query and insert
     mysqli_query($connection, $insertLoginUser);
@@ -66,7 +67,7 @@ function createNewAccount()
         //}
     }
 
-    header('location: ../login.html');
+    header('location: ..\login.html');
 
     $connection->close();
 }
