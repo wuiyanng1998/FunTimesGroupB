@@ -1,16 +1,22 @@
 <?php
+
 require_once('phpDatabaseConnection.php');
 
+
+//Variables that are not printing
+$start_address = $_POST['pickup_address_post'];
+$end_address = $_POST['dropoff_address_post'];
 $pickupDate = $_POST['pickup_date_post'];
 $pickupTime = $_POST['pickup_time_post'];
-$numberOfPassengers = $_POST['number_passengers_post'];
-$carType = $_POST['car_type_post'];
-
-$start_address = $_POST['pickup_address_post'];
-$start_post_code = $_POST['pickup_address_api'];
-$end_address = $_POST['dropoff_address_post'];
-$end_post_code = $_POST['dropoff_address_api'];
 $price = $_POST['service_rate_car'];
+$numberOfPassengers = $_POST['number_passengers_post'];
+
+
+//Variables that are printing
+$carType = $_POST['car_type_post'];
+$start_post_code = $_POST['pickup_address_api'];
+$end_post_code = $_POST['dropoff_address_api'];
+
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
     ${"passengerFirstName" . $i} = $_POST['passenger_first_name_' . $i];
@@ -49,10 +55,8 @@ function readCookiesUserId()
 $booker_id = readCookiesBookerId();
 $user_id = readCookiesUserId();
 
-
-$qryAddRoute = "INSERT INTO route (start_address, start_post_code, end_address, end_post_code) VALUES ('"
-    . $start_address . "', '" . $start_post_code . "', '" . $end_address . "', '"
-    . $end_post_code . "')";
+print("Start address API: " . $start_post_code . "<br> Start address User: " . $start_address . "<br> End address API: " . $end_post_code . "<br> End address user: " . $end_address .  "<br> Date:" . $pickupDate . "<br> Time:" . $pickupTime . "<br> No. Passengers: " . $numberOfPassengers . "<br> Vehicle Type: " . $carType . "<br> Price: " . $price . "<br>");
+$qryAddRoute = "INSERT INTO route (`start_address`, `start_post_code`, `end_address`, `end_post_code`) VALUES ('$start_address', '$start_post_code', '$end_address', '$end_post_code')";
 
 $qryGetLatestID = "SELECT LAST_INSERT_ID()";
 
@@ -72,25 +76,18 @@ if ($result) {
 }
 
 
-$qryAddBooking = "INSERT INTO booking (booking_time, vehicle_id, number_of_travelers, booker_id, 
-                     driver_id, service_fee, route_id) VALUES ('" . $pickupDateTime . "', '" . $carName . "', '"
-    . $numberOfPassengers  . "', '" . $booker_id . "', '"
-//    . $driver_id NOT IMPLEMENTED
-    . "', '" . $service_fee . "', '" . $routeID . "')";
+$qryAddBooking = "INSERT INTO booking (`booking_time`, `vehicle_id`, `number_of_travelers`, `booker_id`, `driver_id`, 
+                     `service_fee`, `route_id`) VALUES ('$pickupDateTime', '$carName', '$numberOfPassengers', '$booker_id', '1', 
+                                                        '$service_fee', '$routeID')";
 $bookingID = mysqli_query($connection, $qryGetLatestID);
 
 $travelerIDList = [];
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
     $qryFindTraveler =
-        "SELECT traveler_id FROM traveler JOIN loginuser ON traveler.user_id = loginuser.user_id WHERE first_name ='"
-        . $passengerFirstName . "' AND last_name ='" . $passengerLastName . "' AND email ='"
-        . $passengerEmail . "' AND phone_number ='" . $passengerPhone . "'";
+        "SELECT traveler_id FROM traveler JOIN loginuser ON traveler.user_id = loginuser.user_id WHERE first_name ='$passengerFirstName' AND last_name ='$passengerLastName' AND email ='$passengerEmail' AND phone_number ='$passengerPhone'";
 
-    $qryAddTraveler = "INSERT INTO loginuser (email, password) VALUES ('"
-        . $passengerEmail . "', '" . $passengerPassword .
-        "'); INSERT INTO traveler (first_name, last_name, phone_number, user_id) VALUES ('"
-        . $passengerFirstName . "', '" . $passengerLastName . "', '" . $passengerPhone . "', LAST_INSERT_ID() );";
+    $qryAddTraveler = "INSERT INTO loginuser (email, password) VALUES ('$passengerEmail', '$passengerPassword'); INSERT INTO traveler (first_name, last_name, phone_number, user_id) VALUES ('$passengerFirstName', '$passengerLastName', '$passengerPhone', LAST_INSERT_ID() );";
 
     $result = mysqli_query($connection, $qryFindTraveler);
     // check the query worked
