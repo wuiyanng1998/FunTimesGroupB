@@ -53,7 +53,7 @@
                     <a class="nav-link js-scroll-trigger" href="#myCalendar">My Calendar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#myPerformance">My Performance</a>
+                    <a class="nav-link js-scroll-trigger" href="#myPerformance">My Trips</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#myProfile">My Profile</a>
