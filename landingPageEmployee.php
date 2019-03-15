@@ -127,9 +127,9 @@
                         <th class="bg-light text-primary p-2">Price</th>
                         <!-- PHP  -->
                         <?php
-                        if (isset($_COOKIE["driverId"])) {
-                            $driver_id = $_COOKIE["driverId"]; ?>
-                            <input type="hidden" name="driverId" id="driverId" value="<?php echo $driver_id ?>">
+                        if (isset($_COOKIE["bookerId"])) {
+                            $booker_id = $_COOKIE["bookerId"]; ?>
+                            <input type="hidden" name="bookerId" id="bookerId" value="<?php echo $booker_id ?>">
                             <?php
                         } else {
                             print('No cookie set');
@@ -138,7 +138,7 @@
                         $qryBooking =
                             "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
                   FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
-                  WHERE booker_id ='$booker_id' AND booking_time > NOW()";
+                  WHERE booker_id ='$booker_id' AND booking_time > NOW() LIMIT 10";
                         ?>
                         <tbody id="myBookingTable">
                             <?php
