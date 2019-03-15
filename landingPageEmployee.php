@@ -127,9 +127,9 @@
                         <th class="bg-light text-primary p-2">Price</th>
                         <!-- PHP  -->
                         <?php
-                        if (isset($_COOKIE["bookerId"])) {
-                            $booker_id = $_COOKIE["bookerId"]; ?>
-                            <input type="hidden" name="bookerId" id="bookerId" value="<?php echo $booker_id ?>">
+                        if (isset($_COOKIE["driverId"])) {
+                            $driver_id = $_COOKIE["driverId"]; ?>
+                            <input type="hidden" name="driverId" id="driverId" value="<?php echo $driver_id ?>">
                             <?php
                         } else {
                             print('No cookie set');

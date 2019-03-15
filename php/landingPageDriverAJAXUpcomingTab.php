@@ -10,12 +10,12 @@ function is_ajax_request()
 }
 
 // Typically, this would be a call to a database
-function findBooking($booker_id)
+function findBooking($driver_id)
 {
     $connection = connectToDb();
-    $qryBooking = "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
+    $qryBooking = "SELECT booking_id, booking_time, start_post_code, end_post_code, number_of_travelers, vehicle_name 
                   FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
-                  WHERE booker_id ='$booker_id' AND booking_time > NOW()";
+                  WHERE booker_id ='$driver_id' AND booking_time > NOW()";
 
     if ($result = mysqli_query($connection, $qryBooking)) {
         $bookingList = [];
@@ -25,8 +25,8 @@ function findBooking($booker_id)
             $specificBooking[] = $row["booking_time"];
             $specificBooking[] = $row["start_post_code"];
             $specificBooking[] = $row["end_post_code"];
+            $specificBooking[] = $row["number_of_travelers"];
             $specificBooking[] = $row["vehicle_name"];
-            $specificBooking[] = $row["service_fee"];
             $bookingList[] = $specificBooking;
         }
         return $bookingList;
@@ -39,9 +39,9 @@ if (!is_ajax_request()) {
     exit;
 }
 
-$booker_id = isset($_GET['q']) ? (int)$_GET['q'] : 1;
+$driver_id = isset($_GET['q']) ? (int)$_GET['q'] : 1;
 
-$bookingList = findBooking($booker_id);
+$bookingList = findBooking($driver_id);
 
 echo json_encode($bookingList);
 

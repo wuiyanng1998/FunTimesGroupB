@@ -10,7 +10,7 @@ function is_ajax_request()
 }
 
 // Typically, this would be a call to a database
-function calculateTravelCost($booker_id)
+function findBooking($booker_id)
 {
     $connection = connectToDb();
     $qryBooking = "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
@@ -41,7 +41,7 @@ if (!is_ajax_request()) {
 
 $booker_id = isset($_GET['q']) ? (int)$_GET['q'] : 1;
 
-$bookingList = calculateTravelCost($booker_id);
+$bookingList = findBooking($booker_id);
 
 echo json_encode($bookingList);
 
