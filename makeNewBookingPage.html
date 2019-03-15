@@ -65,7 +65,7 @@
                     <a class="nav-link js-scroll-trigger active" href="#MakeABooking">Make A Booking</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="driverTripDetails.html">View Bookings</a>
+                    <a class="nav-link js-scroll-trigger" href="Pages_for_later_implemenntation/driverTripDetails.html">View Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#YourProfile">Profile</a>
@@ -88,10 +88,12 @@
 <!--Journey details + choose car + summary-->
 <section class="bg-light pt-5">
     <div class="container">
+
         <!--Journey details plus the map-->
         <form class="card bg-card">
             <div class="card-body">
                 <div class="row">
+
                     <!--Journey details section-->
                     <div class="col-12 col-md-7 col-lg-6">
                         <div class="pl-0">
@@ -110,9 +112,6 @@
                                                 <input class="form-control validate" id="pickup_address"
                                                        name="pickup_address" placeholder="Enter location"
                                                        type="text" onsubmit="pickup_search()" required/>
-                                                <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
-                                                <?php print $pickup_address ?>
-
                                             </div>
                                             <div class="col-2">
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3"
@@ -226,8 +225,8 @@
 
                     <!--Map section -->
                     <div class="col-md-5  col-lg-6  mx-auto d-none d-md-block">
-                        <h4 class="font-weight-bold"><i class="fas fa-1x fa-compass text-dark my-1"> </i> Map
-                        </h4>
+                        <h3 class="font-weight-bold mt-1"><i class="fas fa-1x fa-compass text-dark my-1"> </i> Map
+                        </h3>
                         <div class="card bg-light m-0 p-0">
                             <div class="container-fluid m-0 p-0" id="mapContainer"></div>
                         </div>
@@ -440,10 +439,11 @@
                 </div>
                 <div class="container">
                     <div class="row">
+
                         <!--Journey summary-->
                         <div class="mx-auto col-12 col-md-5 my-3 card bg-dark ">
                             <div class="card-body">
-                                <h3 class="font-weight-bold text-primary mb-3"> Journey summary </h3>
+                                <h4 class="font-weight-bold text-primary mb-3"> Journey summary </h4>
                                 <h6 class="text-primary"><i class="fas fa-1x fa-map-marker-alt text-primary"> </i>
                                     Pick-up address </h6>
                                 <div class="row align-items-center">
@@ -498,8 +498,8 @@
                         <!--Passenger summary-->
                         <div class="col-12 col-md-5 offset-md-1 my-3 mx-auto card bg-dark ">
                             <div class="card-body">
-                                <h3 class="font-weight-bold text-primary mb-3">
-                                    <i class="fas fa-1x fa-user-friends text-primary"> </i> Passenger summary </h3>
+                                <h4 class="font-weight-bold text-primary mb-3">
+                                    <i class="fas fa-1x fa-user-friends text-primary"> </i> Passenger summary </h4>
                                 <div id="passenger_summary">
                                 </div>
                             </div>
@@ -526,9 +526,8 @@
                         <input type="hidden" name="car_name" id="car_name" value="">
 
                         <div class="mx-auto my-3">
-                            <a class="btn btn-dark btn-xl">Book Now
-                            </a>
-                            <!--href="bookingConfirmation.html"-->
+                            <button type="submit" class="btn btn-dark btn-xl" id="sumbit_passengers" href="bookingConfirmation.html">Book Now
+                            </button>
                         </div>
                     </form>
 
@@ -566,18 +565,3 @@
 </body>
 
 </html>
-
-
-
-<!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
-<?php
-require_once('php/phpDatabaseConnection.php');
-$connection = connectToDb();
-
-if (isset($_COOKIE["booker_id"])) {
-    $booker_id = $_COOKIE["booker_id"];
-} else {
-    print('No cookie set');
-}
-?>
-
