@@ -110,9 +110,6 @@
                                                 <input class="form-control validate" id="pickup_address"
                                                        name="pickup_address" placeholder="Enter location"
                                                        type="text" onsubmit="pickup_search()" required/>
-                                                <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
-                                                <?php print $pickup_address ?>
-
                                             </div>
                                             <div class="col-2">
                                                 <a class="btn btn-primary btn-xl mx-auto py-0 px-3"

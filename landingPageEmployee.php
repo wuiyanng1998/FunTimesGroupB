@@ -82,15 +82,13 @@
                         if (isset($_COOKIE["firstName"])) {
                             $first_name = $_COOKIE["firstName"];
                             print($first_name);
-                        }
-
-                        else{
+                        } else {
                             print('No cookie set');
                         }
                         ?>
 
                         <!-- PHP CODE TO GET FIRST NAME FOR WELCOME SECTION -->
-                        </h1>
+                    </h1>
 
                     <hr class="divider my-4">
                 </div>
@@ -113,13 +111,10 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">In Progress</a>
+                                <a class="nav-link active" id="upcoming_tab" onclick="upcomingTabAJAX()">Upcoming</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Pending</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">History</a>
+                                <a class="nav-link text-primary" id="history_tab" onclick="historyTabAJAX()">History</a>
                             </li>
                         </ul>
                     </div>
@@ -128,24 +123,43 @@
                         <th class="bg-light text-primary p-2">Time</th>
                         <th class="bg-light text-primary p-2">Pick up</th>
                         <th class="bg-light text-primary p-2">Drop off</th>
-                        <tr>
-                            <td class="p-2">709856</td>
-                            <td class="p-2">10/02/2019 12:00pm</td>
-                            <td class="p-2">Heathrow Terminal 5</td>
-                            <td class="p-2">Flat 3, 23 Goodge Street, London. NW1 3GH</td>
-                        </tr>
-                        <tr>
-                            <td class="p-2">709872</td>
-                            <td class="p-2">11/02/2019 12:00pm</td>
-                            <td class="p-2">Heathrow Terminal 3</td>
-                            <td class="p-2">Flat 1, 23 Goodge Street, London. NW1 3GH</td>
-                        </tr>
-                        <tr>
-                            <td class="p-2">709872</td>
-                            <td class="p-2">11/02/2019 12:00pm</td>
-                            <td class="p-2">Heathrow Terminal 2</td>
-                            <td class="p-2">Flat 2, 23 Goodge Street, London. NW1 3GH</td>
-                        </tr>
+                        <th class="bg-light text-primary p-2">Car Type</th>
+                        <th class="bg-light text-primary p-2">Price</th>
+                        <!-- PHP  -->
+                        <?php
+                        if (isset($_COOKIE["bookerId"])) {
+                            $booker_id = $_COOKIE["bookerId"]; ?>
+                            <input type="hidden" name="bookerId" id="bookerId" value="<?php echo $booker_id ?>">
+                            <?php
+                        } else {
+                            print('No cookie set');
+                        }
+
+                        $qryBooking =
+                            "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
+                  FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
+                  WHERE booker_id ='$booker_id' AND booking_time > NOW()";
+                        ?>
+                        <tbody id="myBookingTable">
+                            <?php
+                            if ($result = mysqli_query($connection, $qryBooking)) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    ?>
+                                    <tr>
+                                        <td class="p-2"><?php echo $row["booking_id"] ?></td>
+                                        <td class="p-2"><?php echo $row["booking_time"] ?></td>
+                                        <td class="p-2"><?php echo $row["start_post_code"] ?></td>
+                                        <td class="p-2"><?php echo $row["end_post_code"] ?></td>
+                                        <td class="p-2"><?php echo $row["vehicle_name"] ?></td>
+                                        <td class="p-2">£<?php echo $row["service_fee"] ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            } else {
+                                print "Error with car cost json encoding";
+                            }
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -185,9 +199,7 @@
                                 echo $first_name . ' ' . $last_name;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -215,9 +227,7 @@
                                 echo $company_name;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -245,9 +255,7 @@
                                 echo $email;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -276,9 +284,7 @@
                                 echo $phone_number;
                                 echo '&nbsp';
 
-                            }
-
-                            else {
+                            } else {
                                 print("Sorry, no cookie read.");
                             }
                             ?>
@@ -464,6 +470,7 @@
 
 <!-- Custom scripts for this template -->
 <script src="js/creative.min.js"></script>
+<script src="js/landingPageEmployee.js"></script>
 
 <!-- Footer -->
 <footer class="bg-light py-5">
