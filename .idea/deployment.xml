@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="wamp">
+  <component name="PublishConfigData" autoUpload="Always" serverName="wampZhaslan">
     <serverData>
       <paths name="wamp">
         <serverdata>
           <mappings>
             <mapping deploy="FunTimesGroupB" local="$PROJECT_DIR$" web="/FunTimesGroupB" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="wampZhaslan">
+        <serverdata>
+          <mappings>
+            <mapping deploy="\" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
