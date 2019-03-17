@@ -193,6 +193,9 @@
                         <tbody id="calendar-body">
 
                         </tbody>
+
+                        <input type="hidden" name="selected_date" id="selected_date" value="">
+
                     </table>
 
                     <div class="form-inline">
@@ -275,6 +278,8 @@
     </div>
 </section>
 
+
+
 <!-- My Performance Section -->
 <section class="page-section bg-primary" id="myPerformance">
     <div class="row justify-content-center">
@@ -314,7 +319,7 @@
                         $qryBooking =
                             "SELECT booking_id, booking_time, start_post_code, end_post_code, number_of_travelers, vehicle_name 
                              FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON 
-                             booking.vehicle_id=vehicle.vehicle_id WHERE booker_id ='$driver_id' AND booking_time > NOW() LIMIT 10";
+                             booking.vehicle_id=vehicle.vehicle_id WHERE booker_id ='" . $driver_id . "' AND booking_time > NOW() LIMIT 10";
                         ?>
                         <tbody id="myBookingTable">
                         <?php
@@ -332,7 +337,6 @@
                                 <?php
                             }
                         } else {
-                            print "Error with car cost json encoding";
                         }
                         ?>
                         </tbody>
@@ -500,7 +504,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="js/calendar.js"></script>
+
 <!-- Plugin JavaScript -->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
@@ -508,6 +512,9 @@
 
 <!-- Custom scripts for this template -->
 <script src="js/creative.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/landingPageDriver.js"></script>
+
 
 <!-- Footer -->
 <footer class="bg-light py-5">
