@@ -279,7 +279,6 @@
 </section>
 
 
-
 <!-- My Performance Section -->
 <section class="page-section bg-primary" id="myPerformance">
     <div class="row justify-content-center">
@@ -291,10 +290,13 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" id="upcoming_tab" onclick="upcomingTabAJAX()">Upcoming</a>
+                                <a class="nav-link active" id="upcoming_tab" onclick="upcomingTabAJAX()">Next 10 trips</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="history" onclick="historyTabAJAX()">History</a>
+                                <a class="nav-link nav-link text-primary" id="history" onclick="historyTabAJAX()">Last 10 trips</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-link text-primary" id="selectedDay">Trips on selected day</a>
                             </li>
                         </ul>
                     </div>

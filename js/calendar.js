@@ -85,6 +85,7 @@ function getSelectedDate(month, year) {
                 calendarBody.rows[i].cells[j].onclick = function () {
                     removeActiveCells();
                     getValue(this, month, year);
+                    selectedDayTabAJAX();
                 };
             }
         }
