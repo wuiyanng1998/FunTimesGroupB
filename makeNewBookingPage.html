@@ -65,7 +65,8 @@
                     <a class="nav-link js-scroll-trigger active" href="#MakeABooking">Make A Booking</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="Pages_for_later_implemenntation/driverTripDetails.html">View Bookings</a>
+                    <a class="nav-link js-scroll-trigger" href="Pages_for_later_implemenntation/driverTripDetails.html">View
+                        Bookings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#YourProfile">Profile</a>
@@ -155,7 +156,6 @@
                                     </div>
                                 </div>
                                 <div id="error_dropoff_address">
-
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@
                 <div class="row">
                     <div class="mx-auto my-3 text-light">
                         <button type="button" class="btn btn-primary btn-xl" id="sumbit_passengers"
-                                onclick="tripInfoForm()">Submit
+                                onclick="tripInfoForm()"> Find Car
                         </button>
                     </div>
                 </div>
@@ -525,8 +525,22 @@
                         <input type="hidden" name="travel_time_api" id="travel_time_api" value="">
                         <input type="hidden" name="car_name" id="car_name" value="">
 
+                        <!--Passenger detail-->
+                        <div id="passengerDetail">
+
+                        </div>
+
+                        <!--<input type="hidden" name="passenger_first_name_1" id="passenger_first_name_1" value="">-->
+                        <!--<input type="hidden" name="passenger_last_name_1" id="passenger_last_name_1" value="">-->
+                        <!--<input type="hidden" name="passenger_email_1" id="passenger_email_1" value="">-->
+                        <!--<input type="hidden" name="passenger_phone_1" id="passenger_phone_1" value="">-->
+
+                        <div class="container mx-auto text-center" id="missingInput">
+                        </div>
+
                         <div class="mx-auto my-3">
-                            <button type="submit" class="btn btn-dark btn-xl" id="sumbit_passengers" href="bookingConfirmation.html">Book Now
+                            <button type="submit" class="btn btn-dark btn-xl" onclick="return collectDataForPHP()"
+                                    id="sumbit_booking"> Book Now
                             </button>
                         </div>
                     </form>

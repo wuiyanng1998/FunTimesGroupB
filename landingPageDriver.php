@@ -314,7 +314,7 @@
                         $qryBooking =
                             "SELECT booking_id, booking_time, start_post_code, end_post_code, number_of_travelers, vehicle_name 
                              FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON 
-                             booking.vehicle_id=vehicle.vehicle_id WHERE booker_id ='$driver_id' AND booking_time > NOW()";
+                             booking.vehicle_id=vehicle.vehicle_id WHERE booker_id ='$driver_id' AND booking_time > NOW() LIMIT 10";
                         ?>
                         <tbody id="myBookingTable">
                         <?php
