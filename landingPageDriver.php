@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#myCalendar">My Calendar</a>
+                    <a class="nav-link js-scroll-trigger" href="#myCalendar">Quick View</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#myPerformance">My Trips</a>
