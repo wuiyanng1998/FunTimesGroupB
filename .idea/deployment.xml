@@ -9,6 +9,20 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="MAMP Freya">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="mampEllen">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="wamp">
         <serverdata>
           <mappings>

@@ -26,6 +26,7 @@ function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
     showCalendar(currentMonth, currentYear);
+
 }
 
 function showCalendar(month, year) {
@@ -56,12 +57,9 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode("");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
-            }
-            else if (date > daysInMonth) {
+            } else if (date > daysInMonth) {
                 break;
-            }
-
-            else {
+            } else {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
@@ -71,11 +69,42 @@ function showCalendar(month, year) {
                 row.appendChild(cell);
                 date++;
             }
-
-
         }
-
         tbl.appendChild(row); // appending each row into calendar body.
     }
+    getSelectedDate(month, year);
 
 }
+
+
+function getSelectedDate(month, year) {
+    let calendarBody = document.getElementById("calendar-body");
+    if (calendarBody != null) {
+        for (let i = 0; i < calendarBody.rows.length; i++) {
+            for (let j = 0; j < calendarBody.rows[i].cells.length; j++) {
+                calendarBody.rows[i].cells[j].onclick = function () {
+                    removeActiveCells();
+                    getValue(this, month, year);
+                    selectedDayTabAJAX();
+                };
+            }
+        }
+
+    }
+
+    function getValue(cel, month, year) {
+        month = month + 1;
+        $("#selected_date").val(year + "-" + month + "-" + cel.innerHTML);
+        // alert(cel.innerHTML + ", " + month + ", " + year);
+        cel.classList.add("bg-primary");
+    }
+
+    function removeActiveCells() {
+        for (let i = 0; i < calendarBody.rows.length; i++) {
+            for (let j = 0; j < calendarBody.rows[i].cells.length; j++) {
+                calendarBody.rows[i].cells[j].classList.remove("bg-primary");
+            }
+        }
+    }
+}
+

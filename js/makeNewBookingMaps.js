@@ -286,7 +286,6 @@
             document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
         } else {
             document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'></h4>";
-            $("pickup_address").text()
         }
     }
 

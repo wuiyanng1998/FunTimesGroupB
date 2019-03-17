@@ -508,3 +508,143 @@ function addFeeToHTML(carCost, carList) {
     }
 
 }
+
+
+function collectDataForPHP() {
+    let numberOfPassengers = $("#number_passengers").val();
+
+    let validated = true;
+
+    let container = document.getElementById("passengerDetail");
+    // Clear previous contents of the container
+    while (container.hasChildNodes()) {
+        container.removeChild(container.lastChild);
+    }
+    //Add detail form for passengers
+    for (i = 1; i <= numberOfPassengers; i++) {
+        // Assemble passenger from
+        let passenger_form = document.createElement('div');
+        passenger_form.innerHTML = (`
+                <input type="hidden" name="passenger_first_name_hidden_` + i + `" id="passenger_first_name_hidden_` + i + `" value="">
+                <input type="hidden" name="passenger_last_name_hidden_` + i + `" id="passenger_last_name_hidden_` + i + `" value="">
+                <input type="hidden" name="passenger_email_hidden_` + i + `" id="passenger_email_hidden_` + i + `" value="">
+                <input type="hidden" name="passenger_phone_hidden_` + i + `" id="passenger_phone_hidden_` + i + `" value="">`);
+        container.appendChild(passenger_form);
+
+        //Pickup information from user inputs
+        let firstName = $("#passenger_first_name_hidden_" + i).val($("#passenger_first_name_" + i).val());
+        let lastName = $("#passenger_last_name_hidden_" + i).val($("#passenger_last_name_" + i).val());
+        let email = $("#passenger_email_hidden_" + i).val($("#passenger_email" + i).val());
+        let phone = $("#passenger_phone_hidden_" + i).val($("#passenger_phone" + i).val());
+
+        if (firstName == null || firstName == "" || lastName == null || lastName == "" || email == null || email == "" || phone == null || phone == "") {
+            validated = false;
+        }
+    }
+
+    $("#pickup_time_post").val($("#pickup_time").val());
+    $("#pickup_date_post").val($("#pickup_date").val());
+    $("#number_passengers_post").val($("#number_passengers").val());
+    $("#service_rate_car").val($("#travel_fee").text());
+    $("#pickup_address_post").val($("#pickup_address").val());
+    $("#dropoff_address_post").val($("#dropoff_address").val());
+
+
+    let $pickupDate = $("#pickup_date_post").val();
+    let pickupTime = $("#pickup_time_post").val();
+
+    let numberPassengers = $("#number_passengers_post").val();
+    let serviceRate = $("#service_rate_car").val();
+
+    let pickupAddress = $("#pickup_address_post").val();
+    let dropoffAddress = $("#dropoff_address_post").val();
+
+    let carType = $("#car_type").val();
+
+    let pickupAddressAPI = $("#pickup_address_api").val();
+    let dropoffAddressAPI = $("#dropoff_address_api").val();
+
+
+    //Checking for blank inputs
+    {
+        let errorContainer = document.getElementById("missingInput");
+
+        while (errorContainer.hasChildNodes()) {
+            errorContainer.removeChild(errorContainer.lastChild);
+        }
+
+        errorContainer.innerHTML += "<h3> Oooops, some data is missing</h3>";
+
+
+        if (pickupAddress == null || pickupAddress == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please enter pickup address</p>";
+            validated = false;
+        }
+
+        if (dropoffAddress == null || dropoffAddress == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please enter dropoff address</p>";
+            validated = false;
+        }
+
+        if (pickupAddressAPI == null || pickupAddressAPI == "") {
+            errorContainer.innerHTML +=
+                "<p class='text-warning'> Please press button beside pickup address to search for address</p>";
+            validated = false;
+        }
+
+        if (dropoffAddressAPI == null || dropoffAddressAPI == "") {
+            errorContainer.innerHTML +=
+                "<p class='text-warning'> Please press button beside dropoff address to search for address</p>";
+            validated = false;
+        }
+
+        if ($pickupDate == null || $pickupDate == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please enter pickup date</p>";
+            validated = false;
+        }
+
+        if (pickupTime == null || pickupTime == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please enter pickup time</p>";
+            validated = false;
+        }
+
+        if (numberPassengers == null || numberPassengers == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please enter number of passengers</p>";
+            validated = false;
+        }
+
+        if (serviceRate == null || serviceRate == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please select a car</p>";
+            validated = false;
+        }
+
+        if (carType == null || carType == "") {
+            errorContainer.innerHTML += "<p class='text-warning'> Please select a car</p>";
+            validated = false;
+        }
+    }
+
+    return validated;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,21 +8,28 @@ $start_address = $_POST['pickup_address_post'];
 $end_address = $_POST['dropoff_address_post'];
 $pickupDate = $_POST['pickup_date_post'];
 $pickupTime = $_POST['pickup_time_post'];
-$price = $_POST['service_rate_car'];
+$service_fee = $_POST['service_rate_car'];
 $numberOfPassengers = $_POST['number_passengers_post'];
 
 
 //Variables that are printing
-$carType = $_POST['car_type_post'];
+$carName = $_POST['car_type_post'];
 $start_post_code = $_POST['pickup_address_api'];
 $end_post_code = $_POST['dropoff_address_api'];
 
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
-    ${"passengerFirstName" . $i} = $_POST['passenger_first_name_' . $i];
-    ${"passengerLastName" . $i} = $_POST['passenger_last_name_' . $i];
-    ${"passengerEmail" . $i} = $_POST['passenger_email_' . $i];
-    ${"passengerPhoneNo" . $i} = $_POST['passenger_phone_' . $i];
+    ${"passengerFirstName" . $i} = $_POST['passenger_first_name_hidden_' . $i];
+    ${"passengerLastName" . $i} = $_POST['passenger_last_name_hidden_' . $i];
+    ${"passengerEmail" . $i} = $_POST['passenger_email_hidden_' . $i];
+    ${"passengerPhoneNo" . $i} = $_POST['passenger_phone_hidden_' . $i];
+    $passengerFirstName = ${"passengerFirstName" . $i};
+    $passengerLastName = ${"passengerLastName" . $i};
+    $passengerEmail = ${"passengerEmail" . $i};
+    $passengerPhoneNo = ${"passengerPhoneNo" . $i};
+
+    print("<br> Passenger $i: <br> Name: $passengerFirstName <br> Last Name: $passengerLastName <br> Email: $passengerEmail<br>
+Phone: $passengerPhoneNo <br>");
 }
 
 $pickupDateTime = $pickupDate . " " . $pickupTime . ":00";
@@ -32,7 +39,7 @@ function readCookiesBookerId()
 {
     if (isset($_COOKIE["bookerId"])) {
         $booker_id = $_COOKIE["bookerId"];
-        print("bookerId: " . $booker_id . "User ID: " . $_COOKIE["userId"]);
+        print("bookerId: " . $booker_id . "<br> User ID: " . $_COOKIE["userId"]);
         print(PHP_EOL);
         return $booker_id;
     } else {
@@ -42,8 +49,8 @@ function readCookiesBookerId()
 
 function readCookiesUserId()
 {
-    if (isset($_COOKIE["bookerId"])) {
-        $user_id = $_COOKIE["user_id"];
+    if (isset($_COOKIE["userId"])) {
+        $user_id = $_COOKIE["userId"];
         print(PHP_EOL);
         return $user_id;
     } else {
@@ -55,56 +62,196 @@ function readCookiesUserId()
 $booker_id = readCookiesBookerId();
 $user_id = readCookiesUserId();
 
-print("Start address API: " . $start_post_code . "<br> Start address User: " . $start_address . "<br> End address API: " . $end_post_code . "<br> End address user: " . $end_address .  "<br> Date:" . $pickupDate . "<br> Time:" . $pickupTime . "<br> No. Passengers: " . $numberOfPassengers . "<br> Vehicle Type: " . $carType . "<br> Price: " . $price . "<br>");
-$qryAddRoute = "INSERT INTO route (`start_address`, `start_post_code`, `end_address`, `end_post_code`) VALUES ('$start_address', '$start_post_code', '$end_address', '$end_post_code')";
+print("<br> Start address API: " . $start_post_code . "<br> Start address User: " . $start_address . "<br> End address API: " . $end_post_code . "<br> End address user: " . $end_address . "<br> Date:" . $pickupDate . "<br> Time:" . $pickupTime . "<br> No. Passengers: " . $numberOfPassengers . "<br> Vehicle Type: " . $carName . "<br> Price: " . $service_fee . "<br>");
 
-$qryGetLatestID = "SELECT LAST_INSERT_ID()";
 
 $connection = connectToDb();
 
-//Check if the name exists
+$qryGetLatestID = "SELECT LAST_INSERT_ID()";
 
-$result = mysqli_query($connection, $qryAddRoute);
+//Getting Route ID
+$qryFindRoute = "SELECT route_id FROM route WHERE start_address='" . $start_address . "' AND start_post_code='"
+    . $start_post_code . "'AND end_address = '" . $end_address . "' AND end_post_code = '" . $end_post_code . "'";
+
+$qryAddRoute = "INSERT INTO route(start_address, start_post_code, end_address, end_post_code) VALUES('" . $start_address .
+    "', '" . $start_post_code . "', '" . $end_address . "', '" . $end_post_code . "')";
+
+$result = mysqli_query($connection, $qryFindRoute);
 // check the query worked
+$routeID = "";
 if ($result) {
-    $routeID = mysqli_query($connection, $qryGetLatestID);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $routeID = $row["route_id"];
+    }
+    print (" < br> Found routeID FIND " . $routeID);
     closeDb($connection);
 } else {
-    echo "Couldn't create ROUTE";
+    $result1 = mysqli_query($connection, $qryAddRoute);
+    $result2 = mysqli_query($connection, $qryGetLatestID);
+    if ($result2) {
+        while ($row = mysqli_fetch_assoc($result2)) {
+            $routeID = $row["LAST_INSERT_ID()"];
+            print ("<br> Found routeID " . $routeID);
+        }
+    } else {
+        echo "Couldn't create ROUTE";
+    }
     closeDb($connection);
-    exit;
 }
 
+//Find a car
+$qryFindVehicle = "SELECT vehicle_id FROM vehicle WHERE vehicle_name='" . $carName . "'";
 
-$qryAddBooking = "INSERT INTO booking (`booking_time`, `vehicle_id`, `number_of_travelers`, `booker_id`, `driver_id`, 
-                     `service_fee`, `route_id`) VALUES ('$pickupDateTime', '$carName', '$numberOfPassengers', '$booker_id', '1', 
-                                                        '$service_fee', '$routeID')";
+$result = mysqli_query($connection, $qryFindVehicle);
+// check the query worked
+$vehicle_id = "";
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $vehicle_id = $row["vehicle_id"];
+    }
+    print ("< br> Found vehicle ID " . $vehicle_id);
+    closeDb($connection);
+} else {
+    print("Couldnt find vehicle");
+    closeDb($connection);
+}
+
+$hourMinute = explode(":", $pickupTime);
+$pickupHour = $hourMinute[0];
+$pickupMinute = $hourMinute[1];
+
+$pickupHourLess2hr = $pickupHour - 2;
+
+$pickupHourMore2hr = $pickupHour + 2;
+
+$pickupDateLess = $pickupDate;
+$pickupDateMore = $pickupDate;
+
+//If the trip is close to midnight
+if ($pickupHourLess2hr < 0) {
+    $YearMonthDay = explode("-", $pickupDate);
+    $pickupDay = $YearMonthDay[2];
+    $pickupDay = $pickupDay - 1;
+    $YearMonthDay = $YearMonthDay[0] . "-" . $YearMonthDay[1] . "-" . $pickupDay;
+    $pickupHourLess2hr = 24 + $pickupHourLess2hr;
+}
+
+//If the trip is close to midnight
+if ($pickupHourMore2hr > 24) {
+    $YearMonthDay = explode("-", $pickupDate);
+    $pickupDay = $YearMonthDay[2];
+    $pickupDay = $pickupDay + 1;
+    $YearMonthDay = $YearMonthDay[0] . "-" . $YearMonthDay[1] . "-" . $pickupDay;
+    $pickupHourMore2hr = 0 + $pickupHourMore2hr;
+}
+
+$qryFindUnavailableDriver = "SELECT driver_id FROM booking WHERE booking_time BETWEEN 
+  '" . $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "' 
+  AND '" . $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "'";
+
+
+$result = mysqli_query($connection, $qryFindUnavailableDriver);
+// check the query worked
+$unavailableDrivers = [];
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $driver_id = $row["driver_id"];
+        $unavailableDrivers[] = "/" . $driver_id . "/";
+
+    }
+    print ("< br> Found unavailable drivers ID " . $unavailableDrivers);
+    closeDb($connection);
+} else {
+    print("All drivers available");
+    closeDb($connection);
+}
+$whereArray = "('" . implode("','", $unavailableDrivers) . "')";
+
+
+$qryFindDriver = "SELECT driver_id FROM booking WHERE booking_time 
+  BETWEEN '" . $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "' 
+  AND '" . $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "' 
+  AND driver_id NOT IN (" . $unavailableDrivers . ") GROUP BY driver_id ORDER BY COUNT(driver_id) ASC LIMIT 1";
+
+
+$result = mysqli_query($connection, $qryFindDriver);
+// check the query worked
+$driver_id = 0;
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $driver_id = $row["driver_id"];
+    }
+    print ("< br> Found available driver ID = " . $unavailableDrivers);
+    closeDb($connection);
+} else {
+    print("Couldnt find available drivers");
+    closeDb($connection);
+}
+
+$qryAddBooking = "INSERT INTO booking(booking_time, vehicle_id, number_of_travelers, booker_id, driver_id,
+    service_fee, route_id) VALUES('" . $pickupDateTime . "', '" . $vehicle_id . "', '" . $numberOfPassengers . "', '"
+    . $booker_id . "', '" . $driver_id . "', '" . $service_fee . "', '" . $routeID . "')";
+
 $bookingID = mysqli_query($connection, $qryGetLatestID);
 
 $travelerIDList = [];
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
-    $qryFindTraveler =
-        "SELECT traveler_id FROM traveler JOIN loginuser ON traveler.user_id = loginuser.user_id WHERE first_name ='$passengerFirstName' AND last_name ='$passengerLastName' AND email ='$passengerEmail' AND phone_number ='$passengerPhone'";
+    $passengerFirstName = ${"passengerFirstName" . $i};
+    $passengerLastName = ${"passengerLastName" . $i};
+    $passengerEmail = ${"passengerEmail" . $i};
+    $passengerPhone = ${"passengerPhoneNo" . $i};
 
-    $qryAddTraveler = "INSERT INTO loginuser (email, password) VALUES ('$passengerEmail', '$passengerPassword'); INSERT INTO traveler (first_name, last_name, phone_number, user_id) VALUES ('$passengerFirstName', '$passengerLastName', '$passengerPhone', LAST_INSERT_ID() );";
+    $qryFindTraveler =
+        "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
+    WHERE first_name = '" . $passengerFirstName . "' AND last_name = '" . $passengerLastName . "' 
+    AND email = '" . $passengerEmail . "' AND phone_number = '" . $passengerPhone . "'";
+
+    $qryAddTraveler = "INSERT INTO traveler(first_name, last_name, phone_number, email) 
+    VALUES('" . $passengerFirstName . "', '" . $passengerLastName . "', '" . $passengerPhone . "', '"
+        . $passengerEmail . "')";
+
+    $travelerID = "";
 
     $result = mysqli_query($connection, $qryFindTraveler);
     // check the query worked
     if ($result) {
-        $row = mysqli_fetch_assoc($result);
-        $travelerID = $row['traveler_id'];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $travelerID = $row["route_id"];
+        }
+
         $travelerIDList[] = $travelerID;
-        $qryAddTravelerList = "INSERT INTO travelerlist (booking_id, traveler_id) VALUES (" . $bookingID . ", "
-            . $travelerID . ")";
-        mysqli_query($connection, $qryAddTravelerList);
+        $qryAddTravelerList = "INSERT INTO travelerlist(booking_id, traveler_id) VALUES('" . $bookingID . "', '"
+            . $travelerID . "')";
+        $result1 = mysqli_query($connection, $qryAddTravelerList);
+        if (!$result1) {
+            echo "Couldn't find travelers id $i";
+        }
+        closeDb($connection);
     } else {
         $result = mysqli_query($connection, $qryAddTraveler);
-        $travelerID = mysqli_query($connection, $qryGetLatestID);
-        $travelerIDList[] = $latestID;
-        $qryAddTravelerList = "INSERT INTO travelerlist (booking_id, traveler_id) VALUES (" . $bookingID . ", "
-            . $travelerID . ")";
-        mysqli_query($connection, $qryAddTravelerList);
+        if (!$result) {
+            echo "Couldn't add traveler $i";
+        } else {
+            $result2 = mysqli_query($connection, $qryGetLatestID);
+
+            if (!$result2) {
+                echo "Couldn't find added travelers id $i";
+            } else {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $travelerID = $row["LAST_INSERT_ID()"];
+                }
+                $travelerIDList[] = $travelerID;
+                $qryAddTravelerList = "INSERT INTO travelerlist(booking_id, traveler_id) VALUES('" . $bookingID . "', '"
+                    . $travelerID . "')";
+                $result3 = mysqli_query($connection, $qryAddTravelerList);
+                if (!$result3) {
+                    echo "Couldn't create traveler list for traveler $i";
+                }
+
+            }
+        }
+        closeDb($connection);
     }
 }
 
