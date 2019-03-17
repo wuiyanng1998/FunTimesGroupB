@@ -116,10 +116,81 @@ if ($result) {
     closeDb($connection);
 }
 
+$hourMinute = explode(":", $pickupTime);
+$pickupHour = $hourMinute[0];
+$pickupMinute = $hourMinute[1];
+
+$pickupHourLess2hr = $pickupHour - 2;
+
+$pickupHourMore2hr = $pickupHour + 2;
+
+$pickupDateLess = $pickupDate;
+$pickupDateMore = $pickupDate;
+
+//If the trip is close to midnight
+if ($pickupHourLess2hr < 0) {
+    $YearMonthDay = explode("-", $pickupDate);
+    $pickupDay = $YearMonthDay[2];
+    $pickupDay = $pickupDay - 1;
+    $YearMonthDay = $YearMonthDay[0] . "-" . $YearMonthDay[1] . "-" . $pickupDay;
+    $pickupHourLess2hr = 24 + $pickupHourLess2hr;
+}
+
+//If the trip is close to midnight
+if ($pickupHourMore2hr > 24) {
+    $YearMonthDay = explode("-", $pickupDate);
+    $pickupDay = $YearMonthDay[2];
+    $pickupDay = $pickupDay + 1;
+    $YearMonthDay = $YearMonthDay[0] . "-" . $YearMonthDay[1] . "-" . $pickupDay;
+    $pickupHourMore2hr = 0 + $pickupHourMore2hr;
+}
+
+$qryFindUnavailableDriver = "SELECT driver_id FROM booking WHERE booking_time BETWEEN 
+  '" . $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "' 
+  AND '" . $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "'";
+
+
+$result = mysqli_query($connection, $qryFindUnavailableDriver);
+// check the query worked
+$unavailableDrivers = [];
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $driver_id = $row["driver_id"];
+        $unavailableDrivers[] = "/" . $driver_id . "/";
+
+    }
+    print ("< br> Found unavailable drivers ID " . $unavailableDrivers);
+    closeDb($connection);
+} else {
+    print("All drivers available");
+    closeDb($connection);
+}
+$whereArray = "('" . implode("','", $unavailableDrivers) . "')";
+
+
+$qryFindDriver = "SELECT driver_id FROM booking WHERE booking_time 
+  BETWEEN '" . $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "' 
+  AND '" . $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "' 
+  AND driver_id NOT IN (" . $unavailableDrivers . ") GROUP BY driver_id ORDER BY COUNT(driver_id) ASC LIMIT 1";
+
+
+$result = mysqli_query($connection, $qryFindDriver);
+// check the query worked
+$driver_id = 0;
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $driver_id = $row["driver_id"];
+    }
+    print ("< br> Found available driver ID = " . $unavailableDrivers);
+    closeDb($connection);
+} else {
+    print("Couldnt find available drivers");
+    closeDb($connection);
+}
 
 $qryAddBooking = "INSERT INTO booking(booking_time, vehicle_id, number_of_travelers, booker_id, driver_id,
     service_fee, route_id) VALUES('" . $pickupDateTime . "', '" . $vehicle_id . "', '" . $numberOfPassengers . "', '"
-    . $booker_id . "', '3', '" . $service_fee . "', '" . $routeID . "')";
+    . $booker_id . "', '" . $driver_id . "', '" . $service_fee . "', '" . $routeID . "')";
 
 $bookingID = mysqli_query($connection, $qryGetLatestID);
 
