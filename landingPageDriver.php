@@ -106,175 +106,250 @@
         <div class="container">
             <h2 class="text-center mt-0">My Calendar</h2>
             <hr class="divider my-4">
-            <div class="row">
 
-                <!--2 Upcoming trips-->
-                <div class="col-md-4 col-12">
-                    <div class="card my-3">
-                        <div class="card-header bg-primary">
-                            <h5 class="text-white">Upcoming trip ID: <br>
+            <!--3 Upcoming trips-->
+            <div class="row col-12 mx-auto">
+                <div class="card my-3 col-3 mx-auto p-0">
+                    <div class="card-header bg-primary">
+                        <h5 class="text-white">Upcoming trip ID: <br>
 
-                                <!-- need to incorporate javascript to show the closest 2 upcoming trips (ASK ZHASLAN)-->
-                                <?php
+                            <!-- need to incorporate javascript to show the closest 2 upcoming trips (ASK ZHASLAN)-->
+                            <?php
 
-                                require_once('php/phpDatabaseConnection.php');
-                                $connection = connectToDb();
+                            require_once('php/phpDatabaseConnection.php');
+                            $connection = connectToDb();
 
-                                if (isset($_COOKIE["userId"])) {
-                                    $user_id = $_COOKIE["userId"];
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
 
-                                    $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
-                                    $results = mysqli_query($connection, $query);
-                                    $array = mysqli_fetch_assoc($results);
+                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
 
-                                    $booking_id = $array['booking_id'];
-                                    $booking_time = $array['booking_time'];
+                                $booking_id = $array['booking_id'];
+                                $booking_time = $array['booking_time'];
 
-                                    $query2 = "SELECT route.start_address, route.end_address FROM route JOIN booking USING(route_id) WHERE booking.booking_id = '$booking_id'";
-                                    $results2 = mysqli_query($connection, $query2);
-                                    $array2 = mysqli_fetch_assoc($results2);
+                                $query2 = "SELECT route.start_address, route.end_address FROM route JOIN booking USING(route_id) WHERE booking.booking_id = '$booking_id'";
+                                $results2 = mysqli_query($connection, $query2);
+                                $array2 = mysqli_fetch_assoc($results2);
 
-                                    $start_address = $array2['start_address'];
-                                    $end_address = $array2['end_address'];
+                                $start_address = $array2['start_address'];
+                                $end_address = $array2['end_address'];
 
-                                    print($booking_id);
+                                print($booking_id);
 
-                                } else {
-                                    print("Sorry, no cookie read.");
-                                }
+                            } else {
+                                print("Sorry, no cookie read.");
+                            }
 
 
-                                ?>
-                                <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
-                        </div>
-                        <div class="card-body">
-
-                            <!-- need to make sure that the time of day is here not just the date -->
-
-                            <p class="card-text">Time: <?php print($booking_time); ?></p>
-                            <p class="card-text">From: <?php print($start_address); ?></p>
-                            <p class="card-text">To: <?php print($end_address); ?></p>
-                            <a class="btn btn-primary btn-block" style="border-radius: 5px; border-style: solid"
-                               href="driverTripDetails.html">See details</a>
-                        </div>
+                            ?>
+                            <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
                     </div>
-                    <div class="card my-3">
-                        <div class="card-header bg-primary">
-                            <h5 class="text-white">Upcoming trip ID: 230987 <i
-                                        class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Time: 11/02/2019 11.00pm</p>
-                            <p class="card-text">From: Heathrow Terminal 2</p>
-                            <p class="card-text">To: Flat 2, 23 Goodge Street, London. NW1 3GH</p>
-                            <a class="btn btn-primary btn-block" style="border-radius: 5px; border-style: solid"
-                               href="driverTripDetails.html">See details</a>
-                        </div>
+                    <div class="card-body">
+
+                        <!-- need to make sure that the time of day is here not just the date -->
+
+                        <p class="card-text">Time: <?php print($booking_time); ?></p>
+                        <p class="card-text">From: <?php print($start_address); ?></p>
+                        <p class="card-text">To: <?php print($end_address); ?></p>
                     </div>
                 </div>
 
-                <!--Calendar view-->
-                <div class="card m-0 col-md-8 d-none d-sm-block bg-light border-light container-fluid mt-3">
-                    <!--<div class="container-fluid card p-1 col-8 mt-5 float-right">-->
-                    <h3 class="card-header" id="monthAndYear"></h3>
-                    <table class="table table-bordered table-responsive-sm" id="calendar">
-                        <thead>
-                        <tr>
-                            <th>Sun</th>
-                            <th>Mon</th>
-                            <th>Tue</th>
-                            <th>Wed</th>
-                            <th>Thu</th>
-                            <th>Fri</th>
-                            <th>Sat</th>
-                        </tr>
-                        </thead>
+                <div class="card my-3 col-3 mx-auto p-0">
+                    <div class="card-header bg-primary">
+                        <h5 class="text-white">Upcoming trip ID: <br>
 
-                        <tbody id="calendar-body">
+                            <!-- need to incorporate javascript to show the closest 2 upcoming trips (ASK ZHASLAN)-->
+                            <?php
 
-                        </tbody>
+                            require_once('php/phpDatabaseConnection.php');
+                            $connection = connectToDb();
 
-                        <input type="hidden" name="selected_date" id="selected_date" value="">
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
 
-                    </table>
+                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
 
-                    <div class="form-inline">
+                                $booking_id = $array['booking_id'];
+                                $booking_time = $array['booking_time'];
 
-                        <button class="btn btn-primary col-sm-6" id="previous" onclick="previous()">Previous
-                        </button>
+                                $query2 = "SELECT route.start_address, route.end_address FROM route JOIN booking USING(route_id) WHERE booking.booking_id = '$booking_id'";
+                                $results2 = mysqli_query($connection, $query2);
+                                $array2 = mysqli_fetch_assoc($results2);
 
-                        <button class="btn btn-primary col-sm-6" id="next" onclick="next()">Next</button>
+                                $start_address = $array2['start_address'];
+                                $end_address = $array2['end_address'];
+
+                                print($booking_id);
+
+                            } else {
+                                print("Sorry, no cookie read.");
+                            }
+
+
+                            ?>
+                            <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
                     </div>
-                    <br/>
-                    <form class="form-inline">
-                        <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-                        <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
-                            <option value=0>Jan</option>
-                            <option value=1>Feb</option>
-                            <option value=2>Mar</option>
-                            <option value=3>Apr</option>
-                            <option value=4>May</option>
-                            <option value=5>Jun</option>
-                            <option value=6>Jul</option>
-                            <option value=7>Aug</option>
-                            <option value=8>Sep</option>
-                            <option value=9>Oct</option>
-                            <option value=10>Nov</option>
-                            <option value=11>Dec</option>
-                        </select>
+                    <div class="card-body">
 
+                        <!-- need to make sure that the time of day is here not just the date -->
 
-                        <label for="year"></label><select class="form-control col-sm-4" name="year" id="year"
-                                                          onchange="jump()">
-                            <option value=1990>1990</option>
-                            <option value=1991>1991</option>
-                            <option value=1992>1992</option>
-                            <option value=1993>1993</option>
-                            <option value=1994>1994</option>
-                            <option value=1995>1995</option>
-                            <option value=1996>1996</option>
-                            <option value=1997>1997</option>
-                            <option value=1998>1998</option>
-                            <option value=1999>1999</option>
-                            <option value=2000>2000</option>
-                            <option value=2001>2001</option>
-                            <option value=2002>2002</option>
-                            <option value=2003>2003</option>
-                            <option value=2004>2004</option>
-                            <option value=2005>2005</option>
-                            <option value=2006>2006</option>
-                            <option value=2007>2007</option>
-                            <option value=2008>2008</option>
-                            <option value=2009>2009</option>
-                            <option value=2010>2010</option>
-                            <option value=2011>2011</option>
-                            <option value=2012>2012</option>
-                            <option value=2013>2013</option>
-                            <option value=2014>2014</option>
-                            <option value=2015>2015</option>
-                            <option value=2016>2016</option>
-                            <option value=2017>2017</option>
-                            <option value=2018>2018</option>
-                            <option value=2019>2019</option>
-                            <option value=2020>2020</option>
-                            <option value=2021>2021</option>
-                            <option value=2022>2022</option>
-                            <option value=2023>2023</option>
-                            <option value=2024>2024</option>
-                            <option value=2025>2025</option>
-                            <option value=2026>2026</option>
-                            <option value=2027>2027</option>
-                            <option value=2028>2028</option>
-                            <option value=2029>2029</option>
-                            <option value=2030>2030</option>
-                        </select></form>
+                        <p class="card-text">Time: <?php print($booking_time); ?></p>
+                        <p class="card-text">From: <?php print($start_address); ?></p>
+                        <p class="card-text">To: <?php print($end_address); ?></p>
+                    </div>
                 </div>
 
+                <div class="card my-3 col-3 mx-auto p-0">
+                    <div class="card-header bg-primary">
+                        <h5 class="text-white">Upcoming trip ID: <br>
 
-                <!--<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=en_GB&amp;bgcolor=%23ffffff&amp;src=3a2085vs1bpe5f0sm85pivgvko%40group.calendar.google.com&amp;color=%23BE6D00&amp;ctz=Europe%2FLondon"
-                        style="border-width:0" width="750" height="550" frameborder="0" scrolling="no" class="container-fluid"></iframe>-->
+                            <!-- need to incorporate javascript to show the closest 2 upcoming trips (ASK ZHASLAN)-->
+                            <?php
+
+                            require_once('php/phpDatabaseConnection.php');
+                            $connection = connectToDb();
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $booking_id = $array['booking_id'];
+                                $booking_time = $array['booking_time'];
+
+                                $query2 = "SELECT route.start_address, route.end_address FROM route JOIN booking USING(route_id) WHERE booking.booking_id = '$booking_id'";
+                                $results2 = mysqli_query($connection, $query2);
+                                $array2 = mysqli_fetch_assoc($results2);
+
+                                $start_address = $array2['start_address'];
+                                $end_address = $array2['end_address'];
+
+                                print($booking_id);
+
+                            } else {
+                                print("Sorry, no cookie read.");
+                            }
+
+
+                            ?>
+                            <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- need to make sure that the time of day is here not just the date -->
+
+                        <p class="card-text">Time: <?php print($booking_time); ?></p>
+                        <p class="card-text">From: <?php print($start_address); ?></p>
+                        <p class="card-text">To: <?php print($end_address); ?></p>
+                    </div>
+                </div>
+
             </div>
+
         </div>
+
+        <!--Calendar view-->
+        <div class="card container-fluid m-0 col-9 bg-light border-light mt-3 mx-auto">
+            <h3 class="card-header" id="monthAndYear"></h3>
+            <table class="table table-bordered table-responsive-sm" id="calendar">
+                <thead>
+                <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+                </thead>
+
+                <tbody id="calendar-body">
+
+                </tbody>
+
+                <input type="hidden" name="selected_date" id="selected_date" value="">
+
+            </table>
+
+            <div class="form-inline">
+
+                <button class="btn btn-primary col-sm-6" id="previous" onclick="previous()">Previous
+                </button>
+
+                <button class="btn btn-primary col-sm-6" id="next" onclick="next()">Next</button>
+            </div>
+            <br/>
+            <form class="form-inline">
+                <label class="lead mr-2 ml-2" for="month">Jump To: </label>
+                <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+                    <option value=0>Jan</option>
+                    <option value=1>Feb</option>
+                    <option value=2>Mar</option>
+                    <option value=3>Apr</option>
+                    <option value=4>May</option>
+                    <option value=5>Jun</option>
+                    <option value=6>Jul</option>
+                    <option value=7>Aug</option>
+                    <option value=8>Sep</option>
+                    <option value=9>Oct</option>
+                    <option value=10>Nov</option>
+                    <option value=11>Dec</option>
+                </select>
+
+
+                <label for="year"></label><select class="form-control col-sm-4" name="year" id="year"
+                                                  onchange="jump()">
+                    <option value=1990>1990</option>
+                    <option value=1991>1991</option>
+                    <option value=1992>1992</option>
+                    <option value=1993>1993</option>
+                    <option value=1994>1994</option>
+                    <option value=1995>1995</option>
+                    <option value=1996>1996</option>
+                    <option value=1997>1997</option>
+                    <option value=1998>1998</option>
+                    <option value=1999>1999</option>
+                    <option value=2000>2000</option>
+                    <option value=2001>2001</option>
+                    <option value=2002>2002</option>
+                    <option value=2003>2003</option>
+                    <option value=2004>2004</option>
+                    <option value=2005>2005</option>
+                    <option value=2006>2006</option>
+                    <option value=2007>2007</option>
+                    <option value=2008>2008</option>
+                    <option value=2009>2009</option>
+                    <option value=2010>2010</option>
+                    <option value=2011>2011</option>
+                    <option value=2012>2012</option>
+                    <option value=2013>2013</option>
+                    <option value=2014>2014</option>
+                    <option value=2015>2015</option>
+                    <option value=2016>2016</option>
+                    <option value=2017>2017</option>
+                    <option value=2018>2018</option>
+                    <option value=2019>2019</option>
+                    <option value=2020>2020</option>
+                    <option value=2021>2021</option>
+                    <option value=2022>2022</option>
+                    <option value=2023>2023</option>
+                    <option value=2024>2024</option>
+                    <option value=2025>2025</option>
+                    <option value=2026>2026</option>
+                    <option value=2027>2027</option>
+                    <option value=2028>2028</option>
+                    <option value=2029>2029</option>
+                    <option value=2030>2030</option>
+                </select></form>
+        </div>
+
     </div>
 </section>
 
@@ -290,10 +365,12 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" id="upcoming_tab" onclick="upcomingTabAJAX()">Next 10 trips</a>
+                                <a class="nav-link active" id="upcoming_tab" onclick="upcomingTabAJAX()">Next 10
+                                    trips</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link nav-link text-primary" id="history" onclick="historyTabAJAX()">Last 10 trips</a>
+                                <a class="nav-link nav-link text-primary" id="history" onclick="historyTabAJAX()">Last
+                                    10 trips</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-link text-primary" id="selectedDay">Trips on selected day</a>
