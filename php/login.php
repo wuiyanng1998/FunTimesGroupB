@@ -36,6 +36,7 @@ if (password_verify($password, $hash)) {
     }
 } else {
     echo 'INVALID CREDENTIALS';
+    header('location: ../errorPage.php?errorCode=1');
 }
 
 function bookerCookies()
