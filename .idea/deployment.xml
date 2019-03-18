@@ -1,32 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="MAMP Freya">
+  <component name="PublishConfigData" autoUpload="Always" serverName="WAMP WUIYAN">
     <serverData>
-      <paths name="MAMP Freya">
+      <paths name="WAMP WUIYAN">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="mampEllen">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="wamp">
-        <serverdata>
-          <mappings>
-            <mapping deploy="FunTimesGroupB" local="$PROJECT_DIR$" web="/FunTimesGroupB" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="wampZhaslan">
-        <serverdata>
-          <mappings>
-            <mapping deploy="\" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="FunTimesGroupC" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

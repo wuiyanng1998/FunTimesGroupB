@@ -33,7 +33,7 @@ Phone: $passengerPhoneNo <br>");
 }
 
 $pickupDateTime = $pickupDate . " " . $pickupTime . ":00";
-
+print ("Pickup Date Time:" . $pickupDateTime . "<br>");
 
 function readCookiesBookerId()
 {
@@ -67,53 +67,42 @@ print("<br> Start address API: " . $start_post_code . "<br> Start address User: 
 
 $connection = connectToDb();
 
-$qryGetLatestID = "SELECT LAST_INSERT_ID()";
-
+//$qryGetLatestID = "SELECT LAST_INSERT_ID()";
+$qryGetLatestRouteID = "SELECT route_id from route ORDER BY route_id DESC LIMIT 1";
 //Getting Route ID
-$qryFindRoute = "SELECT route_id FROM route WHERE start_address='" . $start_address . "' AND start_post_code='"
-    . $start_post_code . "'AND end_address = '" . $end_address . "' AND end_post_code = '" . $end_post_code . "'";
+$qryFindRoute = "SELECT route_id FROM route WHERE start_address='$start_address' AND start_post_code='$start_post_code'AND end_address = '$end_address' AND end_post_code = '$end_post_code'";
 
-$qryAddRoute = "INSERT INTO route(start_address, start_post_code, end_address, end_post_code) VALUES('" . $start_address .
-    "', '" . $start_post_code . "', '" . $end_address . "', '" . $end_post_code . "')";
+$qryAddRoute = "INSERT INTO route(`start_address`, `start_post_code`, `end_address`, `end_post_code`) VALUES('$start_address', '$start_post_code', '$end_address', '$end_post_code')";
 
 $result = mysqli_query($connection, $qryFindRoute);
 // check the query worked
-$routeID = "";
 if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $routeID = $row["route_id"];
-    }
-    print (" < br> Found routeID FIND " . $routeID);
-    closeDb($connection);
-} else {
+
     $result1 = mysqli_query($connection, $qryAddRoute);
-    $result2 = mysqli_query($connection, $qryGetLatestID);
+    $result2 = mysqli_query($connection, $qryGetLatestRouteID);
     if ($result2) {
         while ($row = mysqli_fetch_assoc($result2)) {
-            $routeID = $row["LAST_INSERT_ID()"];
+            $routeID = $row['route_id'];
             print ("<br> Found routeID " . $routeID);
         }
     } else {
         echo "Couldn't create ROUTE";
     }
-    closeDb($connection);
 }
 
+//-----------------------------//COME BACK TO THIS
 //Find a car
-$qryFindVehicle = "SELECT vehicle_id FROM vehicle WHERE vehicle_name='" . $carName . "'";
-
+$qryFindVehicle = "SELECT * FROM vehicle WHERE vehicle_name='$carName'";
 $result = mysqli_query($connection, $qryFindVehicle);
+
 // check the query worked
-$vehicle_id = "";
 if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $vehicle_id = $row["vehicle_id"];
-    }
-    print ("< br> Found vehicle ID " . $vehicle_id);
-    closeDb($connection);
+
+$vehicle_id = mysqli_fetch_assoc($result)["vehicle_id"];
+print ("<br> Found vehicle ID: " . $vehicle_id . "<br>");
+
 } else {
-    print("Couldnt find vehicle");
-    closeDb($connection);
+    print("Couldn't find vehicle");
 }
 
 $hourMinute = explode(":", $pickupTime);
@@ -145,54 +134,76 @@ if ($pickupHourMore2hr > 24) {
     $pickupHourMore2hr = 0 + $pickupHourMore2hr;
 }
 
-$qryFindUnavailableDriver = "SELECT driver_id FROM booking WHERE booking_time BETWEEN 
-  '" . $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "' 
-  AND '" . $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "'";
+//CHECK THIS
+//$pickupDateTime = $pickupDate . " " . $pickupTime . ":00";
 
+$searchDateBefore = $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "<br>";
+$searchDateAfter = $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "<br>";
+print ($searchDateBefore);
+print ($searchDateAfter);
+
+$qryFindUnavailableDriver = "SELECT driver_id FROM booking WHERE booking_time BETWEEN '$searchDateBefore'
+  AND '$searchDateAfter'";
 
 $result = mysqli_query($connection, $qryFindUnavailableDriver);
 // check the query worked
 $unavailableDrivers = [];
 if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
+
+    while ($row = mysqli_fetch_assoc($result)){
+        $driver_id = $row['driver_id'];
+        $unavailableDrivers[] = $driver_id;
+    }
+
+    print_r($unavailableDrivers);
+
+    /*while ($row = mysqli_fetch_assoc($result)) {
         $driver_id = $row["driver_id"];
         $unavailableDrivers[] = "/" . $driver_id . "/";
 
     }
     print ("< br> Found unavailable drivers ID " . $unavailableDrivers);
-    closeDb($connection);
+
+} else {
+    print("All drivers available");*/
+
 } else {
     print("All drivers available");
-    closeDb($connection);
-}
-$whereArray = "('" . implode("','", $unavailableDrivers) . "')";
 
+}
+
+print("<br> Length of unavailable drivers:" . sizeof($unavailableDrivers) . "<br>");
+
+$whereArray = "('" . implode("','", $unavailableDrivers) . "')";
+print($whereArray);
+
+/*$qryFindDriver = "SELECT driver_id FROM booking WHERE booking_time
+  BETWEEN '$searchDateBefore' AND '$searchDateAfter' AND driver_id NOT IN ('$unavailableDrivers') GROUP BY driver_id ORDER BY COUNT(driver_id) ASC LIMIT 1";
+*/
 
 $qryFindDriver = "SELECT driver_id FROM booking WHERE booking_time 
-  BETWEEN '" . $pickupDateLess . " " . $pickupHourLess2hr . ":" . $pickupMinute . "' 
-  AND '" . $pickupDateMore . " " . $pickupHourMore2hr . ":" . $pickupMinute . "' 
-  AND driver_id NOT IN (" . $unavailableDrivers . ") GROUP BY driver_id ORDER BY COUNT(driver_id) ASC LIMIT 1";
+  BETWEEN '$searchDateBefore' AND '$searchDateAfter' AND driver_id NOT IN ('".implode ("','", $unavailableDrivers)."') GROUP BY driver_id ORDER BY COUNT(driver_id) ASC LIMIT 1";
 
 
 $result = mysqli_query($connection, $qryFindDriver);
 // check the query worked
-$driver_id = 0;
+//$driver_id = 0;
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $driver_id = $row["driver_id"];
+        $driver_id = $row['driver_id'];
     }
-    print ("< br> Found available driver ID = " . $unavailableDrivers);
-    closeDb($connection);
+    print ("<br> Found available driver ID = " . $driver_id);
+
 } else {
-    print("Couldnt find available drivers");
-    closeDb($connection);
+    print("Couldn't find available drivers");
+
 }
 
-$qryAddBooking = "INSERT INTO booking(booking_time, vehicle_id, number_of_travelers, booker_id, driver_id,
-    service_fee, route_id) VALUES('" . $pickupDateTime . "', '" . $vehicle_id . "', '" . $numberOfPassengers . "', '"
-    . $booker_id . "', '" . $driver_id . "', '" . $service_fee . "', '" . $routeID . "')";
+$qryAddBooking = "INSERT INTO booking(`booking_time`, `vehicle_id`, `number_of_travelers`, `booker_id`, `driver_id`,
+    `service_fee`, `route_id`) VALUES('$pickupDateTime', '$vehicle_id', '$numberOfPassengers', '$booker_id', '$driver_id', '$service_fee', '$routeID')";
 
-$bookingID = mysqli_query($connection, $qryGetLatestID);
+$qryGetLatestBookingID = "SELECT booking_id from booking ORDER BY booking_id DESC LIMIT 1";
+$bookingID = mysqli_query($connection, $qryGetLatestBookingID);
 
 $travelerIDList = [];
 
@@ -202,57 +213,81 @@ for ($i = 1; $i <= $numberOfPassengers; $i++) {
     $passengerEmail = ${"passengerEmail" . $i};
     $passengerPhone = ${"passengerPhoneNo" . $i};
 
-    $qryFindTraveler =
-        "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
-    WHERE first_name = '" . $passengerFirstName . "' AND last_name = '" . $passengerLastName . "' 
-    AND email = '" . $passengerEmail . "' AND phone_number = '" . $passengerPhone . "'";
+    /*-----------------------ALL QUERIES HERE
 
-    $qryAddTraveler = "INSERT INTO traveler(first_name, last_name, phone_number, email) 
-    VALUES('" . $passengerFirstName . "', '" . $passengerLastName . "', '" . $passengerPhone . "', '"
-        . $passengerEmail . "')";
 
+    //Find existing travelers
+    $qryFindTraveler = "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
+    WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName' 
+    AND email = '$passengerEmail' AND phone_number = '$passengerPhone'";
+
+    //Add traveler queries
+    $qryAddTraveler = "INSERT INTO traveler(`first_name`, `last_name`, `phone_number`, `email`)
+    VALUES('$passengerFirstName', '$passengerLastName', '$passengerPhone', '$passengerEmail')";
+    $resultTraveler = mysqli_query($connection, $qryAddTraveler);
+
+    //Add traveler to traveler list
+    $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
+
+    //Find latest traveler ID
+    $qryGetLatestTravelerID = "SELECT traveler_id from traveler ORDER BY traveler_id DESC LIMIT 1";
+    $resultGetTravelerID = mysqli_query($connection, $qryGetLatestTravelerID);
+    $latestTravelerID = mysqli_fetch_assoc($resultGetTravelerID)['traveler_id'];
+    print ("<br> Latest Traveler ID: " . $latestTravelerID);
+--------------------------------------------*/
+
+
+    $qryFindTraveler = "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
+    WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName' 
+    AND email = '$passengerEmail' AND phone_number = '$passengerPhone'";
+
+    $resultFindExistingTraveler = mysqli_query($connection, $qryFindTraveler);
     $travelerID = "";
 
-    $result = mysqli_query($connection, $qryFindTraveler);
+    $qryGetLatestTravelerID = "SELECT traveler_id from traveler ORDER BY traveler_id DESC LIMIT 1";
+    $resultGetLatestTravelerID = mysqli_query($connection, $qryGetLatestTravelerID);
+    $latestTravelerID = mysqli_fetch_assoc($resultGetLatestTravelerID)['traveler_id'];
+    print ("<br> Latest Traveler ID: " . $latestTravelerID);
+
     // check the query worked
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $travelerID = $row["route_id"];
-        }
+    if ($resultFindExistingTraveler) { //i.e. the travelers already exist, just take the exiting booking and traveler ids and insert into traveler list
 
         $travelerIDList[] = $travelerID;
-        $qryAddTravelerList = "INSERT INTO travelerlist(booking_id, traveler_id) VALUES('" . $bookingID . "', '"
-            . $travelerID . "')";
-        $result1 = mysqli_query($connection, $qryAddTravelerList);
-        if (!$result1) {
-            echo "Couldn't find travelers id $i";
-        }
-        closeDb($connection);
-    } else {
-        $result = mysqli_query($connection, $qryAddTraveler);
-        if (!$result) {
-            echo "Couldn't add traveler $i";
+        $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
+        $resultAddExistingTravelerToTravelerList = mysqli_query($connection, $qryAddTravelerList);
+        if ($resultAddExistingTravelerToTravelerList) {
+            echo "Adding existing traveler to traveler list successful.";
         } else {
-            $result2 = mysqli_query($connection, $qryGetLatestID);
+            echo "Error: adding existing traveler to traveler list unsuccessful.";
+        }
 
-            if (!$result2) {
-                echo "Couldn't find added travelers id $i";
+    } else { //i.e. travelers do not currently exist, need to add them to traveler table along with booking id and then add to traveler list
+
+        $qryAddTraveler = "INSERT INTO traveler(`first_name`, `last_name`, `phone_number`, `email`)
+        VALUES('$passengerFirstName', '$passengerLastName', '$passengerPhone', '$passengerEmail')";
+
+        $resultTraveler = mysqli_query($connection, $qryAddTraveler);
+        $resultAddNewTraveler = mysqli_query($connection, $qryAddTraveler);
+
+//            $result2 = mysqli_query($connection, $qryGetLatestID); NEED TO ASK ZHASLAN ABOUT THIS - WHICH LATEST ID WAS HE GETTING?
+            $resultGetLatestBookingID = mysqli_query($connection, $qryGetLatestBookingID);
+
+            if (!$resultGetLatestBookingID) {
+                echo "Couldn't find added traveler's id " . $i;
             } else {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $travelerID = $row["LAST_INSERT_ID()"];
-                }
+                $travelerID = $latestTravelerID;
                 $travelerIDList[] = $travelerID;
-                $qryAddTravelerList = "INSERT INTO travelerlist(booking_id, traveler_id) VALUES('" . $bookingID . "', '"
-                    . $travelerID . "')";
-                $result3 = mysqli_query($connection, $qryAddTravelerList);
-                if (!$result3) {
-                    echo "Couldn't create traveler list for traveler $i";
+                $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
+                $resultAddNewTravelerToTravelerList = mysqli_query($connection, $qryAddTravelerList);
+                if (!$resultAddNewTravelerToTravelerList) {
+                    echo "Couldn't create traveler list for traveler " . $i;
                 }
+                }
+
 
             }
-        }
-        closeDb($connection);
-    }
-}
 
+        closeDb($connection);
+
+}
 

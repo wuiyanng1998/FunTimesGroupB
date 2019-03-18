@@ -2,6 +2,11 @@
 /*To do list:
 Put in temporary values in the database for non-essential variables
  */
+
+if(strpos($_SERVER['HTTP_USER_AGENT'],'Mediapartners-Google') !== false) {
+    exit();
+}
+
 require_once('phpDatabaseConnection.php');
 
 //if ($_POST["type"] == 1){
@@ -25,49 +30,49 @@ function createNewAccount()
 
     //Check all variables posted correctly
 
-// Build the query statement
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $insertLoginUser = "INSERT INTO loginuser (`email`, `password`) VALUES ('$email', '$hash')";
-    echo "Successful posting: " . $first_name . "," . $last_name . "," . $email . "," . $hash . "," . $identity . "<br>";
+    //Check that email has not been entered previously
+    $checkRepeatEmail = "SELECT * FROM loginuser WHERE email='$email'";
+    $result = mysqli_query($connection, $checkRepeatEmail);
+    $noRepeats = mysqli_num_rows($result);
 
+    if ($noRepeats != 0){
+        echo "Sorry, email has already been registered.";
+    } else {
+        // Build the query statement
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $insertLoginUser = "INSERT INTO loginuser (`email`, `password`) VALUES ('$email', '$hash')";
 
-    // Execute the query and insert
-    mysqli_query($connection, $insertLoginUser);
+        // Execute the query and insert
+        mysqli_query($connection, $insertLoginUser);
 
-    if ($connection->query($insertLoginUser) === TRUE) {
-        echo "Login user created successfully <br>";
         $get_user_id = "SELECT user_id FROM loginuser WHERE email = '$email'";
         $result = mysqli_query($connection, $get_user_id);
         $user_id = mysqli_fetch_assoc($result)["user_id"];
 
-    } else {
-        echo "Error: " . $insertLoginUser . "<br>" . $connection->error . "<br>";
-    }
+        if ($identity == 'Booker'){
+            echo 'WRITING BOOKER';
+            //Added dummy values for variables that are not yet in the form. Look at company_id -> check if we are keeping this in updated database
+            $insertBooker = "INSERT INTO booker (`first_name`, `last_name`, `phone_number`, `user_id`, `finance_allowance`, `title`, `company_id`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '10000', 'Mr', '1')";
+            mysqli_query($connection, $insertBooker);
 
-    if ($identity == 'Booker'){
-        //Added dummy values for variables that are not yet in the form. Look at company_id -> check if we are keeping this in updated database
-        $insertBooker = "INSERT INTO booker (`first_name`, `last_name`, `phone_number`, `user_id`, `finance_allowance`, `title`, `company_id`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '10000', 'Mr', '1')";
-        mysqli_query($connection, $insertBooker);
-
-        if ($connection->query($insertBooker) === TRUE) {
-            //echo "Booker created successfully <br>";
         } else {
-            //echo "Error: " . $insertBooker . "<br>" . $connection->error . "<br>";
+            echo 'WRITING DRIVER';
+            //Added dummy values for variables that are not yet in the form
+            $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `license_type`, `working_time_slot`, `driver_rating`, `title`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', 'Bus', '1', '4.5', 'Mr')";
+            mysqli_query($connection, $insertDriver);
+
+            //if ($connection->query($insertDriver) === TRUE) {
+            //echo "Driver created successfully <br>";
+            //} else {
+            //echo "Error: " . $insertDriver . "<br>" . $connection->error . "<br>";
+            //}
         }
 
-    } else {
-        //Added dummy values for variables that are not yet in the form
-        $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `license_type`, `working_time_slot`, `driver_rating`, `title`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', 'Bus', '1', '4.5', 'Mr')";
-        mysqli_query($connection, $insertDriver);
+        header('location: ..\login.html');
 
-        //if ($connection->query($insertDriver) === TRUE) {
-            //echo "Driver created successfully <br>";
-        //} else {
-            //echo "Error: " . $insertDriver . "<br>" . $connection->error . "<br>";
-        //}
+        $connection->close();
     }
 
-    header('location: ..\login.html');
 
-    $connection->close();
+
 }

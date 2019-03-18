@@ -7,27 +7,35 @@ $password = $_POST['password']?? 1;
 
 $connection = connectToDb();
 $cookie_email = $_POST['email'] ?? 1;
-$get_password = "SELECT password FROM loginuser WHERE  email = '$cookie_email'";
+$get_password = "SELECT password, user_id FROM loginuser WHERE  email = '$cookie_email'";
 $results1 = mysqli_query($connection, $get_password);
 $array1 = mysqli_fetch_assoc($results1);
+$user_id = $array1['user_id'];
 $hash = $array1['password'];
 
 if (password_verify($password, $hash)) {
-    userType($identity);
 
-} else {
-    echo 'INVALID CREDENTIALS';
-}
+    //Look for user in booker
+    $bookerQuery = "SELECT * FROM booker WHERE user_id = '$user_id'";
+    $bookerQueryResults = mysqli_query($connection, $bookerQuery);
+    $bookerRows = mysqli_num_rows($bookerQueryResults);
 
-function userType($identity){
-    if ($identity == 'Booker'){
-        header('location: ../landingPageEmployee.php');
+    //Look for user in driver
+    $driverQuery = "SELECT * FROM driver WHERE user_id = '$user_id'";
+    $driverQueryResults = mysqli_query($connection, $driverQuery);
+    $driverRows = mysqli_num_rows($driverQueryResults);
+
+
+    if ($bookerRows != 0) {
         bookerCookies();
-
-    } else {
-        header('location: ../landingPageDriver.php');
+    } elseif($driverRows != 0) {
         driverCookies();
     }
+    else{
+        echo "Error! User is not registered as neither a driver or booker!";
+    }
+} else {
+    echo 'INVALID CREDENTIALS';
 }
 
 function bookerCookies()
@@ -53,6 +61,8 @@ function bookerCookies()
     echo $_COOKIE["bookerId"] . "<br>" .  $_COOKIE["firstName"] . "<br>" . $_COOKIE["userId"] . "<br>";
     print_r($_COOKIE);
     print(PHP_EOL);
+
+    header('location: ..\landingPageEmployee.php');
 
     exit;
 
@@ -83,6 +93,9 @@ function driverCookies()
     echo $_COOKIE["driverId"] . "<br>" .  $_COOKIE["firstName"] . "<br>" . $_COOKIE["userId"] . "<br>";
     print_r($_COOKIE);
     print(PHP_EOL);
+
+    header('location: ..\landingPageDriver.php');
+
 
     exit;
 }
