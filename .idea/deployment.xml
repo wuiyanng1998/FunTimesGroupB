@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="wamp Zhasla">
+  <component name="PublishConfigData" autoUpload="Always" serverName="WAMP WUIYAN">
     <serverData>
-      <paths name="wamp Zhasla">
+      <paths name="WAMP WUIYAN">
         <serverdata>
           <mappings>
-            <mapping deploy="\" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="FunTimesGroupC" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
