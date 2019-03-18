@@ -84,12 +84,14 @@
                         <?php
                         if ($_GET) {
                             $errorCode = $_GET['errorCode'];
-                            if($errorCode==1){
+                            if ($errorCode == 1) {
                                 echo "Invalid login details. Please try again.";
-                            }elseif ($errorCode==2){
+                            } elseif ($errorCode == 2) {
                                 echo "Insufficient funds. Choose different type of car or contact with your finance manager ";
-                            }elseif ($errorCode==3){
+                            } elseif ($errorCode == 3) {
                                 echo "Unfortunately, there are no available driver for this time";
+                            } elseif ($errorCode == 4) {
+                                echo "Seems like you should not be here";
                             }
                         } else {
                             echo "Oooops seems like no errors. Sorry use back button";

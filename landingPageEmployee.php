@@ -93,7 +93,8 @@
                     <hr class="divider my-4">
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="makeNewBookingPage.html">Make a booking</a>
+                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="makeNewBookingPage.html">Make a
+                        booking</a>
                 </div>
             </div>
         </div>
@@ -141,24 +142,24 @@
                   WHERE booker_id ='$booker_id' AND booking_time > NOW() LIMIT 10";
                         ?>
                         <tbody id="myBookingTable">
-                            <?php
-                            if ($result = mysqli_query($connection, $qryBooking)) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                    <tr>
-                                        <td class="p-2"><?php echo $row["booking_id"] ?></td>
-                                        <td class="p-2"><?php echo $row["booking_time"] ?></td>
-                                        <td class="p-2"><?php echo $row["start_post_code"] ?></td>
-                                        <td class="p-2"><?php echo $row["end_post_code"] ?></td>
-                                        <td class="p-2"><?php echo $row["vehicle_name"] ?></td>
-                                        <td class="p-2">£<?php echo $row["service_fee"] ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                print "Error with car cost json encoding";
+                        <?php
+                        if ($result = mysqli_query($connection, $qryBooking)) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <tr>
+                                    <td class="p-2"><?php echo $row["booking_id"] ?></td>
+                                    <td class="p-2"><?php echo $row["booking_time"] ?></td>
+                                    <td class="p-2"><?php echo $row["start_post_code"] ?></td>
+                                    <td class="p-2"><?php echo $row["end_post_code"] ?></td>
+                                    <td class="p-2"><?php echo $row["vehicle_name"] ?></td>
+                                    <td class="p-2">£<?php echo $row["service_fee"] ?></td>
+                                </tr>
+                                <?php
                             }
-                            ?>
+                        } else {
+                            print "Error with car cost json encoding";
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>
@@ -302,17 +303,23 @@
                     <h3 class="card-title mb-2 text-dark">Account info</h3>
                     <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Employee ID</h5>
-                        <input class="form-control validate border-0 bg-light" id="employeeId"
-                               value="098094" type="text">
+                        <div class="form-control validate border-0 bg-light" id="employee_id" type="text">
+                            <?php
+
+                            if (isset($_COOKIE["bookerId"])) {
+                                $booker_id = $_COOKIE["bookerId"];
+                                echo $booker_id;
+                                echo '&nbsp';
+                            } else {
+                                print("Sorry, no cookie read.");
+                                header('location: ../errorPage.php?errorCode=4');
+                            }
+                            ?>
+                        </div>
                     </div>
 
                     <hr class="divider my-2">
 
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Account password</h5>
-                        <input class="form-control validate border-0 bg-light" id="accountPassword"
-                               value="123245685" type="password">
-                    </div>
                 </div>
             </div>
 

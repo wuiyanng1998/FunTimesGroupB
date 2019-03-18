@@ -55,22 +55,33 @@
                         <form style="margin-bottom: 2vh; font-family: 'Helvetica'" method='post' name='loginForm' action="php/register.php">
                             <h2 class="h3 mb-3 font-weight-bold">Register</h2>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="First Name" type="text" name="firstName">
+                                <input class="form-control" placeholder="First Name" type="text" name="firstName"
+                                       required>
                             </div>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Last Name" type="text" name="lastName">
+                                <input class="form-control" placeholder="Last Name" type="text" name="lastName"
+                                       required>
                             </div>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Email" type="email" name="email">
+                                <input class="form-control" placeholder="Email" type="email" name="email"
+                                       required>
                             </div>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Password" type="password" name="password">
+                                <input class="form-control" id="password" placeholder="Password"
+                                       type="password" name="password" onkeyup='check()' required>
                             </div>
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Phone Number" type="number" name="phoneNumber">
+                                <input class="form-control" id = "passwordConfirm" placeholder="Confirm Password"
+                                       type="password" name="password" onkeyup='check()' required>
+                            </div>
+                            <div id= "passwordError"></div>
+
+                            <div class="form-group text-left">
+                                <input class="form-control" placeholder="Phone Number" type="number" name="phoneNumber"
+                                       required>
                             </div>
                             <div class="form-group text-left">
-                                <select class="form-control" placeholder="My identity" type="text" name="myIdentity">
+                                <select class="form-control" type="text" name="myIdentity">
                                     <option>Booker</option>
                                     <option selected="selected">Driver</option>
                                 </select><br>
@@ -85,8 +96,7 @@
             </div>
         </div>
     </div>
-
-
 </header>
+<script src="js/register.js"></script>
 </body>
 </html>

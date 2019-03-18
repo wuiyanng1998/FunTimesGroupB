@@ -533,18 +533,22 @@
                     <i class="fas fa-4x fa-address-book text-primary mb-4"></i>
                     <h3 class="card-title mb-2 text-dark">Account info</h3>
                     <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Employee ID</h5>
-                        <input class="form-control validate border-0 bg-light" id="employeeId"
-                               value="098094" type="text">
-                    </div>
+                        <h5 class="card-subtitle text-primary">Driver ID</h5>
+                        <div class="form-control validate border-0 bg-light" id="driver_id" type="text">
+                            <?php
 
+                            if (isset($_COOKIE["driverId"])) {
+                                $driver_id = $_COOKIE["driverId"];
+                                echo $driver_id;
+                                echo '&nbsp';
+                            } else {
+                                print("Sorry, no cookie read.");
+                                header('location: ../errorPage.php?errorCode=4');
+                            }
+                            ?>
+                        </div>
+                    </div>
                     <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Account password</h5>
-                        <input class="form-control validate border-0 bg-light" id="accountPassword"
-                               value="123245685" type="password">
-                    </div>
                 </div>
             </div>
 
