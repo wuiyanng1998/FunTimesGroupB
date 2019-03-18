@@ -278,7 +278,7 @@ Phone: $passengerPhoneNo <br>");
     $resultFindExistingTraveler = mysqli_query($connection, $qryFindTraveler);
 
     // check the query worked
-    if ($resultFindExistingTraveler || mysqli_num_rows($resultFindExistingTraveler) > 0 ) { //i.e. the travelers already exist, just take the exiting booking and traveler ids and insert into traveler list
+    if ($resultFindExistingTraveler || mysqli_num_rows($resultFindExistingTraveler) > 0) { //i.e. the travelers already exist, just take the exiting booking and traveler ids and insert into traveler list
         $resultGetLatestTravelerID = mysqli_query($connection, $qryGetLatestTravelerID);
         $travelerID = mysqli_fetch_assoc($resultGetLatestTravelerID)['traveler_id'];
         print ("<br> Latest Traveler ID: " . $travelerID);
@@ -299,8 +299,23 @@ Phone: $passengerPhoneNo <br>");
         print("<br>" . $travelerID);
         $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
         $resultAddNewTravelerToTravelerList = mysqli_query($connection, $qryAddTravelerList);
-
     }
 }
+
+
+$qryDeductBookerBudget = "Select finance_allowance From booker where booker_id = '$booker_id'";
+$bookerInitialBudgetQry = mysqli_query($connection, $qryDeductBookerBudget);
+$bookerInitialBudget = mysqli_fetch_assoc($bookerInitialBudgetQry)['finance_allowance'];
+$bookerUpdatedBudget = $bookerInitialBudget - $service_fee;
+
+if ($bookerUpdatedBudget > 0) {
+    $qryDeductBookerBudget = "UPDATE booker SET finance_allowance = '$bookerUpdatedBudget' WHERE booker_id = '$booker_id'";
+} else {
+//    Error Insufficient funds
+    echo("Insufficient funds");
+
+    header("Location:errorPage.php?errorCode=2");
+}
+
 
 closeDb($connection);
