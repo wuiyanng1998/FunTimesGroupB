@@ -309,14 +309,6 @@
                     <hr class="divider my-2">
 
                     <div class="container bg-light p-2 text-left">
-                        <h5 class="card-subtitle text-primary">Organisation code</h5>
-                        <input class="form-control validate border-0 bg-light" id="organisationCode"
-                               value="563578" type="text">
-                    </div>
-
-                    <hr class="divider my-2">
-
-                    <div class="container bg-light p-2 text-left">
                         <h5 class="card-subtitle text-primary">Account password</h5>
                         <input class="form-control validate border-0 bg-light" id="accountPassword"
                                value="123245685" type="password">
