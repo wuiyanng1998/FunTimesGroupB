@@ -93,7 +93,7 @@
                     <hr class="divider my-4">
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="makeNewBooking.html">Make a booking</a>
+                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="makeNewBookingPage.html">Make a booking</a>
                 </div>
             </div>
         </div>
