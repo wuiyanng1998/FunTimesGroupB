@@ -104,7 +104,6 @@
 <section class="page-section bg-light" id="myCalendar">
     <div class="card bg-light border-light container-fluid">
         <div class="container">
-
             <h2 class="text-center mt-0">Quick view</h2>
             <hr class="divider my-4">
             <div class="row col-12 mx-auto">
@@ -136,12 +135,9 @@
                                 $end_address = $array2['end_address'];
 
                                 print($booking_id);
-
                             } else {
                                 print("Sorry, no cookie read.");
                             }
-
-
                             ?>
                             <i class="fas fa-2x fa-car text-light mb-0 mt-0 float-right"></i></h5>
                     </div>
