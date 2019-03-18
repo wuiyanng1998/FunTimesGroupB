@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="7117cb65-0258-4d59-ac01-b73babc65a77" name="MAMP Freya" url="http://localhost:8888/project">
-        <fileTransfer port="0" mountedRoot="/Applications/MAMP/htdocs/project" accessType="MOUNT" />
+      <webServer id="c5b0ba40-5566-42ae-afa7-7397e2af2d67" name="WAMP WUIYAN" url="http://localhost/FunTimesGroupC/FunTimesGroupC">
+        <fileTransfer port="0" mountedRoot="C:\wamp64\www\FunTimesGroupC" accessType="MOUNT" />
       </webServer>
     </option>
   </component>

@@ -253,9 +253,12 @@ print("<br> Booking Time: " . $pickupDateTime . "<br> Vehicle ID " . $vehicle_id
 $qryAddBooking = "INSERT INTO booking(`booking_time`, `vehicle_id`, `number_of_travelers`, `booker_id`, `driver_id`,
     `service_fee`, `route_id`) VALUES('$pickupDateTime', '$vehicle_id', '$numberOfPassengers', '$booker_id', '$driver_id', '$service_fee', '$routeID')";
 $makeBooking = mysqli_query($connection, $qryAddBooking);
-$qryGetLatestBookingID = "SELECT booking_id from booking ORDER BY booking_id DESC LIMIT 1";
-$bookingID = mysqli_query($connection, $qryGetLatestBookingID);
 
+
+$qryGetLatestBookingID = "SELECT booking_id from booking ORDER BY booking_id DESC LIMIT 1";
+$resultBookingID = mysqli_query($connection, $qryGetLatestBookingID);
+$bookingID = mysqli_fetch_assoc($resultBookingID)['booking_id'];
+print("<br> Booking ID: " . $bookingID . "<br>");
 
 //Adding travelers
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
@@ -269,37 +272,40 @@ for ($i = 1; $i <= $numberOfPassengers; $i++) {
     print("<br> Passenger $i: <br> Name: $passengerFirstName <br> Last Name: $passengerLastName <br> Email: $passengerEmail<br>
 Phone: $passengerPhoneNo <br>");
 
-    $qryFindTraveler = "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
-    WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName' 
+    //Check if traveler already exists
+    $qryFindTraveler = "SELECT traveler_id FROM traveler WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName' 
     AND email = '$passengerEmail' AND phone_number = '$passengerPhoneNo'";
-
-    $qryGetLatestTravelerID = "SELECT traveler_id from traveler ORDER BY traveler_id DESC LIMIT 1";
-
     $resultFindExistingTraveler = mysqli_query($connection, $qryFindTraveler);
 
     // check the query worked
-    if ($resultFindExistingTraveler || mysqli_num_rows($resultFindExistingTraveler) > 0 ) { //i.e. the travelers already exist, just take the exiting booking and traveler ids and insert into traveler list
-        $resultGetLatestTravelerID = mysqli_query($connection, $qryGetLatestTravelerID);
-        $travelerID = mysqli_fetch_assoc($resultGetLatestTravelerID)['traveler_id'];
-        print ("<br> Latest Traveler ID: " . $travelerID);
+    if (mysqli_num_rows($resultFindExistingTraveler) != 0) { //i.e. the travelers already exist, just take the exiting booking and traveler ids and insert into traveler list
 
-        $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
+        print("EXISTING TRAVELER TRUE");
+        $resultGetExistingTravelerID = mysqli_query($connection, $qryFindTraveler);
+        $existingTravelerID = mysqli_fetch_assoc($resultGetExistingTravelerID)['traveler_id'];
+        print ("<br> Latest Traveler ID: " . $existingTravelerID . "<br>");
+
+        $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$existingTravelerID')";
         $resultAddExistingTravelerToTravelerList = mysqli_query($connection, $qryAddTravelerList);
-        if (mysqli_num_rows($resultAddExistingTravelerToTravelerList) != 0) {
-            echo "Adding existing traveler to traveler list successful.";
-        } else {
-            echo "Error: adding existing traveler to traveler list unsuccessful.";
-        }
+        echo "Adding existing traveler to traveler list successful.";
+
+
     } else { //i.e. travelers do not currently exist, need to add them to traveler table along with booking id and then add to traveler list
+
+        print("EXISTING TRAVELER FALSE");
         $qryAddTraveler = "INSERT INTO traveler(`first_name`, `last_name`, `phone_number`, `email`)
         VALUES('$passengerFirstName', '$passengerLastName', '$passengerPhoneNo', '$passengerEmail')";
         $resultAddNewTraveler = mysqli_query($connection, $qryAddTraveler);
+
+        //Get traveler ID
+        $qryGetLatestTravelerID = "SELECT traveler_id from traveler ORDER BY traveler_id DESC LIMIT 1";
         $resultGetLatestBookingID = mysqli_query($connection, $qryGetLatestTravelerID);
-        $travelerID = mysqli_fetch_assoc($resultGetLatestBookingID)['traveler_id'];
-        print("<br>" . $travelerID);
+        $travelerIDArray = mysqli_fetch_assoc($resultGetLatestBookingID);
+        $travelerID = $travelerIDArray['traveler_id'];
+
+        print("<br> Traveler ID:" . $travelerID);
         $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
         $resultAddNewTravelerToTravelerList = mysqli_query($connection, $qryAddTravelerList);
-
     }
 }
 
