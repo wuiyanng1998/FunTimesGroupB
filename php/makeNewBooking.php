@@ -207,6 +207,8 @@ if (sizeof($unavailableDrivers) == 0) {
         }
     } else {
         print("No drivers available ");
+
+        header("Location: ../errorPage.php?errorCode=3");
     }
 }
 
@@ -313,8 +315,7 @@ if ($bookerUpdatedBudget > 0) {
 } else {
 //    Error Insufficient funds
     echo("Insufficient funds");
-
-    header("Location:errorPage.php?errorCode=2");
+    header("Location: ../errorPage.php?errorCode=2");
 }
 
 

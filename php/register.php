@@ -52,13 +52,13 @@ function createNewAccount()
         if ($identity == 'Booker'){
             echo 'WRITING BOOKER';
             //Added dummy values for variables that are not yet in the form. Look at company_id -> check if we are keeping this in updated database
-            $insertBooker = "INSERT INTO booker (`first_name`, `last_name`, `phone_number`, `user_id`, `finance_allowance`, `title`, `company_id`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '10000', 'Mr', '1')";
+            $insertBooker = "INSERT INTO booker (`first_name`, `last_name`, `phone_number`, `user_id`, `finance_allowance`, `company_id`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '1000', '1')";
             mysqli_query($connection, $insertBooker);
 
         } else {
             echo 'WRITING DRIVER';
             //Added dummy values for variables that are not yet in the form
-            $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `license_type`, `working_time_slot`, `driver_rating`, `title`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', 'Bus', '1', '4.5', 'Mr')";
+            $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `working_time_slot`, `driver_rating`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '1', '4.5')";
             mysqli_query($connection, $insertDriver);
 
             //if ($connection->query($insertDriver) === TRUE) {

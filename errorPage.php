@@ -15,8 +15,10 @@
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
@@ -39,7 +41,9 @@
             </li>
         </ul>
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -75,16 +79,31 @@
                 </h1>
             </div>
             <div class="col-lg-12 mx-auto" style="font-size: 500px">
-                <h1 class="text-uppercase" style="color: white">
-                    <strong>[Error detail goes here]</strong>
-                </h1>
+                <h2 class="text-uppercase" style="color: white">
+                    <strong>
+                        <?php
+                        if ($_GET) {
+                            $errorCode = $_GET['errorCode'];
+                            if($errorCode==1){
+                                echo "Invalid login details. Please try again.";
+                            }elseif ($errorCode==2){
+                                echo "Insufficient funds. Choose different type of car or contact with your finance manager ";
+                            }elseif ($errorCode==3){
+                                echo "Unfortunately, there are no available driver for this time";
+                            }
+                        } else {
+                            echo "Oooops seems like no errors. Sorry use back button";
+                        }
+                        ?>
+                    </strong>
+                </h2>
                 <hr>
             </div>
-            </div>
-            <div class="col-lg-8 mx-auto">
-                <button class="btn btn-primary btn-xl js-scroll-trigger m-1" onclick="history.go(-1)">Back</button>
-            </div>
         </div>
+        <div class="col-lg-8 mx-auto">
+            <button class="btn btn-primary btn-xl js-scroll-trigger m-1" onclick="history.go(-1)">Back</button>
+        </div>
+    </div>
     </div>
 </header>
 
