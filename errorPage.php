@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-lg-12 mx-auto" style="font-size: 500px">
                 <h1 class="text-uppercase" style="color: white">
-                    <strong>Oops... an error occurred: </strong>
+                    <strong>Oops... an error has occurred: </strong>
                 </h1>
             </div>
             <div class="col-lg-12 mx-auto" style="font-size: 500px">
