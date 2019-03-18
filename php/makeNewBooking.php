@@ -18,19 +18,7 @@ $start_post_code = $_POST['pickup_address_api'];
 $end_post_code = $_POST['dropoff_address_api'];
 
 
-for ($i = 1; $i <= $numberOfPassengers; $i++) {
-    ${"passengerFirstName" . $i} = $_POST['passenger_first_name_hidden_' . $i];
-    ${"passengerLastName" . $i} = $_POST['passenger_last_name_hidden_' . $i];
-    ${"passengerEmail" . $i} = $_POST['passenger_email_hidden_' . $i];
-    ${"passengerPhoneNo" . $i} = $_POST['passenger_phone_hidden_' . $i];
-    $passengerFirstName = ${"passengerFirstName" . $i};
-    $passengerLastName = ${"passengerLastName" . $i};
-    $passengerEmail = ${"passengerEmail" . $i};
-    $passengerPhoneNo = ${"passengerPhoneNo" . $i};
 
-    print("<br> Passenger $i: <br> Name: $passengerFirstName <br> Last Name: $passengerLastName <br> Email: $passengerEmail<br>
-Phone: $passengerPhoneNo <br>");
-}
 
 $pickupDateTime = $pickupDate . " " . $pickupTime . ":00";
 print ("Pickup Date Time:" . $pickupDateTime . "<br>");
@@ -208,17 +196,24 @@ $bookingID = mysqli_query($connection, $qryGetLatestBookingID);
 $travelerIDList = [];
 
 for ($i = 1; $i <= $numberOfPassengers; $i++) {
-    $passengerFirstName = ${"passengerFirstName" . $i};
-    $passengerLastName = ${"passengerLastName" . $i};
-    $passengerEmail = ${"passengerEmail" . $i};
-    $passengerPhone = ${"passengerPhoneNo" . $i};
+        ${"passengerFirstName" . $i} = $_POST['passenger_first_name_hidden_' . $i];
+        ${"passengerLastName" . $i} = $_POST['passenger_last_name_hidden_' . $i];
+        ${"passengerEmail" . $i} = $_POST['passenger_email_hidden_' . $i];
+        ${"passengerPhoneNo" . $i} = $_POST['passenger_phone_hidden_' . $i];
+        $passengerFirstName = ${"passengerFirstName" . $i};
+        $passengerLastName = ${"passengerLastName" . $i};
+        $passengerEmail = ${"passengerEmail" . $i};
+        $passengerPhoneNo = ${"passengerPhoneNo" . $i};
+
+        print("<br> Passenger $i: <br> Name: $passengerFirstName <br> Last Name: $passengerLastName <br> Email: $passengerEmail<br>
+Phone: $passengerPhoneNo <br>");
 
     /*-----------------------ALL QUERIES HERE
 
 
     //Find existing travelers
-    $qryFindTraveler = "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
-    WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName' 
+    $qryFindTraveler = "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id
+    WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName'
     AND email = '$passengerEmail' AND phone_number = '$passengerPhone'";
 
     //Add traveler queries
@@ -239,7 +234,7 @@ for ($i = 1; $i <= $numberOfPassengers; $i++) {
 
     $qryFindTraveler = "SELECT traveler_id FROM traveler JOIN loginuser ON traveler . user_id = loginuser . user_id 
     WHERE first_name = '$passengerFirstName' AND last_name = '$passengerLastName' 
-    AND email = '$passengerEmail' AND phone_number = '$passengerPhone'";
+    AND email = '$passengerEmail' AND phone_number = '$passengerPhoneNo'";
 
     $resultFindExistingTraveler = mysqli_query($connection, $qryFindTraveler);
     $travelerID = "";
