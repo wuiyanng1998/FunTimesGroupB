@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 18, 2019 at 11:43 PM
+-- Generation Time: Mar 19, 2019 at 01:12 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `booker` (
                                       PRIMARY KEY (`booker_id`),
                                       KEY `booker_ibfk_1` (`user_id`),
                                       KEY `booker_ibfk_2` (`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booker`
@@ -58,7 +58,8 @@ INSERT INTO `booker` (`booker_id`, `first_name`, `last_name`, `phone_number`, `u
 (7, 'Alice', 'Grant', '07729678493', 7, 700, 7),
 (8, 'James', 'Britton', '07293230248', 13, 800, 4),
 (17, 'Gordon', 'Hayward', '07111222333', 26, 10000, 1),
-(18, 'Gordon', 'Hayward', '07111222333', 26, 10000, 1);
+(18, 'Gordon', 'Hayward', '07111222333', 26, 10000, 1),
+(19, 'Zhaslan', 'Samyratov', '7773830298', 34, 840.48, 1);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
                                        KEY `booking_ibfk_3` (`route_id`),
                                        KEY `booking_ibfk_4` (`booker_id`),
                                        KEY `booking_ibfk_5` (`vehicle_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking`
@@ -98,10 +99,10 @@ INSERT INTO `booking` (`booking_id`, `booking_time`, `vehicle_id`, `number_of_tr
 (8, '2019-01-11 00:00:00', 2, 2, 8, 1, 200, 8),
 (9, '2019-03-15 12:39:00', 1, 2, 17, 2, 20, 8),
 (10, '2019-03-01 11:39:31', 2, 2, 17, 2, 20, 6),
-(11, '2019-03-01 11:30:00', 2, 1, 17, 6, 3.51, 30),
-(12, '2019-03-01 11:30:00', 2, 1, 17, 5, 3.51, 30),
-(13, '2019-03-01 11:30:00', 2, 1, 17, 1, 3.51, 30),
-(14, '2019-03-01 11:30:00', 2, 1, 17, 7, 3.51, 30);
+(15, '2019-03-12 12:12:00', 1, 1, 19, 5, 2.42, 30),
+(16, '2019-03-12 12:12:00', 1, 1, 19, 7, 2.42, 30),
+(17, '2019-12-12 12:12:00', 2, 1, 19, 5, 3.51, 32),
+(18, '2019-12-12 12:12:00', 5, 1, 19, 7, 156.01, 34);
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,6 @@ CREATE TABLE IF NOT EXISTS `driver` (
                                       `first_name` varchar(50) NOT NULL,
                                       `last_name` varchar(50) NOT NULL,
                                       `phone_number` varchar(50) NOT NULL,
-                                      `working_time_slot` int(11) NOT NULL,
                                       `driver_rating` float NOT NULL,
                                       PRIMARY KEY (`driver_id`),
                                       KEY `userID` (`user_id`)
@@ -152,16 +152,16 @@ CREATE TABLE IF NOT EXISTS `driver` (
 -- Dumping data for table `driver`
 --
 
-INSERT INTO `driver` (`driver_id`, `user_id`, `first_name`, `last_name`, `phone_number`, `working_time_slot`, `driver_rating`) VALUES
-(1, 9, 'Gavin', 'Greg', '07239840132', 0, 4.8),
-(2, 10, 'John', 'Roberts', '07995879192', 1, 4.4),
-(5, 24, '', '', '', 1, 4.5),
-(6, 24, '', '', '', 1, 4.5),
-(7, 28, 'Zhaslan', 'Samyratov', '7864933820', 1, 4.5),
-(8, 30, 'medriver', 'driver', '7864933820', 1, 4.5),
-(9, 31, 'Zhaslan', 'Samyratov', '7864933820', 1, 4.5),
-(10, 32, 'Zhaslan', 'Samyratov', '7864933820', 1, 4.5),
-(11, 33, 'Zhaslan', 'Samyratov', '7864933820', 1, 4.5);
+INSERT INTO `driver` (`driver_id`, `user_id`, `first_name`, `last_name`, `phone_number`, `driver_rating`) VALUES
+(1, 9, 'Gavin', 'Greg', '07239840132', 4.8),
+(2, 10, 'John', 'Roberts', '07995879192', 4.4),
+(5, 24, '', '', '', 4.5),
+(6, 24, '', '', '', 4.5),
+(7, 28, 'Zhaslan', 'Samyratov', '7864933820', 4.5),
+(8, 30, 'medriver', 'driver', '7864933820', 4.5),
+(9, 31, 'Zhaslan', 'Samyratov', '7864933820', 4.5),
+(10, 32, 'Zhaslan', 'Samyratov', '7864933820', 4.5),
+(11, 33, 'Zhaslan', 'Samyratov', '7864933820', 4.5);
 
 -- --------------------------------------------------------
 
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `loginuser` (
                                          `email` varchar(50) NOT NULL,
                                          `password` varchar(255) NOT NULL,
                                          PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `loginuser`
@@ -204,7 +204,8 @@ INSERT INTO `loginuser` (`user_id`, `email`, `password`) VALUES
 (30, 'medriver@medriver.com', '$2y$10$97ff4Um1R2jqQoSld7N0QeyuSX6z0xufooUmAzSKQ7DM2dl6/9lN.'),
 (31, 'zhas.samyratov@gmail.comsdcdsc', '$2y$10$K6rE64ONzG0g/HFAEOEAKucAtPYug//Oa.6eJmC6K/NMODtJx4hua'),
 (32, 'zhas.samyrqdwdatov@gmail.com', '$2y$10$qlh.unKWMWqFYdi1ejpx0uOrh.jsN5.s.RWNTEEBUy2NDEiqk8A3S'),
-(33, 'driver@driver.com', '$2y$10$YqBpWOuvzePR2JnPmxIi3u4Z/oTLupmigRz9jBaUssWDNVnVAn5NK');
+(33, 'driver@driver.com', '$2y$10$YqBpWOuvzePR2JnPmxIi3u4Z/oTLupmigRz9jBaUssWDNVnVAn5NK'),
+(34, 'Zhasike97@gmail.com', '$2y$10$2AYtrG/kuHdVyYgnXiUBZuVJNe3egajec3j10RIbvAXCl3OLeRRLO');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `route` (
                                      `end_address` varchar(100) NOT NULL,
                                      `end_post_code` varchar(255) NOT NULL,
                                      PRIMARY KEY (`route_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `route`
@@ -236,11 +237,10 @@ INSERT INTO `route` (`route_id`, `start_address`, `start_post_code`, `end_addres
 (7, 'Harrington Square', 'NW1 2JH', 'Gatwick', 'gtwckpc'),
 (8, 'Heathrow', 'hthrwpc', 'Sandland Street', 'WC1V'),
 (28, 'cascsa', 'casdcsa', 'scadfwfv', 'cdscds'),
-(29, 'nw11sa', 'NW1 1SA, London, England, United Kingdom', 'nw11er', 'NW1 1ER, London, England, United Kingdom'),
 (30, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'nw11er', 'NW1 1ER, London, England, United Kingdom'),
 (31, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'n1c4aw', 'N1C 4AW, London, England, United Kingdom'),
 (32, 'nw1 1as', 'NW1 1AS, London, England, United Kingdom', 'nw11er', 'NW1 1ER, London, England, United Kingdom'),
-(33, '', '', '', '');
+(34, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'heathrow airport', 'London Heathrow Airport, Hounslow, England, United Kingdom');
 
 -- --------------------------------------------------------
 
@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `traveler` (
                                         `phone_number` varchar(50) NOT NULL,
                                         `email` varchar(50) NOT NULL,
                                         PRIMARY KEY (`traveler_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `traveler`
@@ -270,7 +270,8 @@ INSERT INTO `traveler` (`traveler_id`, `first_name`, `last_name`, `phone_number`
 (5, 'Hannah', 'Bradshaw', '07998512645', 'h.bradshaw@gmail.com'),
 (6, 'Adam', 'Brown', '07638123556', 'a.brown@gmail.com'),
 (7, 'Alice', 'Grant', '07729678493', 'a.grant@gmail.com'),
-(8, 'Alex', 'Patel', '07582980248', 'a.patel@gmail.com');
+(8, 'Alex', 'Patel', '07582980248', 'a.patel@gmail.com'),
+(136, 'Zhaslan', 'Samyratov', '+447864933820', 'zhas.samyratov@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -299,7 +300,11 @@ INSERT INTO `travelerlist` (`booking_id`, `traveler_id`) VALUES
 (5, 5),
 (6, 6),
 (7, 7),
-(8, 8);
+(8, 8),
+(15, 136),
+(16, 136),
+(17, 136),
+(18, 136);
 
 -- --------------------------------------------------------
 
