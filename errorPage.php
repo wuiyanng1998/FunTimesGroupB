@@ -92,6 +92,8 @@
                                 echo "Unfortunately, there are no available driver for this time";
                             } elseif ($errorCode == 4) {
                                 echo "Seems like you should not be here";
+                            } elseif ($errorCode == 5) {
+                                echo "Sorry, email has already been registered";
                             }
                         } else {
                             echo "Oooops seems like no errors. Sorry use back button";

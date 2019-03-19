@@ -103,65 +103,69 @@
 
 <!-- My Bookings Section -->
 <section class="page-section bg-primary" id="myBookings">
-    <div class="row justify-content-center">
-        <div class="col-lg-12 text-center container-fluid">
-            <h2 class="text-light mt-0">My Bookings</h2>
-            <hr class="divider light my-4">
-            <div class="container">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="upcoming_tab" onclick="upcomingTabAJAX()">Upcoming</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-primary" id="history_tab" onclick="historyTabAJAX()">History</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <table bgcolor="#ffd700" class="table-light table-bordered table-hover text-left">
-                        <th class="bg-light text-primary p-2">Trip ID</th>
-                        <th class="bg-light text-primary p-2">Time</th>
-                        <th class="bg-light text-primary p-2">Pick up</th>
-                        <th class="bg-light text-primary p-2">Drop off</th>
-                        <th class="bg-light text-primary p-2">Car Type</th>
-                        <th class="bg-light text-primary p-2">Price</th>
-                        <!-- PHP  -->
-                        <?php
-                        if (isset($_COOKIE["bookerId"])) {
-                            $booker_id = $_COOKIE["bookerId"]; ?>
-                            <input type="hidden" name="bookerId" id="bookerId" value="<?php echo $booker_id ?>">
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-lg-12 text-center container-fluid">
+                <h2 class="text-light mt-0">My Bookings</h2>
+                <hr class="divider light my-4">
+                <div class="container">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="upcoming_tab"
+                                       onclick="upcomingTabAJAX()">Upcoming</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" id="history_tab"
+                                       onclick="historyTabAJAX()">History</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <table bgcolor="#ffd700" class="table-light table-bordered table-hover text-left">
+                            <th class="bg-light text-primary p-2">Trip ID</th>
+                            <th class="bg-light text-primary p-2">Time</th>
+                            <th class="bg-light text-primary p-2">Pick up</th>
+                            <th class="bg-light text-primary p-2">Drop off</th>
+                            <th class="bg-light text-primary p-2">Car Type</th>
+                            <th class="bg-light text-primary p-2">Price</th>
+                            <!-- PHP  -->
                             <?php
-                        } else {
-                            print('No cookie set');
-                        }
-
-                        $qryBooking =
-                            "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
-                  FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
-                  WHERE booker_id ='$booker_id' AND booking_time > NOW() LIMIT 10";
-                        ?>
-                        <tbody id="myBookingTable">
-                        <?php
-                        if ($result = mysqli_query($connection, $qryBooking)) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                ?>
-                                <tr>
-                                    <td class="p-2"><?php echo $row["booking_id"] ?></td>
-                                    <td class="p-2"><?php echo $row["booking_time"] ?></td>
-                                    <td class="p-2"><?php echo $row["start_post_code"] ?></td>
-                                    <td class="p-2"><?php echo $row["end_post_code"] ?></td>
-                                    <td class="p-2"><?php echo $row["vehicle_name"] ?></td>
-                                    <td class="p-2">£<?php echo $row["service_fee"] ?></td>
-                                </tr>
+                            if (isset($_COOKIE["bookerId"])) {
+                                $booker_id = $_COOKIE["bookerId"]; ?>
+                                <input type="hidden" name="bookerId" id="bookerId" value="<?php echo $booker_id ?>">
                                 <?php
+                            } else {
+                                print('No cookie set');
                             }
-                        } else {
-                            print "Error with car cost json encoding";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+
+                            $qryBooking =
+                                "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
+                    FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
+                    WHERE booker_id ='$booker_id' AND booking_time > NOW() LIMIT 10";
+                            ?>
+                            <tbody id="myBookingTable">
+                            <?php
+                            if ($result = mysqli_query($connection, $qryBooking)) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    ?>
+                                    <tr>
+                                        <td class="p-2"><?php echo $row["booking_id"] ?></td>
+                                        <td class="p-2"><?php echo $row["booking_time"] ?></td>
+                                        <td class="p-2"><?php echo $row["start_post_code"] ?></td>
+                                        <td class="p-2"><?php echo $row["end_post_code"] ?></td>
+                                        <td class="p-2"><?php echo $row["vehicle_name"] ?></td>
+                                        <td class="p-2">£<?php echo $row["service_fee"] ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            } else {
+                                print "Error with car cost json encoding";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

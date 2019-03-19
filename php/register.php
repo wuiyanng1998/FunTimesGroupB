@@ -37,6 +37,8 @@ function createNewAccount()
 
     if ($noRepeats != 0){
         echo "Sorry, email has already been registered.";
+        header('location: ../errorPage.php?errorCode=5');
+
     } else {
         // Build the query statement
         $hash = password_hash($password, PASSWORD_DEFAULT);

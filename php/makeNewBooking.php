@@ -207,6 +207,7 @@ if (sizeof($unavailableDrivers) == 0) {
         }
     } else {
         print("No drivers available ");
+        header("Location: ../errorPage.php?errorCode=3");
     }
 }
 
@@ -307,6 +308,21 @@ Phone: $passengerPhoneNo <br>");
         $qryAddTravelerList = "INSERT INTO travelerlist(`booking_id`, `traveler_id`) VALUES('$bookingID', '$travelerID')";
         $resultAddNewTravelerToTravelerList = mysqli_query($connection, $qryAddTravelerList);
     }
+}
+
+$qryDeductBookerBudget = "Select finance_allowance From booker where booker_id = '$booker_id'";
+$bookerInitialBudgetQry = mysqli_query($connection, $qryDeductBookerBudget);
+$bookerInitialBudget = mysqli_fetch_assoc($bookerInitialBudgetQry)['finance_allowance'];
+$bookerUpdatedBudget = $bookerInitialBudget - $service_fee;
+
+if ($bookerUpdatedBudget > 0) {
+    $qryDeductBookerBudget = "UPDATE booker SET finance_allowance = '$bookerUpdatedBudget' WHERE booker_id = '$booker_id'";
+    $bookerInitialBudgetQry = mysqli_query($connection, $qryDeductBookerBudget);
+} else {
+//    Error Insufficient funds
+    echo("Insufficient funds");
+
+    header("Location:errorPage.php?errorCode=2");
 }
 
 closeDb($connection);
