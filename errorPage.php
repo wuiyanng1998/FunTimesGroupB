@@ -37,7 +37,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#page-top"> Home </a>
+                <a class="nav-link js-scroll-trigger" href="index.html"> Home </a>
             </li>
         </ul>
 
@@ -51,13 +51,13 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    <a class="nav-link js-scroll-trigger" href="index.html#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                    <a class="nav-link js-scroll-trigger" href="index.html#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#fleet">Our Fleet</a>
+                    <a class="nav-link js-scroll-trigger" href="index.html#fleet">Our Fleet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="login.html">Log In</a>
