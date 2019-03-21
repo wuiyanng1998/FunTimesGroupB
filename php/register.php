@@ -60,7 +60,7 @@ function createNewAccount()
         } else {
             echo 'WRITING DRIVER';
             //Added dummy values for variables that are not yet in the form
-            $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `working_time_slot`, `driver_rating`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '1', '4.5')";
+            $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `driver_rating`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '4.5')";
             mysqli_query($connection, $insertDriver);
 
             //if ($connection->query($insertDriver) === TRUE) {

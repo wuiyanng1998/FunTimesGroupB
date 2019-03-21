@@ -236,14 +236,24 @@ $allMinusUnavailable = array_diff($allDrivers, $unavailableDrivers);
 $driversWithNoBooking = array_diff($allMinusUnavailable, $availableDriversAtLeast1);
 print ("<br> Drivers with no booking: ");
 print_r($driversWithNoBooking);
+print("<br> Drivers with no Booking: " . sizeof($driversWithNoBooking));
 print("<br>");
+print(sizeof($allDrivers));
 
 
 // Finding driver for the booking
-if (sizeof($driversWithNoBooking) > 0) {
+if (sizeof($allDrivers) == sizeof($unavailableDrivers)) {
+    print("<br> Sorry, we do not have enough drivers to fulfill your request.");
+    header('Location: ../errorPage.php?errorCode=3');
+    exit();
+
+} elseif (sizeof($driversWithNoBooking) > 0){
+
     $driver_id = $driversWithNoBooking[array_rand($driversWithNoBooking)];
     print("<br> Found available driver with no booking ID = " . $driver_id);
-} else {
+
+} elseif (sizeof($availableDriversAtLeast1) > 0){
+
     $driver_id = $availableDriversAtLeast1[array_rand($availableDriversAtLeast1)];
     print("<br> Found available driver with at least one booking ID = " . $driver_id);
 }
@@ -322,78 +332,9 @@ if ($bookerUpdatedBudget > 0) {
 //    Error Insufficient funds
     echo("Insufficient funds");
 
-    header("Location:errorPage.php?errorCode=2");
+    header("Location:../errorPage.php?errorCode=2");
 }
 
-//Multiple recipients
-$to = 'zhasike97@gmail.com';
-//, sally@example.com'; // note the comma
-
-// Subject
-$subject = 'Booking confirmation';
-
-// Message
-$message = '
-<html>
-<head>
-  <title>Booking confirmation</title>
-</head>
-<body>
-  <h2>You have successfully booked a trip with BDF!</h2>
-</body>
-</html>
-';
-//print ("Pickup Date Time:" . $pickupDateTime . "<br>");
-//print("bookerId: " . $booker_id . "<br> User ID: " . $_COOKIE["userId"]);
-//print("<br> Start address API: " . $start_post_code . "<br> Start address User: " . $start_address . "<br> End address API: " . $end_post_code . "<br> End address user: " . $end_address . "<br> Date:" . $pickupDate . "<br> Time:" . $pickupTime . "<br> No. Passengers: " . $numberOfPassengers . "<br> Vehicle Type: " . $carName . "<br> Price: " . $service_fee . "<br>");
-//print ("<br> Found vehicle ID: " . $vehicle_id . "<br>");
-
-// To send HTML mail, the Content-type header must be set
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-
-// Additional headers
-$headers[] = 'To: Mary <zhasike97@gmail.com>, Kelly <kelly@example.com>';
-$headers[] = 'From: Birthday Reminder <birthday@example.com>';
-$headers[] = 'Cc: birthdayarchive@example.com';
-$headers[] = 'Bcc: birthdaycheck@example.com';
-
-// Mail it
-mail($to, $subject, $message, implode("\r\n", $headers));
-?>
-
-
-//function sendEmail()
-//{
-//// Pear Mail Library
-//    require_once "Mail.php";
-//
-//    $from = '<fromaddress@gmail.com>';
-//    $to = '<toaddress@yahoo.com>';
-//    $subject = 'Hi!';
-//    $body = "Hi,\n\nHow are you?";
-//
-//    $headers = array(
-//        'From' => $from,
-//        'To' => $to,
-//        'Subject' => $subject
-//    );
-//
-//    $smtp = Mail::factory('smtp', array(
-//        'host' => 'ssl://smtp.gmail.com',
-//        'port' => '465',
-//        'auth' => true,
-//        'username' => 'johndoe@gmail.com',
-//        'password' => 'passwordxxx'
-//    ));
-//
-//    $mail = $smtp->send($to, $headers, $body);
-//
-//    if (PEAR::isError($mail)) {
-//        echo('<p>' . $mail->getMessage() . '</p>');
-//    } else {
-//        echo('<p>Message successfully sent!</p>');
-//    }
-//}
+header("Location: ../bookingConfirmation.html");
 
 closeDb($connection);
