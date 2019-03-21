@@ -49,49 +49,60 @@
 </nav>
 
 <header class="masthead text-center">
-    <div class="container col-9 col-sm-6 col-md-5 col-lg-4 col-xl-3 my-auto"
-         style="padding-top: 25vh !important; opacity: .87">
+    <div class="container col-9 col-sm-7 col-md-6 col-lg-5 col-xl-4 my-auto"
+         style="padding-top: 5vh; !important; opacity: .87">
         <div>
             <div class="card">
                 <div class="card-body">
                     <div class="login-form">
-                        <form style="margin-bottom: 2vh; font-family: 'Helvetica'" method='post' name='loginForm' action="php/register.php">
+                        <form style="margin-bottom: 2vh; font-family: 'Helvetica'" method='post' name='loginForm'
+                              action="php/register.php">
                             <h2 class="h3 mb-3 font-weight-bold">Register</h2>
                             <div class="form-group text-left">
                                 <input class="form-control" placeholder="First Name" type="text" name="firstName"
-                                       required>
+                                       onkeyup="checkFirstName()" id="firstName" required>
                             </div>
-                            <div class="form-group text-left">
-                                <input class="form-control" placeholder="Last Name" type="text" name="lastName"
-                                       required>
-                            </div>
-                            <div class="form-group text-left">
-                                <input class="form-control" placeholder="Email" type="email" name="email"
-                                       required>
-                            </div>
-                            <div class="form-group text-left">
-                                <input class="form-control" id="password" placeholder="Password"
-                                       type="password" name="password" onkeyup='check()' required>
-                            </div>
-                            <div class="form-group text-left">
-                                <input class="form-control" id = "passwordConfirm" placeholder="Confirm Password"
-                                       type="password" name="password" onkeyup='check()' required>
-                            </div>
-                            <div id= "passwordError"></div>
+                            <div id="firstNameError"></div>
 
                             <div class="form-group text-left">
-                                <input class="form-control" placeholder="Phone Number" type="number" name="phoneNumber"
-                                       required>
+                                <input class="form-control" placeholder="Last Name" type="text" name="lastName"
+                                       id="lastName" onkeyup="checkLastName()" required>
                             </div>
+                            <div id="lastNameError"></div>
+
+                            <div class="form-group text-left">
+                                <input class="form-control" placeholder="Email" type="email" name="email"
+                                       id="email" required>
+                            </div>
+
+                            <div class="form-group text-left">
+                                <input class="form-control" id="password" placeholder="Password"
+                                       type="password" name="password" onkeypress='checkPasswordConfirm()'
+                                       onkeyup="checkPasswordInput()" required>
+                            </div>
+                            <div id="passwordError"></div>
+
+                            <div class="form-group text-left">
+                                <input class="form-control" id="passwordConfirm" placeholder="Confirm Password"
+                                       type="password" name="password" onkeyup='checkPasswordConfirm()' required>
+                            </div>
+                            <div id="passwordConfirmError"></div>
+
+                            <div class="form-group text-left">
+                                <input class="form-control" placeholder="Phone Number" type="text" name="phoneNumber"
+                                       onkeyup="checkPhoneNumber()" id="phoneNumber" required>
+                            </div>
+                            <div id="phoneNumberError"></div>
                             <div class="form-group text-left">
                                 <select class="form-control" type="text" name="myIdentity">
-                                    <option>Booker</option>
-                                    <option selected="selected">Driver</option>
+                                    <option selected="selected">Booker</option>
+                                    <option>Driver</option>
                                 </select><br>
                             </div>
                             <div class="float-right">
                                 <!--<input type="hidden" name="type" value="1" />-->
-                                <button class="btn btn-primary" type="submit">Register</button>
+                                <button class="btn btn-primary" type="submit" onclick="return verifyInputs()">Register
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -100,6 +111,18 @@
         </div>
     </div>
 </header>
+<!--Header dark theme-->
+<section class="bg-dark pb-5 pt-5">
+</section>
+
 <script src="js/register.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 </body>
 </html>

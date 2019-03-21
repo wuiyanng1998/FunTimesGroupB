@@ -197,7 +197,7 @@
                             if (isset($_COOKIE["userId"])) {
                                 $user_id = $_COOKIE["userId"];
 
-                                $query = "SELECT first_name, last_name FROM booker  WHERE user_id = '$user_id'";
+                                $query = "SELECT first_name, last_name FROM booker WHERE user_id = '$user_id'";
                                 $results = mysqli_query($connection, $query);
                                 $array = mysqli_fetch_assoc($results);
 
@@ -327,6 +327,34 @@
 
                     <hr class="divider my-2">
 
+                    <div class="container bg-light p-2 text-left">
+                        <h5 class="card-subtitle text-primary"> Budget </h5>
+
+                        <div class="form-control validate border-0 bg-light" id="nameId" type="text"> £
+
+                            <?php
+
+                            if (isset($_COOKIE["userId"])) {
+                                $user_id = $_COOKIE["userId"];
+
+                                $query = "SELECT finance_allowance FROM booker WHERE user_id = '$user_id'";
+                                $results = mysqli_query($connection, $query);
+                                $array = mysqli_fetch_assoc($results);
+
+                                $finance_allowance = $array['finance_allowance'];
+
+                                echo $finance_allowance;
+                                echo '&nbsp';
+
+                            } else {
+                                print("Sorry, no cookie read.");
+                            }
+                            ?>
+
+                        </div>
+                    </div>
+
+                    <hr class="divider my-2">
                 </div>
             </div>
 

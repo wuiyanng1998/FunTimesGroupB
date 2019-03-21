@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="c5b0ba40-5566-42ae-afa7-7397e2af2d67" name="WAMP WUIYAN" url="http://localhost/project">
+      <webServer id="82c7bab2-95d4-42b7-8b8c-e4e9a9d45ca3" name="wampZHas" url="http://localhost/project">
         <fileTransfer port="0" mountedRoot="C:\wamp64\www\project" accessType="MOUNT" />
       </webServer>
     </option>
