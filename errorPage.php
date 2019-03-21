@@ -10,6 +10,9 @@
 
     <title>Error Page</title>
 
+    <!--icon on web-browser tab-->
+    <link rel="icon" href="img/logo.png">
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

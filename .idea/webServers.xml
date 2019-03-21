@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="c5b0ba40-5566-42ae-afa7-7397e2af2d67" name="WAMP WUIYAN" url="http://localhost/FunTimesGroupC/FunTimesGroupC">
-        <fileTransfer port="0" mountedRoot="C:\wamp64\www\FunTimesGroupC" accessType="MOUNT" />
+      <webServer id="c5b0ba40-5566-42ae-afa7-7397e2af2d67" name="WAMP WUIYAN" url="http://localhost/project">
+        <fileTransfer port="0" mountedRoot="C:\wamp64\www\project" accessType="MOUNT" />
       </webServer>
     </option>
   </component>
