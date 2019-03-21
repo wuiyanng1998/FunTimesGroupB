@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 19, 2019 at 01:12 AM
+-- Generation Time: Mar 21, 2019 at 06:24 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `booker` (
                                       PRIMARY KEY (`booker_id`),
                                       KEY `booker_ibfk_1` (`user_id`),
                                       KEY `booker_ibfk_2` (`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booker`
@@ -59,7 +59,9 @@ INSERT INTO `booker` (`booker_id`, `first_name`, `last_name`, `phone_number`, `u
 (8, 'James', 'Britton', '07293230248', 13, 800, 4),
 (17, 'Gordon', 'Hayward', '07111222333', 26, 10000, 1),
 (18, 'Gordon', 'Hayward', '07111222333', 26, 10000, 1),
-(19, 'Zhaslan', 'Samyratov', '7773830298', 34, 840.48, 1);
+(19, 'Zhaslan', 'Samyratov', '7773830298', 34, 840.48, 1),
+(20, 'Zhaslan', 'Samyratov', '7773830298', 35, 997.58, 1),
+(21, 'Zhaslan', 'Samyratov', '7864933820', 36, 995.39, 1);
 
 -- --------------------------------------------------------
 
@@ -82,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
                                        KEY `booking_ibfk_3` (`route_id`),
                                        KEY `booking_ibfk_4` (`booker_id`),
                                        KEY `booking_ibfk_5` (`vehicle_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `booking`
@@ -102,7 +104,9 @@ INSERT INTO `booking` (`booking_id`, `booking_time`, `vehicle_id`, `number_of_tr
 (15, '2019-03-12 12:12:00', 1, 1, 19, 5, 2.42, 30),
 (16, '2019-03-12 12:12:00', 1, 1, 19, 7, 2.42, 30),
 (17, '2019-12-12 12:12:00', 2, 1, 19, 5, 3.51, 32),
-(18, '2019-12-12 12:12:00', 5, 1, 19, 7, 156.01, 34);
+(18, '2019-12-12 12:12:00', 5, 1, 19, 7, 156.01, 34),
+(19, '2019-09-12 21:21:00', 1, 3, 20, 2, 2.42, 35),
+(20, '2019-12-12 12:12:00', 6, 1, 21, 11, 4.61, 30);
 
 -- --------------------------------------------------------
 
@@ -175,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `loginuser` (
                                          `email` varchar(50) NOT NULL,
                                          `password` varchar(255) NOT NULL,
                                          PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `loginuser`
@@ -205,7 +209,9 @@ INSERT INTO `loginuser` (`user_id`, `email`, `password`) VALUES
 (31, 'zhas.samyratov@gmail.comsdcdsc', '$2y$10$K6rE64ONzG0g/HFAEOEAKucAtPYug//Oa.6eJmC6K/NMODtJx4hua'),
 (32, 'zhas.samyrqdwdatov@gmail.com', '$2y$10$qlh.unKWMWqFYdi1ejpx0uOrh.jsN5.s.RWNTEEBUy2NDEiqk8A3S'),
 (33, 'driver@driver.com', '$2y$10$YqBpWOuvzePR2JnPmxIi3u4Z/oTLupmigRz9jBaUssWDNVnVAn5NK'),
-(34, 'Zhasike97@gmail.com', '$2y$10$2AYtrG/kuHdVyYgnXiUBZuVJNe3egajec3j10RIbvAXCl3OLeRRLO');
+(34, 'Zhasike97@gmail.com', '$2y$10$2AYtrG/kuHdVyYgnXiUBZuVJNe3egajec3j10RIbvAXCl3OLeRRLO'),
+(35, 'zs@gmail.com', '$2y$10$1MvOubJqgcB1ZlELqHqFFePBZ4rrOK29RepHeiSy65.yi9/QlWjMO'),
+(36, 'zhas@gmail.com', '$2y$10$nT9HubMmxkiGCJI4TDgUZeulrMl3vDH/dmP41uUFACm3daOBXP0Pa');
 
 -- --------------------------------------------------------
 
@@ -221,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `route` (
                                      `end_address` varchar(100) NOT NULL,
                                      `end_post_code` varchar(255) NOT NULL,
                                      PRIMARY KEY (`route_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `route`
@@ -240,7 +246,8 @@ INSERT INTO `route` (`route_id`, `start_address`, `start_post_code`, `end_addres
 (30, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'nw11er', 'NW1 1ER, London, England, United Kingdom'),
 (31, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'n1c4aw', 'N1C 4AW, London, England, United Kingdom'),
 (32, 'nw1 1as', 'NW1 1AS, London, England, United Kingdom', 'nw11er', 'NW1 1ER, London, England, United Kingdom'),
-(34, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'heathrow airport', 'London Heathrow Airport, Hounslow, England, United Kingdom');
+(34, 'nw11as', 'NW1 1AS, London, England, United Kingdom', 'heathrow airport', 'London Heathrow Airport, Hounslow, England, United Kingdom'),
+(35, 'nw1 1as', 'NW1 1AS, London, England, United Kingdom', 'nw1 1er', 'NW1 1ER, London, England, United Kingdom');
 
 -- --------------------------------------------------------
 
@@ -256,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `traveler` (
                                         `phone_number` varchar(50) NOT NULL,
                                         `email` varchar(50) NOT NULL,
                                         PRIMARY KEY (`traveler_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `traveler`
@@ -271,7 +278,9 @@ INSERT INTO `traveler` (`traveler_id`, `first_name`, `last_name`, `phone_number`
 (6, 'Adam', 'Brown', '07638123556', 'a.brown@gmail.com'),
 (7, 'Alice', 'Grant', '07729678493', 'a.grant@gmail.com'),
 (8, 'Alex', 'Patel', '07582980248', 'a.patel@gmail.com'),
-(136, 'Zhaslan', 'Samyratov', '+447864933820', 'zhas.samyratov@gmail.com');
+(136, 'Zhaslan', 'Samyratov', '+447864933820', 'zhas.samyratov@gmail.com'),
+(137, 'Zhaslan', 'Samyratov', '+447864933820', 'Zhasike97@gmail.com'),
+(138, 'cdcbsddcjb', 'djewbwejbwe', '1321312313', 'dwecdkcn@vdsv.com');
 
 -- --------------------------------------------------------
 
@@ -304,7 +313,11 @@ INSERT INTO `travelerlist` (`booking_id`, `traveler_id`) VALUES
 (15, 136),
 (16, 136),
 (17, 136),
-(18, 136);
+(18, 136),
+(19, 136),
+(20, 136),
+(19, 137),
+(19, 138);
 
 -- --------------------------------------------------------
 

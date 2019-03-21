@@ -117,11 +117,11 @@
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="upcoming_tab"
-                                       onclick="upcomingTabAJAX()">Upcoming</a>
+                                       onclick="upcomingTabAJAX()">Upcoming trips</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-primary" id="history_tab"
-                                       onclick="historyTabAJAX()">History</a>
+                                       onclick="historyTabAJAX()"> Last 10 trips</a>
                                 </li>
                             </ul>
                         </div>
