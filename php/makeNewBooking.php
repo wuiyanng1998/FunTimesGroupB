@@ -351,5 +351,5 @@ $_SESSION["price"] = $service_fee;
 
 
 
-header("Location: ../bookingSummary.php");
+header("Location: ../bookingConfirmation.php");
 
