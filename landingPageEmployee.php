@@ -40,7 +40,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="landingPageEmployee.php">My home</a>
+                <a class="nav-link js-scroll-trigger" href="#pageTop">My home</a>
             </li>
         </ul>
 
@@ -70,7 +70,7 @@
 </nav>
 
 <!-- Welcome Page Section -->
-<header class="masthead text-center text-white d-flex">
+<header class="masthead text-center text-white d-flex" id="pageTop">
     <div class="container my-auto">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center text-center">
