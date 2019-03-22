@@ -4,6 +4,27 @@ function tripInfoForm() {
     calculateFee(carList);
 }
 
+
+
+// Verify luggage, number of passengers and date of journey
+{
+    $("#luggage").on('blur', function () {
+        if ($("#luggage").val() <0 || $("#luggage").val() > 4 ) {
+            let errorContainer = $("#luggageError");
+            errorContainer.text("Luggage should be between 0 and 4");
+        }
+    });
+
+    $("#number_passengers").on('blur', function () {
+        if ($("#number_passengers").val() <0 || $("#number_passengers").val() > 6 ) {
+            let errorContainer = $("#passengerError");
+            errorContainer.text("Passenger number should be between 0 and 6");
+        }
+    });
+
+}
+
+
 //Passengers Forms
 function addPassengerFields() {
     // Creates number of inputs and Summary fields
@@ -575,7 +596,6 @@ function collectDataForPHP() {
 
         errorContainer.innerHTML += "<h3> Oooops, some data is missing</h3>";
 
-
         if (pickupAddress == null || pickupAddress == "") {
             errorContainer.innerHTML += "<p class='text-warning'> Please enter pickup address</p>";
             validated = false;
@@ -626,21 +646,6 @@ function collectDataForPHP() {
 
     return validated;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
