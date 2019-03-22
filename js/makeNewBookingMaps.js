@@ -285,7 +285,8 @@
         if (result.Response.View[0] == null) {
             document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
         } else {
-            document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'></h4>";
+            document.getElementById("error_pickup_address").innerHTML = "<h4 class='text-warning'> </h4>";
+            document.getElementById("pickup_search_button_logo").className = "fas fa-1x fa-check-circle text-dark my-3";
         }
     }
 
@@ -294,7 +295,19 @@
             document.getElementById("error_dropoff_address").innerHTML = "<h4 class='text-warning'> Unfortunately, we couldn't find this address, check address or try to use postcode</h4>";
         } else {
             document.getElementById("error_dropoff_address").innerHTML = "<h4 class='text-warning'></h4>";
+            document.getElementById("dropoff_search_button_logo").className = "fas fa-1x fa-check-circle text-dark my-3";
         }
     }
 }
+
+
+//reset search buttons back to normal search icon
+$("#pickup_address").click(function () {
+    document.getElementById("pickup_search_button_logo").className = "fas fa-1x fa-search-location text-light my-3";
+});
+
+$("#dropoff_address").click(function () {
+    document.getElementById("dropoff_search_button_logo").className = "fas fa-1x fa-search-location text-light my-3";
+});
+
 
