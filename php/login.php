@@ -31,9 +31,7 @@ if (password_verify($password, $hash)) {
     } elseif($driverRows != 0) {
         driverCookies();
     }
-    else{
-        echo "Error! User is not registered as neither a driver or booker!";
-    }
+
 } else {
     echo 'INVALID CREDENTIALS';
     header('location: ../errorPage.php?errorCode=1');

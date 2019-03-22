@@ -50,19 +50,20 @@ function createNewAccount()
         $get_user_id = "SELECT user_id FROM loginuser WHERE email = '$email'";
         $result = mysqli_query($connection, $get_user_id);
         $user_id = mysqli_fetch_assoc($result)["user_id"];
+        print $user_id;
 
         if ($identity == 'Booker'){
             echo 'WRITING BOOKER';
             //Added dummy values for variables that are not yet in the form. Look at company_id -> check if we are keeping this in updated database
             $insertBooker = "INSERT INTO booker (`first_name`, `last_name`, `phone_number`, `user_id`, `finance_allowance`, `company_id`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '1000', '1')";
             mysqli_query($connection, $insertBooker);
-
+            print "<br>".$insertBooker;
         } else {
             echo 'WRITING DRIVER';
             //Added dummy values for variables that are not yet in the form
             $insertDriver = "INSERT INTO driver (`first_name`, `last_name`, `phone_number`, `user_id`, `driver_rating`) VALUES ('$first_name', '$last_name', '$phone_number', '$user_id', '4.5')";
             mysqli_query($connection, $insertDriver);
-
+            print "<br>".$insertDriver;
             //if ($connection->query($insertDriver) === TRUE) {
             //echo "Driver created successfully <br>";
             //} else {
