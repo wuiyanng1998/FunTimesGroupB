@@ -73,7 +73,21 @@ let checkPhoneNumber = function () {
 };
 
 
+let checkEmail = function () {
+    let errorContainer = document.getElementById("emailError");
+    let input = document.getElementById('email').value;
+    let re = new RegExp("^(?:(?:[\\w`~!#$%^&*\\-=+;:{}'|,?\\/]+(?:(?:\\.(?:\"(?:\\\\?[\\w`~!#$%^&*\\-=+;:{}'|,?\\/\\.()<>\\[\\] @]|\\\\\"|\\\\\\\\)*\"|[\\w`~!#$%^&*\\-=+;:{}'|,?\\/]+))*\\.[\\w`~!#$%^&*\\-=+;:{}'|,?\\/]+)?)|(?:\"(?:\\\\?[\\w`~!#$%^&*\\-=+;:{}'|,?\\/\\.()<>\\[\\] @]|\\\\\"|\\\\\\\\)+\"))@(?:[a-zA-Z\\d\\-]+(?:\\.[a-zA-Z\\d\\-]+)*|\\[\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\])$");
+    if (re.test(input)) {
+        errorContainer.innerHTML = "";
+        return true
+    } else {
+        errorContainer.innerHTML = "<p class='text-warning'> Enter valid email</p>";
+        return false
+    }
+};
+
+
 function verifyInputs() {
-    let verified = check() && checkPassword() && checkFirstName() && checkLastName() && checkPhoneNumber();
+    let verified = checkPassword() && checkPasswordConfirm() && checkFirstName() && checkLastName() && checkPhoneNumber();
     return (verified);
 }

@@ -5,18 +5,17 @@ function tripInfoForm() {
 }
 
 
-
 // Verify luggage, number of passengers and date of journey
 {
     $("#luggage").on('blur', function () {
-        if ($("#luggage").val() <0 || $("#luggage").val() > 4 ) {
+        if ($("#luggage").val() < 0 || $("#luggage").val() > 4) {
             let errorContainer = $("#luggageError");
             errorContainer.text("Luggage should be between 0 and 4");
         }
     });
 
     $("#number_passengers").on('blur', function () {
-        if ($("#number_passengers").val() <0 || $("#number_passengers").val() > 6 ) {
+        if ($("#number_passengers").val() < 0 || $("#number_passengers").val() > 6) {
             let errorContainer = $("#passengerError");
             errorContainer.text("Passenger number should be between 0 and 6");
         }
@@ -62,6 +61,7 @@ function addPassengerFields() {
                                         <input class="form-control validate" id="passenger_first_name_` + i + `"
                                                placeholder="Enter first name" name="passenger_first_name_` + i + `" 
                                                type="text"/>
+                                        <div id="passenger_first_nameError` + i + `"> </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,6 +78,7 @@ function addPassengerFields() {
                                         <input class="form-control validate" id="passenger_last_name_` + i + `"
                                                placeholder="Enter last name" name="passenger_last_name_` + i + `"
                                                type="text"/>
+                                        <div id="passenger_last_nameError_` + i + `"> </div>
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +95,7 @@ function addPassengerFields() {
                                         <input class="form-control validate" id="passenger_email` + i + `"
                                                placeholder="Enter email" name="passenger_email_` + i + `"
                                                type="email"/>
+                                        <div id="passenger_emailError_` + i + `"> </div>
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +109,9 @@ function addPassengerFields() {
                                     <div class="col-10">
                                         <h5>Mobile number</h5>
                                         <input class="form-control validate" id="passenger_phone` + i + `"
-                                               name="passenger_phone_` + i + `" value="+44"
+                                               name="passenger_phone_` + i + `" value="" placeholder="Enter phone number"
                                                type="tel"/>
+                                        <div id="phoneNumberError_` + i + `"> </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,6 +122,74 @@ function addPassengerFields() {
             container.appendChild(passenger_form);
         }
     }
+
+
+    //Verify traveler details
+    for (let i = 1; i <= number_passengers; i++) {
+        //verify traveler first name
+        $("#passenger_first_name_" + i).on("blur", function () {
+
+            let errorContainer = document.getElementById("passenger_first_nameError" + i);
+            let input = document.getElementById('passenger_first_name_' + i).value;
+            console.log(input);
+            let re = new RegExp("[A-Z][a-z]*$");
+            if (re.test(input)) {
+                errorContainer.innerHTML = "";
+                return true
+            } else {
+                errorContainer.innerHTML = "<p class='text-warning'> First name should start with a capital letter and only contain letters</p>";
+                return false
+            }
+        });
+
+        //verify traveler last name
+        $("#passenger_last_name_" + i).on("blur", function () {
+            console.log("first name being selected");
+            let errorContainer = document.getElementById("passenger_last_nameError_" + i);
+            let input = document.getElementById('passenger_last_name_' + i).value;
+            let re = new RegExp("[A-Z][a-z]*$");
+            if (re.test(input)) {
+                errorContainer.innerHTML = "";
+                return true
+            } else {
+                errorContainer.innerHTML = "<p class='text-warning'> Last name should start with a capital letter and only contain letters</p>";
+                return false
+            }
+        });
+
+        //verify traveler phone number
+        $("#passenger_phone" + i).on("blur", function () {
+            let errorContainer = document.getElementById("phoneNumberError_" + i);
+            let input = document.getElementById('passenger_phone' + i).value;
+            let re = new RegExp("[0-9]*$");
+            if (re.test(input) && input.length == 11) {
+                errorContainer.innerHTML = "";
+                return true
+            } else {
+                errorContainer.innerHTML = "<p class='text-warning'> Phone number must be made of 11 digits</p>";
+                return false
+            }
+        });
+
+
+        //verify traveler phone number
+        $("#passenger_email" + i).on("blur", function () {
+            let errorContainer = document.getElementById("passenger_emailError_" + i);
+            let input = document.getElementById('passenger_email' + i).value;
+            let re = new RegExp("^(?:(?:[\\w`~!#$%^&*\\-=+;:{}'|,?\\/]+(?:(?:\\.(?:\"(?:\\\\?[\\w`~!#$%^&*\\-=+;:{}'|,?\\/\\.()<>\\[\\] @]|\\\\\"|\\\\\\\\)*\"|[\\w`~!#$%^&*\\-=+;:{}'|,?\\/]+))*\\.[\\w`~!#$%^&*\\-=+;:{}'|,?\\/]+)?)|(?:\"(?:\\\\?[\\w`~!#$%^&*\\-=+;:{}'|,?\\/\\.()<>\\[\\] @]|\\\\\"|\\\\\\\\)+\"))@(?:[a-zA-Z\\d\\-]+(?:\\.[a-zA-Z\\d\\-]+)*|\\[\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\])$");
+            if (re.test(input)) {
+                errorContainer.innerHTML = "";
+                return true
+            } else {
+                errorContainer.innerHTML = "<p class='text-warning'> Enter valid email</p>";
+                return false
+            }
+        });
+
+
+
+    }
+
 
     //Passenger details summary
     {
@@ -648,6 +719,32 @@ function collectDataForPHP() {
 }
 
 
+// let checkLastName = function () {
+//     let errorContainer = document.getElementById("lastNameError");
+//     let input = document.getElementById('lastName').value;
+//     let re = new RegExp("[A-Z][a-z]*$");
+//     if (re.test(input)) {
+//         errorContainer.innerHTML = "";
+//         return true
+//     } else {
+//         errorContainer.innerHTML = "<p class='text-warning'> First name should start with a capital letter and only contain letters</p>";
+//         return false
+//     }
+// };
+//
+//
+// let checkPhoneNumber = function () {
+//     let errorContainer = document.getElementById("phoneNumberError");
+//     let input = document.getElementById('phoneNumber').value;
+//     let re = new RegExp("[0-9]*$");
+//     if (re.test(input) && input.length == 11) {
+//         errorContainer.innerHTML = "";
+//         return true
+//     } else {
+//         errorContainer.innerHTML = "<p class='text-warning'> Phone number must be made of 11 digits</p>";
+//         return false
+//     }
+// };
 
 
 

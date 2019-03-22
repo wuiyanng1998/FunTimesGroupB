@@ -227,10 +227,10 @@ session_start();
                 <!--Confirm button-->
                 <div class="row">
                     <div class="col-4 offset-2 mx-auto my-3">
-                        <a class="btn btn-primary btn-xl" href="landingPageEmployee.php">Back to My Profile</a>
+                        <a class="btn btn-primary btn-xl" id="backToMyProfile" href="landingPageEmployee.php">Back to My Profile</a>
                     </div>
                     <div class="col-4 offset-2 mx-auto my-3">
-                        <a class="btn btn-primary btn-xl" href="makeNewBookingPage.html">Make another booking</a>
+                        <a class="btn btn-primary btn-xl" id="MakeAnotherBooking" href="makeNewBookingPage.html">Make another booking</a>
                     </div>
                 </div>
             </div>

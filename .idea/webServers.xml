@@ -5,8 +5,8 @@
       <webServer id="82c7bab2-95d4-42b7-8b8c-e4e9a9d45ca3" name="wampZHas" url="http://localhost/project">
         <fileTransfer port="0" mountedRoot="C:\wamp64\www\project" accessType="MOUNT" />
       </webServer>
-      <webServer id="1e25c13d-8a23-4df7-bd5e-cf6ceebcf32a" name="WAMP WUIYAN" url="http://localhost/FunTimesGroupC/FunTimesGroupC">
-        <fileTransfer port="0" mountedRoot="C:\wamp64\www\FunTimesGroupC" accessType="MOUNT" />
+      <webServer id="1e25c13d-8a23-4df7-bd5e-cf6ceebcf32a" name="WAMP WUIYAN" url="http://localhost/project">
+        <fileTransfer port="0" mountedRoot="C:\wamp64\www\project" accessType="MOUNT" />
       </webServer>
     </option>
   </component>

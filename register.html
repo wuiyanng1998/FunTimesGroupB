@@ -72,8 +72,9 @@
 
                             <div class="form-group text-left">
                                 <input class="form-control" placeholder="Email" type="email" name="email"
-                                       id="email" required>
+                                       id="email" onkeyup="checkEmail()" required>
                             </div>
+                            <div id="emailError"></div>
 
                             <div class="form-group text-left">
                                 <input class="form-control" id="password" placeholder="Password"
