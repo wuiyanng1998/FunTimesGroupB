@@ -335,6 +335,21 @@ if ($bookerUpdatedBudget > 0) {
     header("Location:../errorPage.php?errorCode=2");
 }
 
-header("Location: ../bookingConfirmation.html");
 
 closeDb($connection);
+
+session_start();
+// Set session variables
+$_SESSION["pickup"] = $start_post_code;
+$_SESSION["dropoff"] = $end_post_code;
+$_SESSION["date"] = $pickupDate;
+$_SESSION["time"] = $pickupTime;
+$_SESSION["numberOfPassengers"] = $numberOfPassengers;
+$_SESSION["carType"] = $carName;
+$_SESSION["price"] = $service_fee;
+
+
+
+
+header("Location: ../bookingSummary.php");
+
