@@ -47,7 +47,7 @@
         <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse"
                 type="button">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"> </span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
