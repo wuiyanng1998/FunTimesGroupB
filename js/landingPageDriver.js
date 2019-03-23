@@ -3,7 +3,7 @@ function historyTabAJAX() {
     var q = $("#driverId").val();
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'php/landingPageEmployeeAJAXHistoryTab.php?q=' + q, true);
+    xhr.open('GET', 'php/landingPageDriverAJAXHistoryTab.php?q=' + q, true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -24,14 +24,14 @@ function addHistoryTabToHTML(bookingList) {
     } else {
         $("#myBookingTable").empty();
         for (let i = 0; i < bookingList.length; i++) {
-            let historyTable = `<td class="p-2">` + bookingList[i][0] + `</td>
-            <td class="p-2">` + bookingList[i][1] + `</td>
-            <td class="p-2">` + bookingList[i][2] + `</td>
-            <td class="p-2">` + bookingList[i][3] + `</td>
-            <td class="p-2">` + bookingList[i][4] + `</td>
-            <td class="p-2">£` + bookingList[i][5] + `</td>`
+            let historyTable = `<td class="p-2">` + bookingList[i][0][0] + ` </td>
+            <td class="p-2">` + bookingList[i][0][1] + `</td>
+            <td class="p-2">` + bookingList[i][0][2] + `</td>
+            <td class="p-2">` + bookingList[i][0][3] + `</td>
+            <td class="p-2">` + bookingList[i][0][4] + `</td>
+            <td class="p-2">` + bookingList[i][0][5] + `</td>`;
             console.log(historyTable);
-            $("#myBookingTable").html(historyTable);
+            document.getElementById("myBookingTable").innerHTML += historyTable;
             console.log("worked historyTab to HTML");
         }
 
@@ -47,7 +47,7 @@ function upcomingTabAJAX() {
     var q = $("#driverId").val();
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'php/landingPageEmployeeAJAXUpcomingTab.php?q=' + q, true);
+    xhr.open('GET', 'php/landingPageDriverAJAXUpcomingTab.php?q=' + q, true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -66,16 +66,17 @@ function addUpcomingTabToHTML(bookingList) {
     if (typeof bookingList === "undefined") {
         console.log("undefined");
     } else {
+
         $("#myBookingTable").empty();
         for (let i = 0; i < bookingList.length; i++) {
-            let historyTable = `<td class="p-2">` + bookingList[i][0] + ` </td>
-            <td class="p-2">` + bookingList[i][1] + `</td>
-            <td class="p-2">` + bookingList[i][2] + `</td>
-            <td class="p-2">` + bookingList[i][3] + `</td>
-            <td class="p-2">` + bookingList[i][4] + `</td>
-            <td class="p-2">£` + bookingList[i][5] + `</td>`;
+            let historyTable = `<td class="p-2">` + bookingList[i][0][0] + ` </td>
+            <td class="p-2">` + bookingList[i][0][1] + `</td>
+            <td class="p-2">` + bookingList[i][0][2] + `</td>
+            <td class="p-2">` + bookingList[i][0][3] + `</td>
+            <td class="p-2">` + bookingList[i][0][4] + `</td>
+            <td class="p-2">` + bookingList[i][0][5] + `</td>`;
             console.log(historyTable);
-            $("#myBookingTable").html(historyTable);
+            document.getElementById("myBookingTable").innerHTML += historyTable;
             console.log("worked pending to HTML");
         }
 
@@ -90,45 +91,44 @@ function addUpcomingTabToHTML(bookingList) {
 function selectedDayTabAJAX() {
     //Retrieve information
     let q = $("#driverId").val();
-    let date = $("#selected_date").val();
+
+    let day = $("#selected_day").val();
+    let month = $("#selected_month").val();
+    let year = $("#selected_year").val();
 
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'php/landingPageEmployeeAJAXUpcomingTab.php?q=' + q + "&date=" + date, true);
+    xhr.open('GET', 'php/landingPageDriverAJAXSelectedDate.php?q=' + q + "&day=" + day + "&month="
+        + month + "&year=" +year, true);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log("worked pending AJAX");
             let result = xhr.responseText;
             let bookingList = JSON.parse(result);
-            console.log(bookingList);
-            addSelectedDayTabToHTML(bookingList, date);
+            addSelectedDayTabToHTML(bookingList, day, month, year);
         }
     };
     xhr.send();
 }
 
-function addSelectedDayTabToHTML(bookingList, date) {
+function addSelectedDayTabToHTML(bookingList, day, month, year) {
     //leave relevant cars in the order of the html elements
     if (typeof bookingList === "undefined") {
         console.log("undefined");
     } else {
+
         $("#myBookingTable").empty();
         for (let i = 0; i < bookingList.length; i++) {
-            let historyTable = `<td class="p-2">` + bookingList[i][0] + ` </td>
-            <td class="p-2">` + bookingList[i][1] + `</td>
-            <td class="p-2">` + bookingList[i][2] + `</td>
-            <td class="p-2">` + bookingList[i][3] + `</td>
-            <td class="p-2">` + bookingList[i][4] + `</td>
-            <td class="p-2">£` + bookingList[i][5] + `</td>`;
+            let historyTable = `<td class="p-2">` + bookingList[i][0][0] + ` </td>
+            <td class="p-2">` + bookingList[i][0][1] + `</td>
+            <td class="p-2">` + bookingList[i][0][2] + `</td>
+            <td class="p-2">` + bookingList[i][0][3] + `</td>
+            <td class="p-2">` + bookingList[i][0][4] + `</td>
+            <td class="p-2">` + bookingList[i][0][5] + `</td>`;
             console.log(historyTable);
-            $("#myBookingTable").html(historyTable);
+            document.getElementById("myBookingTable").innerHTML += historyTable;
             console.log("worked selectedDay to HTML");
         }
-
-        let dateArray = date.split("-");
-        let year = dateArray[0];
-        let month = dateArray[1];
-        let day = dateArray[2];
 
 
         $("#selectedDay").text("Trips on " + day + "." + month + "." + year);

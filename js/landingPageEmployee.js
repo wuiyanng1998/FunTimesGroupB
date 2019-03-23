@@ -22,18 +22,20 @@ function addHistoryTabToHTML(bookingList) {
     if (typeof bookingList === "undefined") {
         console.log("undefined");
     } else {
+
         $("#myBookingTable").empty();
         for (let i = 0; i < bookingList.length; i++) {
-            let historyTable = `<td class="p-2">` + bookingList[i][0] + `</td>
-            <td class="p-2">` + bookingList[i][1] + `</td>
-            <td class="p-2">` + bookingList[i][2] + `</td>
-            <td class="p-2">` + bookingList[i][3] + `</td>
-            <td class="p-2">` + bookingList[i][4] + `</td>
-            <td class="p-2">£` + bookingList[i][5] + `</td>`
+            let historyTable = `<td class="p-2">` + bookingList[i][0][0] + ` </td>
+            <td class="p-2">` + bookingList[i][0][1] + `</td>
+            <td class="p-2">` + bookingList[i][0][2] + `</td>
+            <td class="p-2">` + bookingList[i][0][3] + `</td>
+            <td class="p-2">` + bookingList[i][0][4] + `</td>
+            <td class="p-2">£` + bookingList[i][0][5] + `</td>`;
             console.log(historyTable);
-            $("#myBookingTable").html(historyTable);
+            document.getElementById("myBookingTable").innerHTML += historyTable;
             console.log("worked pending to HTML");
         }
+
         $("#history_tab").attr("class", "nav-link active");
         $("#upcoming_tab").attr("class", "nav-link text-primary");
     }
@@ -66,16 +68,17 @@ function addUpcomingTabToHTML(bookingList) {
     } else {
         $("#myBookingTable").empty();
         for (let i = 0; i < bookingList.length; i++) {
-            let historyTable = `<td class="p-2">` + bookingList[i][0] + ` </td>
-            <td class="p-2">` + bookingList[i][1] + `</td>
-            <td class="p-2">` + bookingList[i][2] + `</td>
-            <td class="p-2">` + bookingList[i][3] + `</td>
-            <td class="p-2">` + bookingList[i][4] + `</td>
-            <td class="p-2">£` + bookingList[i][5] + `</td>`;
+            let historyTable = `<td class="p-2">` + bookingList[i][0][0] + ` </td>
+            <td class="p-2">` + bookingList[i][0][1] + `</td>
+            <td class="p-2">` + bookingList[i][0][2] + `</td>
+            <td class="p-2">` + bookingList[i][0][3] + `</td>
+            <td class="p-2">` + bookingList[i][0][4] + `</td>
+            <td class="p-2">£` + bookingList[i][0][5] + `</td>`;
             console.log(historyTable);
-            $("#myBookingTable").html(historyTable);
+            document.getElementById("myBookingTable").innerHTML += historyTable;
             console.log("worked pending to HTML");
         }
+
         $("#upcoming_tab").attr("class", "nav-link active");
         $("#history_tab").attr("class", "nav-link text-primary");
 

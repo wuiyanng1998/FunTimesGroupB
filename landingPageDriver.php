@@ -124,7 +124,7 @@
                             if (isset($_COOKIE["userId"])) {
                                 $user_id = $_COOKIE["userId"];
 
-                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id' ORDER BY booking.booking_time ASC LIMIT 0, 1";
                                 $results = mysqli_query($connection, $query);
                                 $array = mysqli_fetch_assoc($results);
 
@@ -167,7 +167,7 @@
                             if (isset($_COOKIE["userId"])) {
                                 $user_id = $_COOKIE["userId"];
 
-                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id' ORDER BY booking.booking_time ASC LIMIT 1, 1";
                                 $results = mysqli_query($connection, $query);
                                 $array = mysqli_fetch_assoc($results);
 
@@ -214,7 +214,7 @@
                             if (isset($_COOKIE["userId"])) {
                                 $user_id = $_COOKIE["userId"];
 
-                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id'";
+                                $query = "SELECT booking.booking_id, booking.booking_time FROM booking JOIN driver USING(driver_id) WHERE driver.user_id = '$user_id' ORDER BY booking.booking_time ASC LIMIT 2, 1";
                                 $results = mysqli_query($connection, $query);
                                 $array = mysqli_fetch_assoc($results);
 
@@ -254,6 +254,7 @@
     </div>
 </section>
 
+
 <!-- My Trip -->
 <section class="page-section bg-primary" id="myPerformance">
     <div class="container">
@@ -282,7 +283,9 @@
 
                             </tbody>
 
-                            <input type="hidden" name="selected_date" id="selected_date" value="">
+                            <input type="hidden" name="selected_day" id="selected_day" value="">
+                            <input type="hidden" name="selected_month" id="selected_month" value="">
+                            <input type="hidden" name="selected_year" id="selected_year" value="">
 
                         </table>
 
@@ -396,9 +399,9 @@
                             }
 
                             $qryBooking =
-                                "SELECT booking_id, booking_time, start_post_code, end_post_code, number_of_travelers, vehicle_name 
-                             FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON 
-                             booking.vehicle_id=vehicle.vehicle_id WHERE booker_id ='" . $driver_id . "' AND booking_time > NOW() LIMIT 10";
+                                "SELECT booking_id, booking_time, start_post_code, end_post_code, booking.number_of_travelers, vehicle_name 
+                  FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
+                  WHERE driver_id ='$driver_id' AND booking_time > NOW() LIMIT 10";
                             ?>
                             <tbody id="myBookingTable">
                             <?php

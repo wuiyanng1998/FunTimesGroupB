@@ -15,7 +15,7 @@ function findBooking($booker_id)
     $connection = connectToDb();
     $qryBooking = "SELECT booking_id, booking_time, start_post_code, end_post_code, service_fee, vehicle_name 
                   FROM booking JOIN route ON route.route_id=booking.route_id JOIN vehicle ON booking.vehicle_id=vehicle.vehicle_id 
-                  WHERE booker_id ='$booker_id' AND booking_time < NOW() LIMIT 10";
+                  WHERE booker_id ='$booker_id' AND booking_time < NOW() ORDER BY booking_time ASC LIMIT 10";
 
     if ($result = mysqli_query($connection, $qryBooking)) {
         $bookingList = [];
@@ -27,7 +27,7 @@ function findBooking($booker_id)
             $specificBooking[] = $row["end_post_code"];
             $specificBooking[] = $row["vehicle_name"];
             $specificBooking[] = $row["service_fee"];
-            $bookingList[] = $specificBooking;
+            $bookingList[][] = $specificBooking;
         }
         return $bookingList;
     } else {

@@ -94,8 +94,15 @@ function getSelectedDate(month, year) {
 
     function getValue(cel, month, year) {
         month = month + 1;
-        $("#selected_date").val(year + "-" + month + "-" + cel.innerHTML);
-        // alert(cel.innerHTML + ", " + month + ", " + year);
+        if (month < 10) {
+            let zeroMonth = '0' + month;
+            month = zeroMonth;
+        }
+        $("#selected_day").val(cel.innerHTML);
+        $("#selected_year").val(year);
+        $("#selected_month").val(month);
+
+        // alert(cel.innerHTML + "-" + month + "-" + year);
         cel.classList.add("bg-primary");
     }
 
